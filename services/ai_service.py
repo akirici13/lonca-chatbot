@@ -1,5 +1,5 @@
 from typing import Dict, Optional, Tuple
-import requests
+import aiohttp
 from helpers.api_key import get_openai_api_key
 
 class AIService:
@@ -49,19 +49,18 @@ class AIService:
                 ]
             }
 
-            # Make API call
-            response = requests.post(self.api_url, headers=headers, json=payload)
-            response.raise_for_status()  # Raise an exception for bad status codes
-            
-            # Parse response
-            result = response.json()
-            return {
-                "choices": [{
-                    "message": {
-                        "content": result["choices"][0]["message"]["content"]
+            async with aiohttp.ClientSession() as session:
+                async with session.post(self.api_url, headers=headers, json=payload) as response:
+                    response.raise_for_status()
+                    result = await response.json()
+                    
+                    return {
+                        "choices": [{
+                            "message": {
+                                "content": result["choices"][0]["message"]["content"]
+                            }
+                        }]
                     }
-                }]
-            }
             
         except Exception as e:
             print(f"Error getting AI response: {e}")
