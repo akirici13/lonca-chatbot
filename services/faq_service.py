@@ -95,15 +95,18 @@ class FAQService:
         
         Args:
             query (str): The user's question
-            region (str, optional): The region to filter by
+            region (str, optional): The region to filter by. If provided, only returns answers for that region.
             n_results (int): Number of results to return
             
         Returns:
             List[Dict]: List of relevant FAQs with their answers
         """
         try:
-            # Prepare query
-            where = {"region": region} if region else None
+            # If region is provided, only search within that region
+            if region:
+                where = {"region": region}
+            else:
+                where = None
             
             # Search the collection
             results = self.collection.query(
@@ -114,18 +117,31 @@ class FAQService:
             
             # Format results
             faqs = []
+            seen_questions = set()  # Track unique questions
+            
             for i in range(len(results['ids'][0])):
+                question = results['metadatas'][0][i]['question']
+                
+                # Skip if we've already seen this question (to avoid duplicates)
+                if question in seen_questions:
+                    continue
+                    
+                seen_questions.add(question)
                 distance = results['distances'][0][i]
                 relevance = self._calculate_relevance_score(distance)
                 
                 faqs.append({
-                    "question": results['metadatas'][0][i]['question'],
+                    "question": question,
                     "answer": results['metadatas'][0][i]['answer'],
                     "region": results['metadatas'][0][i]['region'],
                     "distance": distance,
                     "relevance": relevance
                 })
                 
+                # Break if we have enough unique questions
+                if len(faqs) >= n_results:
+                    break
+            
             return faqs
             
         except Exception as e:
