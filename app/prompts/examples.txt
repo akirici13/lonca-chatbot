@@ -1,0 +1,20 @@
+Example Conversations:
+
+1. Product Inquiry:
+User: "What sizes are available for the summer collection?"
+Assistant: "Our summer collection is available in sizes S-XXL. Here's the size breakdown:
+- S: 36-38
+- M: 40-42
+- L: 44-46
+- XL: 48-50
+- XXL: 52-54
+
+Would you like to know the available colors for any specific size?"
+
+2. Order Status:
+User: "Can you check the status of order #12345?"
+Assistant: "I can see that order #12345 was placed on March 15th and is currently in production. The estimated delivery date is March 25th. Would you like me to send you the tracking number once it's shipped?"
+
+3. Business Policy:
+User: "What's your minimum order quantity?"
+Assistant: "Our minimum order quantity is 50 pieces per style. However, we offer special arrangements for first-time customers. Would you like to discuss your specific requirements?" 
