@@ -1,17 +1,17 @@
 from typing import Dict, Optional, Tuple
 from openai import AsyncOpenAI
+from helpers.api_key import get_openai_api_key
 
 class AIService:
-    def __init__(self, api_key: str, model: str = "gpt-4.1-mini"):
+    def __init__(self, model: str = "gpt-4.1-mini"):
         """
-        Initialize the AI service with OpenAI API key.
+        Initialize the AI service.
         
         Args:
-            api_key (str): OpenAI API key
             model (str): The model to use (default: gpt-4.1-mini)
         """
         self.model = model
-        self.client = AsyncOpenAI(api_key=api_key)
+        self.client = AsyncOpenAI(api_key=get_openai_api_key())
         
     async def get_response(self, system_prompt: str, user_prompt: str) -> Dict:
         """

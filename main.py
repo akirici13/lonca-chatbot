@@ -1,18 +1,9 @@
 import asyncio
-import os
-from dotenv import load_dotenv
 from services.chat_handler import ChatHandler
 
 async def main():
-    # Load environment variables
-    load_dotenv()
-    api_key = os.getenv("OPENAI_API_KEY")
-    
-    if not api_key:
-        raise ValueError("OPENAI_API_KEY not found in environment variables")
-    
     # Initialize chat handler
-    chat_handler = ChatHandler(api_key)
+    chat_handler = ChatHandler()
     
     # Example conversation
     test_messages = [

@@ -4,16 +4,15 @@ from .ai_service import AIService
 from .token_counter import TokenCounter
 
 class ChatHandler:
-    def __init__(self, api_key: str, model: str = "gpt-4.1-mini"):
+    def __init__(self, model: str = "gpt-4.1-mini"):
         """
         Initialize the chat handler with required services.
         
         Args:
-            api_key (str): OpenAI API key
             model (str): The model to use (default: gpt-4.1-mini)
         """
         self.prompt_builder = PromptBuilder()
-        self.ai_service = AIService(api_key, model)
+        self.ai_service = AIService(model)
         self.token_counter = TokenCounter(model)
         
     async def process_message(self, user_input: str, context: Optional[Dict] = None) -> Dict:
