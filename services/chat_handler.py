@@ -1,7 +1,7 @@
 from typing import Dict, Optional
 from .prompt_builder import PromptBuilder
 from .ai_service import AIService
-from .token_counter import TokenCounter
+from helpers.token_counter import TokenCounter
 
 class ChatHandler:
     def __init__(self, model: str = "gpt-4.1-mini"):
