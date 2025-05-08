@@ -1,57 +1,50 @@
 import os
-from typing import Dict, Tuple
+from typing import Dict, Optional, Tuple
+from pathlib import Path
+from .faq_service import FAQService
 
 class PromptBuilder:
     def __init__(self):
-        self.instructions_path = os.path.join(os.path.dirname(__file__), '..', 'prompts', 'instructions.txt')
-        self.examples_path = os.path.join(os.path.dirname(__file__), '..', 'prompts', 'examples.txt')
-        self.system_prompt = self._load_instructions()
-        self.examples = self._load_examples()
-    
-    def _load_instructions(self) -> str:
-        """Load system instructions from file."""
+        """Initialize the prompt builder with paths to different prompt files."""
+        self.prompts_dir = Path("prompts")
+        
+        # Load system prompt
+        self.system_prompt = self._load_prompt("system/guidelines.txt")
+        
+        # Initialize FAQ service
+        self.faq_service = FAQService()
+        
+    def _load_prompt(self, relative_path: str) -> str:
+        """Load a prompt from a file."""
         try:
-            with open(self.instructions_path, 'r') as file:
-                return file.read().strip()
+            with open(self.prompts_dir / relative_path, 'r', encoding='utf-8') as f:
+                return f.read().strip()
         except FileNotFoundError:
-            print(f"Warning: Instructions file not found at {self.instructions_path}")
-            return "You are a helpful B2B fashion supplier assistant."
-    
-    def _load_examples(self) -> str:
-        """Load example conversations from file."""
-        try:
-            with open(self.examples_path, 'r') as file:
-                return file.read().strip()
-        except FileNotFoundError:
-            print(f"Warning: Examples file not found at {self.examples_path}")
+            print(f"Warning: Prompt file not found: {relative_path}")
             return ""
-    
-    def build_prompts(self, user_input: str, context: dict = None) -> Tuple[str, str]:
+            
+    def build_prompt(self, user_message: str, region: str = None) -> Tuple[str, str]:
         """
-        Builds system and user prompts for the AI model.
+        Build the complete prompt based on the user's message.
         
         Args:
-            user_input (str): The user's message
-            context (dict, optional): Additional context like order history, product info
+            user_message (str): The user's message
+            region (str, optional): The region to filter FAQs by
             
         Returns:
-            Tuple[str, str]: A tuple containing (system_prompt, user_prompt)
+            Tuple[str, str]: (system_prompt, user_prompt)
         """
-        # System prompt is loaded from instructions file
+        # Start with the base system prompt
         system_prompt = self.system_prompt
         
-        # Build user prompt with examples and current input
-        user_prompt = ""
+        # Get relevant FAQs
+        relevant_faqs = self.faq_service.get_relevant_faqs(user_message, region)
         
-        # Add examples if available
-        if self.examples:
-            user_prompt += f"{self.examples}\n\n"
-        
-        # Add current user input
-        user_prompt += f"Current Question: {user_input}"
-        
-        # Add context if available
-        if context:
-            user_prompt += f"\n\nContext: {context}"
+        # Add relevant FAQs to the system prompt
+        if relevant_faqs:
+            system_prompt += self.faq_service.format_faqs_for_prompt(relevant_faqs)
+            
+        # Build the user prompt
+        user_prompt = f"User message: {user_message}"
         
         return system_prompt, user_prompt 
