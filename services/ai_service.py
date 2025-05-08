@@ -1,5 +1,5 @@
 from typing import Dict, Optional, Tuple
-import openai
+from openai import AsyncOpenAI
 
 class AIService:
     def __init__(self, api_key: str, model: str = "gpt-4.1-mini"):
@@ -10,9 +10,8 @@ class AIService:
             api_key (str): OpenAI API key
             model (str): The model to use (default: gpt-4.1-mini)
         """
-        self.api_key = api_key
         self.model = model
-        openai.api_key = api_key
+        self.client = AsyncOpenAI(api_key=api_key)
         
     async def get_response(self, system_prompt: str, user_prompt: str) -> Dict:
         """
@@ -26,7 +25,7 @@ class AIService:
             Dict: The model's response
         """
         try:
-            response = await openai.ChatCompletion.acreate(
+            response = await self.client.chat.completions.create(
                 model=self.model,
                 messages=[
                     {"role": "system", "content": system_prompt},
@@ -35,7 +34,7 @@ class AIService:
                 temperature=0.7,
                 max_tokens=150
             )
-            return response
+            return {"choices": [{"message": {"content": response.choices[0].message.content}}]}
         except Exception as e:
             print(f"Error getting AI response: {e}")
             return {"error": str(e)} 

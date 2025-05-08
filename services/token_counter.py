@@ -10,7 +10,8 @@ class TokenCounter:
             model (str): The model to use for token counting
         """
         self.model = model
-        self.encoding = tiktoken.encoding_for_model(model)
+        # Use cl100k_base encoding which works for all GPT models
+        self.encoding = tiktoken.get_encoding("cl100k_base")
         
     def count_tokens(self, text: str) -> int:
         """Count the number of tokens in a text."""
@@ -53,7 +54,7 @@ class TokenCounter:
             "gpt-4": 0.03,              # $0.03 per 1K tokens
             "gpt-4-turbo-preview": 0.01, # $0.01 per 1K tokens
             "gpt-4.1-mini": 0.0015,     # $0.0015 per 1K tokens
-            "gpt-4.0-mini": 0.001,      # $0.001 per 1K tokens
+            "gpt-4o-mini": 0.001,       # $0.001 per 1K tokens
         }
         
         price_per_1k = prices.get(self.model, 0.0015)  # Default to gpt-4.1-mini
