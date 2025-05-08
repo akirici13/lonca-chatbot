@@ -2,14 +2,16 @@ from typing import Dict, Optional, Tuple
 import openai
 
 class AIService:
-    def __init__(self, api_key: str):
+    def __init__(self, api_key: str, model: str = "gpt-4.1-mini"):
         """
         Initialize the AI service with OpenAI API key.
         
         Args:
             api_key (str): OpenAI API key
+            model (str): The model to use (default: gpt-4.1-mini)
         """
         self.api_key = api_key
+        self.model = model
         openai.api_key = api_key
         
     async def get_response(self, system_prompt: str, user_prompt: str) -> Dict:
@@ -25,7 +27,7 @@ class AIService:
         """
         try:
             response = await openai.ChatCompletion.acreate(
-                model="gpt-3.5-turbo",
+                model=self.model,
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt}
