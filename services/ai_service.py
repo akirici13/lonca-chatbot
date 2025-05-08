@@ -1,5 +1,5 @@
 from typing import Dict, Optional, Tuple
-from openai import AsyncOpenAI
+import requests
 from helpers.api_key import get_openai_api_key
 
 class AIService:
@@ -11,7 +11,8 @@ class AIService:
             model (str): The model to use (default: gpt-4.1-mini)
         """
         self.model = model
-        self.client = AsyncOpenAI(api_key=get_openai_api_key())
+        self.api_key = get_openai_api_key()
+        self.api_url = "https://api.openai.com/v1/chat/completions"
         
     async def get_response(self, system_prompt: str, user_prompt: str) -> Dict:
         """
@@ -25,16 +26,43 @@ class AIService:
             Dict: The model's response
         """
         try:
-            response = await self.client.chat.completions.create(
-                model=self.model,
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_prompt}
-                ],
-                temperature=0.7,
-                max_tokens=150
-            )
-            return {"choices": [{"message": {"content": response.choices[0].message.content}}]}
+            # Prepare headers
+            headers = {
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {self.api_key}"
+            }
+
+            # Prepare payload
+            payload = {
+                "model": self.model,
+                "temperature": 0.7,
+                "max_tokens": 150,
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": system_prompt
+                    },
+                    {
+                        "role": "user",
+                        "content": user_prompt
+                    }
+                ]
+            }
+
+            # Make API call
+            response = requests.post(self.api_url, headers=headers, json=payload)
+            response.raise_for_status()  # Raise an exception for bad status codes
+            
+            # Parse response
+            result = response.json()
+            return {
+                "choices": [{
+                    "message": {
+                        "content": result["choices"][0]["message"]["content"]
+                    }
+                }]
+            }
+            
         except Exception as e:
             print(f"Error getting AI response: {e}")
             return {"error": str(e)} 
