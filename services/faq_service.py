@@ -125,7 +125,7 @@ class FAQService:
             # Search without region filter first to get all results
             results = self.collection.query(
                 query_texts=[query],
-                n_results=n_results
+                n_results=50
             )
             
             # Format and filter results
