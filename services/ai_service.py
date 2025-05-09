@@ -1,4 +1,4 @@
-from typing import Dict, Optional, Tuple
+from typing import Dict
 import aiohttp
 from helpers.api_key import get_openai_api_key
 

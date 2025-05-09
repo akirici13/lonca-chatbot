@@ -1,50 +1,59 @@
-import os
-from typing import Dict, Optional, Tuple
 from pathlib import Path
+from typing import Dict, List, Optional, Tuple
 from .faq_service import FAQService
+from helpers.loader import load_text, load_json
 
 class PromptBuilder:
-    def __init__(self):
-        """Initialize the prompt builder with paths to different prompt files."""
-        self.prompts_dir = Path("prompts")
-        
-        # Load system prompt
+    def __init__(self, prompts_dir: str = "prompts"):
+        """Initialize the prompt builder with the prompts directory."""
+        self.prompts_dir = Path(prompts_dir)
+        self.faq_service = FAQService()
         self.system_prompt = self._load_prompt("instructions.txt")
         
-        # Initialize FAQ service
-        self.faq_service = FAQService()
-        
-    def _load_prompt(self, relative_path: str) -> str:
-        """Load a prompt from a file."""
-        try:
-            with open(self.prompts_dir / relative_path, 'r', encoding='utf-8') as f:
-                return f.read().strip()
-        except FileNotFoundError:
-            raise FileNotFoundError(f"Prompt file not found: {relative_path}")
-            
-    def build_prompt(self, user_message: str, region: str = None) -> Tuple[str, str]:
+    def _load_prompt(self, filename: str) -> str:
         """
-        Build the complete prompt based on the user's message.
+        Load a prompt from a file.
+        
+        Args:
+            filename (str): Name of the prompt file
+            
+        Returns:
+            str: Content of the prompt file
+        """
+        return load_text(self.prompts_dir / filename)
+        
+    def _load_context(self) -> Dict:
+        """
+        Load business context from JSON file.
+        
+        Returns:
+            Dict: Business context data
+        """
+        return load_json(self.prompts_dir / "context.json")
+        
+    def build_prompt(self, user_message: str, region: Optional[str] = None) -> Tuple[str, str]:
+        """
+        Build the complete prompt with system instructions and relevant FAQs.
         
         Args:
             user_message (str): The user's message
-            region (str, optional): The region to filter FAQs by
+            region (Optional[str]): Region to filter FAQs by
             
         Returns:
             Tuple[str, str]: (system_prompt, user_prompt)
+                - system_prompt: System instructions with relevant FAQs
+                - user_prompt: The user's message
         """
-        # Start with the base system prompt
-        system_prompt = self.system_prompt
-        
         # Get relevant FAQs
-        relevant_faqs = self.faq_service.get_relevant_faqs(user_message, region)
+        relevant_faqs = self.faq_service.get_relevant_faqs(user_message, region=region)
         
-        # Add relevant FAQs to the system prompt
+        # Format FAQs
+        faq_text = ""
         if relevant_faqs:
             faq_text = self.faq_service.format_faqs_for_prompt(relevant_faqs)
-            system_prompt += faq_text
-            
-        # Build the user prompt
+            self.system_prompt += faq_text
+        
+        # Build user prompt
         user_prompt = f"User message: {user_message}"
         
-        return system_prompt, user_prompt 
+        return self.system_prompt, user_prompt 

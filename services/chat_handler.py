@@ -2,7 +2,7 @@ from typing import Dict, Optional
 from .prompt_builder import PromptBuilder
 from .ai_service import AIService
 from .query_validator import QueryValidator
-from helpers.token_counter import TokenCounter
+from .response_builder import ResponseBuilder
 
 class ChatHandler:
     def __init__(self, model: str = "gpt-4.1-mini"):
@@ -14,8 +14,8 @@ class ChatHandler:
         """
         self.ai_service = AIService(model)
         self.prompt_builder = PromptBuilder()
-        self.token_counter = TokenCounter(model)
         self.query_validator = QueryValidator(self.ai_service)
+        self.response_builder = ResponseBuilder(self.ai_service)
         
     async def process_message(self, user_input: str, context: Optional[Dict] = None) -> Dict:
         """
@@ -46,16 +46,12 @@ class ChatHandler:
         # If valid, proceed with FAQ processing
         system_prompt, user_prompt = self.prompt_builder.build_prompt(user_input, region)
         
-        # Count tokens and estimate cost
-        token_counts = self.token_counter.count_prompt_tokens(system_prompt, user_prompt)
-        estimated_cost = self.token_counter.estimate_cost(token_counts["total_tokens"])
-        
         # Get AI response
         response = await self.ai_service.get_response(system_prompt, user_prompt)
         
         # If no relevant FAQs found, escalate to human agent
         if not self.prompt_builder.faq_service.has_relevant_faqs(user_input, region):
-            escalation_response = await self.query_validator.get_escalation_response(user_input)
+            escalation_response = await self.response_builder.get_escalation_response(user_input)
             return {
                 "choices": [{
                     "message": {

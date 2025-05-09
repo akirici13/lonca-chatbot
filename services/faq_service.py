@@ -1,9 +1,9 @@
 import pandas as pd
 import chromadb
 from chromadb.utils import embedding_functions
-from typing import Dict, List, Tuple, Optional
-import os
+from typing import Dict, List
 from pathlib import Path
+from helpers.relevance_calculator import calculate_relevance_score
 
 class FAQService:
     def __init__(self):
@@ -84,24 +84,6 @@ class FAQService:
         except Exception as e:
             raise Exception(f"Error loading FAQs: {e}")
             
-    def _calculate_relevance_score(self, distance: float) -> float:
-        """
-        Convert distance to a relevance score between 0 and 1.
-        Lower distances become higher relevance scores.
-        
-        Args:
-            distance (float): The distance from ChromaDB
-            
-        Returns:
-            float: Relevance score between 0 and 1
-        """
-        # Based on typical ChromaDB distance ranges
-        max_relevant_distance = 2.0
-        
-        # Convert distance to relevance score (0 to 1)
-        relevance = max(0, 1 - (distance / max_relevant_distance))
-        return round(relevance, 4)
-            
     def get_relevant_faqs(self, query: str, region: str = None, n_results: int = 3) -> List[Dict]:
         """
         Get relevant FAQs based on the query.
@@ -146,7 +128,7 @@ class FAQService:
                     
                 seen_questions.add(question)
                 distance = results['distances'][0][i]
-                relevance = self._calculate_relevance_score(distance)
+                relevance = calculate_relevance_score(distance)
                 
                 faqs.append({
                     "question": question,
