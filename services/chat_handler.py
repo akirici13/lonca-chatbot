@@ -52,10 +52,11 @@ class ChatHandler:
         
         # If no relevant FAQs found, escalate to human agent
         if not self.prompt_builder.faq_service.has_relevant_faqs(user_input):
+            escalation_response = await self.query_validator.get_escalation_response(user_input)
             return {
                 "choices": [{
                     "message": {
-                        "content": "I apologize, but I need to connect you with a human agent to better assist you with this specific query about Lonca."
+                        "content": escalation_response
                     }
                 }]
             }

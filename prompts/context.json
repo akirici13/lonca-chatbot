@@ -1,0 +1,28 @@
+{
+    "business_type": "B2B fashion supply",
+    "company": "Lonca",
+    "valid_topics": [
+        "product catalog and specifications",
+        "ordering process and requirements",
+        "shipping and delivery",
+        "business terms and conditions",
+        "customer service",
+        "business policies",
+        "minimum order quantities",
+        "customization options",
+        "sample requests",
+        "payment terms",
+        "lead times",
+        "quality standards",
+        "sustainability practices",
+        "business partnerships"
+    ],
+    "invalid_topics": [
+        "general fashion trends",
+        "retail shopping",
+        "personal styling",
+        "general business advice",
+        "unrelated services",
+        "competitor information"
+    ]
+} 
