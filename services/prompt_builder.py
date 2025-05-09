@@ -20,8 +20,7 @@ class PromptBuilder:
             with open(self.prompts_dir / relative_path, 'r', encoding='utf-8') as f:
                 return f.read().strip()
         except FileNotFoundError:
-            print(f"Warning: Prompt file not found: {relative_path}")
-            return ""
+            raise FileNotFoundError(f"Prompt file not found: {relative_path}")
             
     def build_prompt(self, user_message: str, region: str = None) -> Tuple[str, str]:
         """
@@ -42,7 +41,8 @@ class PromptBuilder:
         
         # Add relevant FAQs to the system prompt
         if relevant_faqs:
-            system_prompt += self.faq_service.format_faqs_for_prompt(relevant_faqs)
+            faq_text = self.faq_service.format_faqs_for_prompt(relevant_faqs)
+            system_prompt += faq_text
             
         # Build the user prompt
         user_prompt = f"User message: {user_message}"

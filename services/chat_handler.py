@@ -28,6 +28,9 @@ class ChatHandler:
         Returns:
             Dict: The AI's response
         """
+        # Get region from context
+        region = context.get("region") if context else None
+        
         # First, validate if the query is Lonca-related
         is_valid, response = await self.query_validator.validate_query(user_input)
         
@@ -41,7 +44,7 @@ class ChatHandler:
             }
             
         # If valid, proceed with FAQ processing
-        system_prompt, user_prompt = self.prompt_builder.build_prompt(user_input, context.get("region") if context else None)
+        system_prompt, user_prompt = self.prompt_builder.build_prompt(user_input, region)
         
         # Count tokens and estimate cost
         token_counts = self.token_counter.count_prompt_tokens(system_prompt, user_prompt)
@@ -51,7 +54,7 @@ class ChatHandler:
         response = await self.ai_service.get_response(system_prompt, user_prompt)
         
         # If no relevant FAQs found, escalate to human agent
-        if not self.prompt_builder.faq_service.has_relevant_faqs(user_input):
+        if not self.prompt_builder.faq_service.has_relevant_faqs(user_input, region):
             escalation_response = await self.query_validator.get_escalation_response(user_input)
             return {
                 "choices": [{
@@ -60,17 +63,5 @@ class ChatHandler:
                     }
                 }]
             }
-        
-        # Print conversation and token information
-        print("\n=== Conversation ===")
-        print(f"User: {user_input}")
-        print(f"AI: {response.get('choices', [{}])[0].get('message', {}).get('content', 'Error')}")
-        print("\n=== Token Information ===")
-        print(f"Model: {self.ai_service.model}")
-        print(f"System Prompt Tokens: {token_counts['system_tokens']}")
-        print(f"User Prompt Tokens: {token_counts['user_tokens']}")
-        print(f"Total Tokens: {token_counts['total_tokens']}")
-        print(f"Estimated Cost: ${estimated_cost:.6f}")
-        print("===================\n")
         
         return response 

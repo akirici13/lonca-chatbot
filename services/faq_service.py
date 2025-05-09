@@ -1,7 +1,7 @@
 import pandas as pd
 import chromadb
 from chromadb.utils import embedding_functions
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Optional
 import os
 from pathlib import Path
 
@@ -24,6 +24,9 @@ class FAQService:
             name="lonca_faqs",
             embedding_function=self.embedding_function
         )
+        
+        # Cache for FAQ results
+        self._cache: Dict[str, List[Dict]] = {}
         
         # Load and process FAQs
         self._load_faqs()
@@ -49,16 +52,11 @@ class FAQService:
             # Read Excel file
             df = pd.read_excel(self.faq_file)
             
-            # Print column names for debugging
-            print("Available columns:", df.columns.tolist())
-            
             # Get region columns (excluding 'Question' and unnamed columns)
             region_cols = [col for col in df.columns if col not in ['Question'] and not col.startswith('Unnamed')]
             
             if not region_cols:
                 raise ValueError(f"No region columns found. Available columns: {df.columns.tolist()}")
-            
-            print(f"Found region columns: {region_cols}")
             
             # Process each row and region
             for idx, row in df.iterrows():
@@ -84,7 +82,7 @@ class FAQService:
                         )
                         
         except Exception as e:
-            print(f"Error loading FAQs: {e}")
+            raise Exception(f"Error loading FAQs: {e}")
             
     def _calculate_relevance_score(self, distance: float) -> float:
         """
@@ -117,28 +115,33 @@ class FAQService:
             List[Dict]: List of relevant FAQs with their answers
         """
         try:
-            # If region is provided, only search within that region
-            if region:
-                where = {"region": region}
-            else:
-                where = None
+            # Create cache key
+            cache_key = f"{query}_{region}_{n_results}"
             
-            # Search the collection
+            # Check cache first
+            if cache_key in self._cache:
+                return self._cache[cache_key]
+            
+            # Search without region filter first to get all results
             results = self.collection.query(
                 query_texts=[query],
-                n_results=n_results,
-                where=where
+                n_results=50  # Get more results to ensure we have enough after filtering
             )
             
-            # Format results
+            # Format and filter results
             faqs = []
             seen_questions = set()  # Track unique questions
             
             for i in range(len(results['ids'][0])):
                 question = results['metadatas'][0][i]['question']
+                result_region = results['metadatas'][0][i]['region']
                 
-                # Skip if we've already seen this question (to avoid duplicates)
+                # Skip if we've already seen this question
                 if question in seen_questions:
+                    continue
+                    
+                # Skip if region doesn't match (when region filter is applied)
+                if region and result_region != region:
                     continue
                     
                 seen_questions.add(question)
@@ -148,20 +151,24 @@ class FAQService:
                 faqs.append({
                     "question": question,
                     "answer": results['metadatas'][0][i]['answer'],
-                    "region": results['metadatas'][0][i]['region'],
+                    "region": result_region,
                     "distance": distance,
                     "relevance": relevance
                 })
-                
-                # Break if we have enough unique questions
-                if len(faqs) >= n_results:
-                    break
+            
+            # Sort by relevance score (highest first)
+            faqs.sort(key=lambda x: x['relevance'], reverse=True)
+            
+            # Take top n_results
+            faqs = faqs[:n_results]
+            
+            # Cache the results
+            self._cache[cache_key] = faqs
             
             return faqs
             
         except Exception as e:
-            print(f"Error getting relevant FAQs: {e}")
-            return []
+            raise Exception(f"Error getting relevant FAQs: {e}")
             
     def format_faqs_for_prompt(self, faqs: List[Dict]) -> str:
         """
