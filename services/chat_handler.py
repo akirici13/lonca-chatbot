@@ -1,6 +1,7 @@
 from typing import Dict, Optional
 from .prompt_builder import PromptBuilder
 from .ai_service import AIService
+from .query_validator import QueryValidator
 from helpers.token_counter import TokenCounter
 
 class ChatHandler:
@@ -11,9 +12,10 @@ class ChatHandler:
         Args:
             model (str): The model to use (default: gpt-4.1-mini)
         """
-        self.prompt_builder = PromptBuilder()
         self.ai_service = AIService(model)
+        self.prompt_builder = PromptBuilder()
         self.token_counter = TokenCounter(model)
+        self.query_validator = QueryValidator(self.ai_service)
         
     async def process_message(self, user_input: str, context: Optional[Dict] = None) -> Dict:
         """
@@ -26,8 +28,20 @@ class ChatHandler:
         Returns:
             Dict: The AI's response
         """
-        # Build the prompts
-        system_prompt, user_prompt = self.prompt_builder.build_prompts(user_input, context)
+        # First, validate if the query is Lonca-related
+        is_valid, response = await self.query_validator.validate_query(user_input)
+        
+        if not is_valid:
+            return {
+                "choices": [{
+                    "message": {
+                        "content": response
+                    }
+                }]
+            }
+            
+        # If valid, proceed with FAQ processing
+        system_prompt, user_prompt = self.prompt_builder.build_prompt(user_input, context.get("region") if context else None)
         
         # Count tokens and estimate cost
         token_counts = self.token_counter.count_prompt_tokens(system_prompt, user_prompt)
@@ -35,6 +49,16 @@ class ChatHandler:
         
         # Get AI response
         response = await self.ai_service.get_response(system_prompt, user_prompt)
+        
+        # If no relevant FAQs found, escalate to human agent
+        if not self.prompt_builder.faq_service.has_relevant_faqs(user_input):
+            return {
+                "choices": [{
+                    "message": {
+                        "content": "I apologize, but I need to connect you with a human agent to better assist you with this specific query about Lonca."
+                    }
+                }]
+            }
         
         # Print conversation and token information
         print("\n=== Conversation ===")

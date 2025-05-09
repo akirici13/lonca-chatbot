@@ -14,6 +14,50 @@ class AIService:
         self.api_key = get_openai_api_key()
         self.api_url = "https://api.openai.com/v1/chat/completions"
         
+    async def get_classification(self, prompt: str) -> str:
+        """
+        Get a simple yes/no classification from the model.
+        
+        Args:
+            prompt (str): The classification prompt
+            
+        Returns:
+            str: The model's classification ('yes' or 'no')
+        """
+        try:
+            # Prepare headers
+            headers = {
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {self.api_key}"
+            }
+
+            # Prepare payload
+            payload = {
+                "model": self.model,
+                "temperature": 0.1,  # Lower temperature for more consistent responses
+                "max_tokens": 10,    # We only need a short response
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "You are a query classifier. Respond with ONLY 'yes' or 'no'."
+                    },
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ]
+            }
+
+            async with aiohttp.ClientSession() as session:
+                async with session.post(self.api_url, headers=headers, json=payload) as response:
+                    response.raise_for_status()
+                    result = await response.json()
+                    return result["choices"][0]["message"]["content"].strip().lower()
+            
+        except Exception as e:
+            print(f"Error getting classification: {e}")
+            return "no"  # Default to 'no' in case of error
+        
     async def get_response(self, system_prompt: str, user_prompt: str) -> Dict:
         """
         Get response from OpenAI's model.

@@ -28,6 +28,21 @@ class FAQService:
         # Load and process FAQs
         self._load_faqs()
         
+    def has_relevant_faqs(self, query: str, region: str = None, min_relevance: float = 0.3) -> bool:
+        """
+        Check if there are any relevant FAQs for the query.
+        
+        Args:
+            query (str): The user's question
+            region (str, optional): The region to filter by
+            min_relevance (float): Minimum relevance score to consider an FAQ relevant
+            
+        Returns:
+            bool: True if there are relevant FAQs, False otherwise
+        """
+        faqs = self.get_relevant_faqs(query, region)
+        return any(faq['relevance'] >= min_relevance for faq in faqs)
+        
     def _load_faqs(self):
         """Load FAQs from Excel and add to vector database."""
         try:

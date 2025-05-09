@@ -9,7 +9,7 @@ class PromptBuilder:
         self.prompts_dir = Path("prompts")
         
         # Load system prompt
-        self.system_prompt = self._load_prompt("system/guidelines.txt")
+        self.system_prompt = self._load_prompt("instructions.txt")
         
         # Initialize FAQ service
         self.faq_service = FAQService()
