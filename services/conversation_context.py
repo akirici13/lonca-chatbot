@@ -7,27 +7,27 @@ class Message:
     role: str  # 'user' or 'assistant'
     content: str
     timestamp: datetime
-    image_search_results: Optional[Dict] = None
+    search_results: Optional[Dict] = None
 
 class ConversationContext:
     def __init__(self):
         self.messages: List[Message] = []
         self.current_topic: Optional[str] = None
-        self.last_image_search_results: Optional[Dict] = None
+        self.last_search_results: Optional[Dict] = None
         
-    def add_message(self, role: str, content: str, image_search_results: Optional[Dict] = None):
+    def add_message(self, role: str, content: str, search_results: Optional[Dict] = None):
         """Add a new message to the conversation history."""
         message = Message(
             role=role,
             content=content,
             timestamp=datetime.now(),
-            image_search_results=image_search_results
+            search_results=search_results
         )
         self.messages.append(message)
         
-    def add_image_search_results(self, exact_match: Optional[Dict], similar_products: List[Dict]):
-        """Store the latest image search results."""
-        self.last_image_search_results = {
+    def add_search_results(self, exact_match: Optional[Dict], similar_products: List[Dict]):
+        """Store the latest search results."""
+        self.last_search_results = {
             'exact_match': exact_match,
             'similar_products': similar_products
         }
@@ -56,17 +56,22 @@ class ConversationContext:
         for msg in recent_messages:
             context += f"{msg.role.capitalize()}: {msg.content}\n"
             
-            # Add image search results if present
-            if msg.image_search_results:
-                context += "\nImage Search Results:\n"
-                if msg.image_search_results['exact_match']:
-                    exact = msg.image_search_results['exact_match']
+            # Add search results if present
+            if msg.search_results:
+                context += "\nSearch Results:\n"
+                if msg.search_results['exact_match']:
+                    exact = msg.search_results['exact_match']
                     context += f"Exact Match: {exact['name']} (Price: {exact['price']})\n"
+                    if 'search_type' in exact:
+                        context += f"Found via: {exact['search_type']}\n"
                 
-                if msg.image_search_results['similar_products']:
+                if msg.search_results['similar_products']:
                     context += "Similar Products:\n"
-                    for product in msg.image_search_results['similar_products']:
-                        context += f"- {product['name']} (Price: {product['price']})\n"
+                    for product in msg.search_results['similar_products']:
+                        context += f"- {product['name']} (Price: {product['price']})"
+                        if 'search_type' in product:
+                            context += f" (Found via: {product['search_type']})"
+                        context += "\n"
                 context += "\n"
             
         return context 

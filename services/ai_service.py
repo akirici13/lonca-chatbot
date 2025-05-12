@@ -80,7 +80,7 @@ class AIService:
             payload = {
                 "model": self.model,
                 "temperature": 0.7,
-                "max_tokens": 150,
+                "max_tokens": 250,
                 "messages": [
                     {
                         "role": "system",
