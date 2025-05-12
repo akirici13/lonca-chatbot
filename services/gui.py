@@ -50,33 +50,86 @@ class LoncaGUI:
                     st.rerun()
     
     def _render_chat_messages(self):
-        """Render all chat messages in the conversation."""
-        for message in st.session_state.messages:
-            with st.chat_message(message["role"]):
-                if "image" in message:
-                    image = decode_base64_to_image(message["image"])
-                    st.image(image, caption="Uploaded Image")
-                st.write(message["content"])
+        """Render all chat messages in the conversation with modern messaging app style."""
+        chat_container = st.container()
+        with chat_container:
+            # Create a scrollable container for messages
+            for message in st.session_state.messages:
+                # Create columns for message alignment
+                col1, col2, col3 = st.columns([1, 4, 1])
+                
+                # Determine message alignment and styling
+                if message["role"] == "user":
+                    # User messages on the right
+                    with col2:
+                        st.markdown(f"""
+                        <div style="
+                            background-color: #007AFF;
+                            color: white;
+                            padding: 10px 15px;
+                            border-radius: 15px;
+                            margin: 5px 0;
+                            max-width: 80%;
+                            margin-left: auto;
+                            text-align: left;
+                        ">
+                            {message["content"]}
+                        </div>
+                        """, unsafe_allow_html=True)
+                            
+                        if "image" in message:
+                            image = decode_base64_to_image(message["image"])
+                            st.image(image, caption="", width=200, use_column_width=False)
+                else:
+                    # Assistant messages on the left
+                    with col2:
+                        st.markdown(f"""
+                        <div style="
+                            background-color: #E9ECEF;
+                            color: black;
+                            padding: 10px 15px;
+                            border-radius: 15px;
+                            margin: 5px 0;
+                            max-width: 80%;
+                            margin-right: auto;
+                            text-align: left;
+                        ">
+                            {message["content"]}
+                        </div>
+                        """, unsafe_allow_html=True)
+            
+            st.markdown("</div>", unsafe_allow_html=True)
     
     def _render_input_area(self):
-        """Render the input area with text input and image upload."""
+        """Render the input area with text input and image upload side by side."""
         if st.session_state.region:
+            # Create a container for the input area
             input_container = st.container()
             
             with input_container:
-                col1, col2 = st.columns([6, 1])
+                # First row: Text input and send button
+                col1, col2 = st.columns([5, 1])
                 
                 with col1:
+                    # Text input with unique key
                     user_input = st.text_input(
                         "Type your message",
                         key=f"user_input_{st.session_state.input_key}",
-                        placeholder="Type your message here..."
+                        placeholder="Type your message here...",
+                        label_visibility="collapsed"
                     )
                 
                 with col2:
+                    # Send button
                     send_button = st.button("Send", use_container_width=True)
-            
-            uploaded_file = st.file_uploader("Upload an image (optional)", type=["jpg", "jpeg", "png"])
+                
+                # Second row: Image uploader
+                uploaded_file = st.file_uploader(
+                    label="",
+                    type=["jpg", "jpeg", "png"],
+                    label_visibility="collapsed",
+                    key=f"file_uploader_{st.session_state.input_key}"
+                )
             
             return user_input, send_button, uploaded_file
         return None, None, None
@@ -122,26 +175,59 @@ class LoncaGUI:
         """Add custom CSS styles to the interface."""
         st.markdown("""
         <style>
-            .stChatMessage {
-                padding: 1rem;
-                border-radius: 0.5rem;
-                margin-bottom: 1rem;
-                display: flex;
-                flex-direction: column;
+            /* Main container styles */
+            .main .block-container {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
             }
-            .stChatMessage[data-testid="stChatMessage"] {
-                background-color: #f0f2f6;
-            }
-            .stChatMessage[data-testid="stChatMessage"]:nth-child(odd) {
-                background-color: #e6f3ff;
-            }
-            .stButton>button {
-                width: 100%;
-                border-radius: 20px;
-                height: 3em;
-            }
+            
+            /* Input area styles */
             .stTextInput>div>div>input {
                 border-radius: 20px;
+                padding: 10px 15px;
+                border: 1px solid #E0E0E0;
+            }
+            
+            /* Button styles */
+            .stButton>button {
+                border-radius: 20px;
+                height: 3em;
+                background-color: #007AFF;
+                color: white;
+                border: none;
+                font-weight: 500;
+            }
+            
+            /* Chat container styles */
+            .chat-container {
+                padding: 20px;
+                background-color: #F8F9FA;
+                border-radius: 10px;
+                margin-bottom: 20px;
+            }
+            
+            /* Hide Streamlit's default elements */
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            
+            /* Scrollbar styles */
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+            
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 4px;
+            }
+            
+            ::-webkit-scrollbar-thumb {
+                background: #888;
+                border-radius: 4px;
+            }
+            
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555;
             }
         </style>
         """, unsafe_allow_html=True)
@@ -151,12 +237,19 @@ class LoncaGUI:
         st.title("Lonca Chatbot 💬")
         
         self._render_sidebar()
-        self._render_chat_messages()
         
-        user_input, send_button, uploaded_file = self._render_input_area()
-        if user_input is not None:
-            self._process_input(user_input, send_button, uploaded_file)
-        else:
-            st.info("Please select your region from the sidebar to start chatting.")
+        # Create a container for the chat area
+        chat_container = st.container()
+        with chat_container:
+            self._render_chat_messages()
+        
+        # Create a container for the input area
+        input_container = st.container()
+        with input_container:
+            user_input, send_button, uploaded_file = self._render_input_area()
+            if user_input is not None:
+                self._process_input(user_input, send_button, uploaded_file)
+            else:
+                st.info("Please select your region from the sidebar to start chatting.")
         
         self._add_custom_css() 
