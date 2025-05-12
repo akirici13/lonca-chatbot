@@ -3,6 +3,7 @@ from .prompt_builder import PromptBuilder
 from .response_builder import ResponseBuilder
 from .conversation_context import ConversationContext
 from .product_search_service import ProductSearchService
+from helpers.image_utils import process_base64_image
 from PIL import Image
 import base64
 import io
@@ -46,10 +47,9 @@ class QueryValidator:
             image = None
             if image_data:
                 try:
-                    image_bytes = base64.b64decode(image_data)
-                    image = Image.open(io.BytesIO(image_bytes))
-                except Exception as e:
-                    return False, f"Error processing image: {str(e)}", None
+                    image = process_base64_image(image_data)
+                except ValueError as e:
+                    return False, str(e), None
             
             # Perform combined search
             exact_match, similar_products = self.product_search_service.search_products(query, image)
