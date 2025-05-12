@@ -80,17 +80,22 @@ if st.session_state.region:
     if (send_button or user_input) and user_input:
         # Add user message to chat
         message_data = {"role": "user", "content": user_input}
+        context = {"region": st.session_state.region}
+        
         if uploaded_file:
             # Convert uploaded file to image and then to base64
             image = Image.open(uploaded_file)
-            message_data["image"] = convert_image_to_base64(image)
+            base64_image = convert_image_to_base64(image)
+            message_data["image"] = base64_image
+            context["image_data"] = base64_image  # Add image data to context
+        
         st.session_state.messages.append(message_data)
         
         # Get AI response
         with st.spinner("Thinking..."):
             response = asyncio.run(st.session_state.chat_handler.process_message(
                 user_input,
-                context={"region": st.session_state.region}
+                context=context
             ))
             
             # Add assistant response to chat

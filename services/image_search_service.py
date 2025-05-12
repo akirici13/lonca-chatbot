@@ -38,10 +38,20 @@ class ImageSearchService:
         
         # Initialize ChromaDB client
         self.chroma_client = chromadb.Client()
-        self.collection = self.chroma_client.create_collection(
-            name="product_images",
-            embedding_function=embedding_functions.DefaultEmbeddingFunction()
-        )
+        try:
+            self.collection = self.chroma_client.create_collection(
+                name="product_images",
+                embedding_function=embedding_functions.DefaultEmbeddingFunction()
+            )
+        except Exception as e:
+            if "already exists" in str(e):
+                # If collection exists, get it
+                self.collection = self.chroma_client.get_collection(
+                    name="product_images",
+                    embedding_function=embedding_functions.DefaultEmbeddingFunction()
+                )
+            else:
+                raise e
         
         # Add embeddings to ChromaDB if not already added
         self._initialize_chroma_collection()
