@@ -125,7 +125,7 @@ class LoncaGUI:
                 
                 # Second row: Image uploader
                 uploaded_file = st.file_uploader(
-                    label="",
+                    label="🔗",
                     type=["jpg", "jpeg", "png"],
                     label_visibility="collapsed",
                     key=f"file_uploader_{st.session_state.input_key}"
