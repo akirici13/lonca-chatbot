@@ -77,32 +77,42 @@ if st.session_state.region:
     uploaded_file = st.file_uploader("Upload an image (optional)", type=["jpg", "jpeg", "png"])
     
     # Process input when send button is clicked or Enter is pressed
-    if (send_button or user_input) and user_input:
+    if send_button or user_input:
         # Add user message to chat
-        message_data = {"role": "user", "content": user_input}
+        message_data = {"role": "user", "content": user_input if user_input else "I'm searching for a product similar to this image."}
         context = {"region": st.session_state.region}
         
-        if uploaded_file:
-            # Convert uploaded file to image and then to base64
-            image = Image.open(uploaded_file)
-            base64_image = convert_image_to_base64(image)
-            message_data["image"] = base64_image
-            context["image_data"] = base64_image  # Add image data to context
+        # Handle image upload
+        if uploaded_file is not None:
+            try:
+                # Convert uploaded file to image and then to base64
+                image = Image.open(uploaded_file)
+                base64_image = convert_image_to_base64(image)
+                message_data["image"] = base64_image
+                context["image_data"] = base64_image  # Add image data to context
+                print("Image processed and added to context")  # Debug print
+            except Exception as e:
+                print(f"Error processing image: {e}")  # Debug print
+                st.error(f"Error processing image: {e}")
         
         st.session_state.messages.append(message_data)
         
         # Get AI response
         with st.spinner("Thinking..."):
-            response = asyncio.run(st.session_state.chat_handler.process_message(
-                user_input,
-                context=context
-            ))
-            
-            # Add assistant response to chat
-            st.session_state.messages.append({
-                "role": "assistant",
-                "content": response["choices"][0]["message"]["content"]
-            })
+            try:
+                response = asyncio.run(st.session_state.chat_handler.process_message(
+                    message_data["content"],
+                    context=context
+                ))
+                
+                # Add assistant response to chat
+                st.session_state.messages.append({
+                    "role": "assistant",
+                    "content": response["choices"][0]["message"]["content"]
+                })
+            except Exception as e:
+                print(f"Error processing message: {e}")  # Debug print
+                st.error(f"Error processing message: {e}")
         
         # Increment input key to clear the input
         st.session_state.input_key += 1
