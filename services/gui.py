@@ -20,6 +20,8 @@ class LoncaGUI:
             st.session_state.chat_handler = ChatHandler()
         if 'input_key' not in st.session_state:
             st.session_state.input_key = 0
+        if 'processing' not in st.session_state:
+            st.session_state.processing = False
     
     def _setup_page_config(self):
         """Configure the Streamlit page settings."""
@@ -136,7 +138,9 @@ class LoncaGUI:
     
     def _process_input(self, user_input, send_button, uploaded_file):
         """Process user input and handle image upload."""
-        if send_button or user_input:
+        if (send_button or user_input) and not st.session_state.processing:
+            st.session_state.processing = True
+            
             message_data = {"role": "user", "content": user_input if user_input else "I'm searching for a product similar to this image."}
             context = {"region": st.session_state.region}
             
@@ -146,15 +150,15 @@ class LoncaGUI:
                     base64_image = convert_image_to_base64(image)
                     message_data["image"] = base64_image
                     context["image_data"] = base64_image
-                    print("Image processed and added to context")
                 except Exception as e:
-                    print(f"Error processing image: {e}")
                     st.error(f"Error processing image: {e}")
+                    st.session_state.processing = False
+                    return
             
             st.session_state.messages.append(message_data)
             
-            with st.spinner("Thinking..."):
-                try:
+            try:
+                with st.spinner("Thinking..."):
                     response = asyncio.run(st.session_state.chat_handler.process_message(
                         message_data["content"],
                         context=context
@@ -164,11 +168,12 @@ class LoncaGUI:
                         "role": "assistant",
                         "content": response["choices"][0]["message"]["content"]
                     })
-                except Exception as e:
-                    print(f"Error processing message: {e}")
-                    st.error(f"Error processing message: {e}")
+            except Exception as e:
+                st.error(f"Error processing message: {e}")
+            finally:
+                st.session_state.processing = False
+                st.session_state.input_key += 1
             
-            st.session_state.input_key += 1
             st.rerun()
     
     def _add_custom_css(self):

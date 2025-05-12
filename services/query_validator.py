@@ -8,20 +8,20 @@ import base64
 import io
 
 class QueryValidator:
-    def __init__(self, ai_service, conversation_context: ConversationContext):
+    def __init__(self, ai_service):
         """Initialize the query validator with AI service."""
         self.ai_service = ai_service
         self.prompt_builder = PromptBuilder()
         self.response_builder = ResponseBuilder(ai_service)
-        self.conversation_context = conversation_context
         self.product_search_service = ProductSearchService()
         
-    async def validate_query(self, query: str, image_data: Optional[str] = None) -> Tuple[bool, str, Optional[dict]]:
+    async def validate_query(self, query: str, conversation_context: ConversationContext, image_data: Optional[str] = None) -> Tuple[bool, str, Optional[dict]]:
         """
         Validate if the query is related to Lonca's business and handle product search requests.
         
         Args:
             query (str): The user's query
+            conversation_context (ConversationContext): The current conversation context
             image_data (Optional[str]): Base64 encoded image data if present
             
         Returns:
@@ -46,9 +46,6 @@ class QueryValidator:
             # Perform combined search
             exact_match, similar_products = self.product_search_service.search_products(query, image)
             
-            # Store results in conversation context
-            self.conversation_context.add_search_results(exact_match, similar_products)
-            
             return True, "", {
                 'exact_match': exact_match,
                 'similar_products': similar_products
@@ -58,7 +55,7 @@ class QueryValidator:
         context = self.prompt_builder._load_context()
         
         # Get conversation context for validation
-        conversation_context = self.conversation_context.get_conversation_context()
+        conversation_context_text = conversation_context.get_conversation_context()
         
         system_prompt = self.prompt_builder._load_prompt("classification_prompt.txt").format(
             business_type=context['business_type'],
@@ -69,7 +66,7 @@ class QueryValidator:
         )
         
         # Include conversation context in the user prompt
-        user_prompt = f"Conversation Context:\n{conversation_context}\n\nCurrent Query: {query}"
+        user_prompt = f"Conversation Context:\n{conversation_context_text}\n\nCurrent Query: {query}"
         
         # Get classification from AI
         response = await self.ai_service.get_response(system_prompt, user_prompt)

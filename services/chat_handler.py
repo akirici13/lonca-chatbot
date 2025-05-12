@@ -16,7 +16,7 @@ class ChatHandler:
         self.ai_service = AIService(model)
         self.prompt_builder = PromptBuilder()
         self.conversation_context = ConversationContext()
-        self.query_validator = QueryValidator(self.ai_service, self.conversation_context)
+        self.query_validator = QueryValidator(self.ai_service)
         self.response_builder = ResponseBuilder(self.ai_service)
         
     async def process_message(self, user_input: str, context: Optional[Dict] = None) -> Dict:
@@ -41,6 +41,7 @@ class ChatHandler:
         # First, validate if the query is Lonca-related and handle image search if needed
         is_valid, response, image_search_results = await self.query_validator.validate_query(
             user_input,
+            self.conversation_context,
             image_data=image_data
         )
         
@@ -53,8 +54,14 @@ class ChatHandler:
                 }]
             }
         
-        # If we have image search results, generate a response based on them
+        # If we have image search results, update context and generate response
         if image_search_results:
+            # Update conversation context with search results
+            self.conversation_context.add_search_results(
+                image_search_results['exact_match'],
+                image_search_results['similar_products']
+            )
+            
             # Load and format the image search response prompt
             prompt_template = self.prompt_builder._load_prompt("image_search_response_prompt.txt")
             
@@ -80,11 +87,10 @@ class ChatHandler:
             
             response = await self.ai_service.get_response(system_prompt, "")
             
-            # Add assistant's response to conversation context with image search results
+            # Add assistant's response to conversation context
             self.conversation_context.add_message(
                 'assistant',
-                response['choices'][0]['message']['content'],
-                image_search_results
+                response['choices'][0]['message']['content']
             )
             
             return response
