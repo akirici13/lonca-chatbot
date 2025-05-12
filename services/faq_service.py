@@ -28,8 +28,18 @@ class FAQService:
         # Cache for FAQ results
         self._cache: Dict[str, List[Dict]] = {}
         
-        # Load and process FAQs
-        self._load_faqs()
+        # Load and process FAQs only if collection is empty
+        if not self._collection_has_data():
+            self._load_faqs()
+        
+    def _collection_has_data(self) -> bool:
+        """Check if the collection already has data."""
+        try:
+            # Try to get one document from the collection
+            result = self.collection.get(limit=1)
+            return len(result['ids']) > 0
+        except Exception:
+            return False
         
     def has_relevant_faqs(self, query: str, region: str = None, min_relevance: float = 0.3) -> bool:
         """
@@ -69,6 +79,14 @@ class FAQService:
                     if pd.notna(question) and pd.notna(answer) and question and answer and answer.lower() != 'nan':
                         # Create a unique ID for each FAQ
                         doc_id = f"q{idx}_r{region}"
+                        
+                        # Check if this FAQ already exists
+                        try:
+                            existing = self.collection.get(ids=[doc_id])
+                            if len(existing['ids']) > 0:
+                                continue
+                        except Exception:
+                            pass
                         
                         # Add to vector database
                         self.collection.add(
@@ -112,7 +130,7 @@ class FAQService:
             
             # Format and filter results
             faqs = []
-            seen_questions = set()  # Track unique questions
+            seen_questions = set()
             
             for i in range(len(results['ids'][0])):
                 question = results['metadatas'][0][i]['question']
