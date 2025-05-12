@@ -7,20 +7,30 @@ class Message:
     role: str  # 'user' or 'assistant'
     content: str
     timestamp: datetime
+    image_search_results: Optional[Dict] = None
 
 class ConversationContext:
     def __init__(self):
         self.messages: List[Message] = []
         self.current_topic: Optional[str] = None
+        self.last_image_search_results: Optional[Dict] = None
         
-    def add_message(self, role: str, content: str):
+    def add_message(self, role: str, content: str, image_search_results: Optional[Dict] = None):
         """Add a new message to the conversation history."""
         message = Message(
             role=role,
             content=content,
-            timestamp=datetime.now()
+            timestamp=datetime.now(),
+            image_search_results=image_search_results
         )
         self.messages.append(message)
+        
+    def add_image_search_results(self, exact_match: Optional[Dict], similar_products: List[Dict]):
+        """Store the latest image search results."""
+        self.last_image_search_results = {
+            'exact_match': exact_match,
+            'similar_products': similar_products
+        }
         
     def get_recent_messages(self, limit: Optional[int] = None) -> List[Message]:
         """
@@ -45,5 +55,18 @@ class ConversationContext:
         context = "Recent conversation:\n"
         for msg in recent_messages:
             context += f"{msg.role.capitalize()}: {msg.content}\n"
+            
+            # Add image search results if present
+            if msg.image_search_results:
+                context += "\nImage Search Results:\n"
+                if msg.image_search_results['exact_match']:
+                    exact = msg.image_search_results['exact_match']
+                    context += f"Exact Match: {exact['name']} (Price: {exact['price']})\n"
+                
+                if msg.image_search_results['similar_products']:
+                    context += "Similar Products:\n"
+                    for product in msg.image_search_results['similar_products']:
+                        context += f"- {product['name']} (Price: {product['price']})\n"
+                context += "\n"
             
         return context 

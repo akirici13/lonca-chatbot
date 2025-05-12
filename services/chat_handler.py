@@ -30,6 +30,7 @@ class ChatHandler:
         Args:
             user_input (str): The user's message
             context (Dict, optional): Additional context for the conversation
+                - image_data: Base64 encoded image data if present
             
         Returns:
             Dict: The AI's response
@@ -37,11 +38,15 @@ class ChatHandler:
         # Add user message to conversation context
         self.conversation_context.add_message('user', user_input)
         
-        # Get region from context
+        # Get region and image data from context
         region = context.get("region") if context else None
+        image_data = context.get("image_data") if context else None
         
-        # First, validate if the query is Lonca-related
-        is_valid, response = await self.query_validator.validate_query(user_input)
+        # First, validate if the query is Lonca-related and handle image search if needed
+        is_valid, response, image_search_results = await self.query_validator.validate_query(
+            user_input,
+            image_data=image_data
+        )
         
         if not is_valid:
             return {
@@ -51,6 +56,42 @@ class ChatHandler:
                     }
                 }]
             }
+        
+        # If we have image search results, generate a response based on them
+        if image_search_results:
+            # Load and format the image search response prompt
+            prompt_template = self.prompt_builder._load_prompt("image_search_response_prompt.txt")
+            
+            # Format the similar products list
+            similar_products_text = chr(10).join([
+                f"- {p['name']} (Price: {p['price']})" 
+                for p in image_search_results['similar_products']
+            ])
+            
+            # Format the exact match text
+            exact_match_text = (
+                image_search_results['exact_match']['name'] 
+                if image_search_results['exact_match'] 
+                else 'None'
+            )
+            
+            # Format the prompt
+            system_prompt = prompt_template.format(
+                query=user_input,
+                exact_match=exact_match_text,
+                similar_products=similar_products_text
+            )
+            
+            response = await self.ai_service.get_response(system_prompt, "")
+            
+            # Add assistant's response to conversation context with image search results
+            self.conversation_context.add_message(
+                'assistant',
+                response['choices'][0]['message']['content'],
+                image_search_results
+            )
+            
+            return response
             
         # Get conversation context
         conversation_context = self.conversation_context.get_conversation_context()

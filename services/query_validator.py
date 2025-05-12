@@ -1,7 +1,11 @@
-from typing import Tuple
+from typing import Tuple, Optional
 from .prompt_builder import PromptBuilder
 from .response_builder import ResponseBuilder
 from .conversation_context import ConversationContext
+from .image_search_service import ImageSearchService
+from PIL import Image
+import base64
+import io
 
 class QueryValidator:
     def __init__(self, ai_service):
@@ -10,19 +14,44 @@ class QueryValidator:
         self.prompt_builder = PromptBuilder()
         self.response_builder = ResponseBuilder(ai_service)
         self.conversation_context = ConversationContext()
+        self.image_search_service = ImageSearchService()
         
-    async def validate_query(self, query: str) -> Tuple[bool, str]:
+    async def validate_query(self, query: str, image_data: Optional[str] = None) -> Tuple[bool, str, Optional[dict]]:
         """
-        Validate if the query is related to Lonca's business.
+        Validate if the query is related to Lonca's business and handle image search requests.
         
         Args:
             query (str): The user's query
+            image_data (Optional[str]): Base64 encoded image data if present
             
         Returns:
-            Tuple[bool, str]: (is_valid, response)
+            Tuple[bool, str, Optional[dict]]: (is_valid, response, image_search_results)
                 - is_valid: True if query is related to Lonca's business
                 - response: Response message (either standard response or empty string)
+                - image_search_results: Results from image search if applicable
         """
+        # Check if this is an image-related query
+        is_image_query = await self._is_image_query(query)
+        
+        if is_image_query and image_data:
+            # Decode and process the image
+            try:
+                image_bytes = base64.b64decode(image_data)
+                image = Image.open(io.BytesIO(image_bytes))
+                
+                # Perform image search
+                exact_match, similar_products = self.image_search_service.find_products(image)
+                
+                # Store results in conversation context
+                self.conversation_context.add_image_search_results(exact_match, similar_products)
+                
+                return True, "", {
+                    'exact_match': exact_match,
+                    'similar_products': similar_products
+                }
+            except Exception as e:
+                return False, f"Error processing image: {str(e)}", None
+        
         # Load classification prompt
         context = self.prompt_builder._load_context()
         
@@ -50,7 +79,25 @@ class QueryValidator:
         if not is_valid:
             # Get standard response for non-Lonca queries
             response = await self.response_builder.generate_response(query)
-            return False, response
+            return False, response, None
             
-        return True, ""
+        return True, "", None
+    
+    async def _is_image_query(self, query: str) -> bool:
+        """
+        Determine if the query is related to image search.
+        
+        Args:
+            query (str): The user's query
+            
+        Returns:
+            bool: True if query is related to image search
+        """
+        system_prompt = self.prompt_builder._load_prompt("image_query_classifier_prompt.txt")
+        user_prompt = f"Query: {query}"
+        
+        response = await self.ai_service.get_response(system_prompt, user_prompt)
+        classification = response.get('choices', [{}])[0].get('message', {}).get('content', '').strip().lower()
+        
+        return classification == 'yes'
  
