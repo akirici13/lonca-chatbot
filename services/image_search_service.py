@@ -7,9 +7,12 @@ from typing import List, Dict, Optional, Tuple
 import os
 import json
 from pathlib import Path
+import chromadb
+from chromadb.utils import embedding_functions
+import pickle
 
 class ImageSearchService:
-    def __init__(self, catalog_path: str = "data/product_catalog.json"):
+    def __init__(self, catalog_path: str = "data/product_catalog.json", embeddings_path: str = "data/product_embeddings.pkl"):
         """Initialize the image search service with a pre-trained model."""
         # Load pre-trained ResNet model
         self.model = resnet50(weights=ResNet50_Weights.DEFAULT)
@@ -26,42 +29,93 @@ class ImageSearchService:
             )
         ])
         
-        # Load product catalog
+        # Initialize paths
         self.catalog_path = catalog_path
-        self.product_catalog = self._load_product_catalog()
+        self.embeddings_path = embeddings_path
         
-    def _load_product_catalog(self) -> Dict[str, Dict]:
+        # Load or create embeddings
+        self.product_catalog, self.embeddings = self._load_or_create_embeddings()
+        
+        # Initialize ChromaDB client
+        self.chroma_client = chromadb.Client()
+        self.collection = self.chroma_client.create_collection(
+            name="product_images",
+            embedding_function=embedding_functions.DefaultEmbeddingFunction()
+        )
+        
+        # Add embeddings to ChromaDB if not already added
+        self._initialize_chroma_collection()
+    
+    def _load_or_create_embeddings(self) -> Tuple[Dict[str, Dict], Dict[str, np.ndarray]]:
         """
-        Load product catalog with image features from JSON file.
+        Load existing embeddings or create new ones if they don't exist.
         
         Returns:
-            Dict[str, Dict]: Dictionary of products with their features
+            Tuple[Dict[str, Dict], Dict[str, np.ndarray]]: (product_catalog, embeddings)
         """
-        try:
-            with open(self.catalog_path, 'r') as f:
-                catalog_data = json.load(f)
+        if os.path.exists(self.embeddings_path):
+            print("Loading existing embeddings...")
+            with open(self.embeddings_path, 'rb') as f:
+                return pickle.load(f)
+        
+        print("Creating new embeddings...")
+        # Load product catalog
+        with open(self.catalog_path, 'r') as f:
+            catalog_data = json.load(f)
+        
+        products = {}
+        embeddings = {}
+        
+        for product in catalog_data['products']:
+            image_path = product['image_path']
+            if os.path.exists(image_path):
+                # Load and process the image
+                image = Image.open(image_path).convert('RGB')
+                features = self.extract_features(image)
+                
+                product_id = product['id']
+                products[product_id] = {
+                    'name': product['name'],
+                    'price': product['price'],
+                    'image_path': image_path
+                }
+                embeddings[product_id] = features.numpy()
+            else:
+                print(f"Warning: Image not found for product {product['id']}: {image_path}")
+        
+        # Save embeddings
+        with open(self.embeddings_path, 'wb') as f:
+            pickle.dump((products, embeddings), f)
+        
+        return products, embeddings
+    
+    def _initialize_chroma_collection(self):
+        """Initialize ChromaDB collection with product embeddings."""
+        # Check if collection is empty
+        if self.collection.count() == 0:
+            print("Adding embeddings to ChromaDB...")
+            # Prepare data for ChromaDB
+            ids = []
+            embeddings = []
+            documents = []
+            metadatas = []
             
-            products = {}
-            for product in catalog_data['products']:
-                image_path = product['image_path']
-                if os.path.exists(image_path):
-                    # Load and process the image
-                    image = Image.open(image_path).convert('RGB')
-                    features = self.extract_features(image)
-                    
-                    products[product['id']] = {
-                        'name': product['name'],
-                        'price': product['price'],
-                        'features': features,
-                        'image_path': image_path
-                    }
-                else:
-                    print(f"Warning: Image not found for product {product['id']}: {image_path}")
+            for product_id, product in self.product_catalog.items():
+                ids.append(product_id)
+                embeddings.append(self.embeddings[product_id].tolist())
+                documents.append(product['name'])
+                metadatas.append({
+                    'price': product['price'],
+                    'image_path': product['image_path']
+                })
             
-            return products
-        except Exception as e:
-            print(f"Error loading product catalog: {e}")
-            return {}
+            # Add to collection
+            self.collection.add(
+                ids=ids,
+                embeddings=embeddings,
+                documents=documents,
+                metadatas=metadatas
+            )
     
     def extract_features(self, image: Image.Image) -> torch.Tensor:
         """
@@ -84,7 +138,7 @@ class ImageSearchService:
     
     def find_products(self, image: Image.Image, similarity_threshold: float = 0.95) -> Tuple[Optional[Dict], List[Dict]]:
         """
-        Find exact match and similar products to the uploaded image.
+        Find exact match and similar products to the uploaded image using vector search.
         
         Args:
             image (PIL.Image): Uploaded image
@@ -98,23 +152,25 @@ class ImageSearchService:
         # Extract features from uploaded image
         query_features = self.extract_features(image)
         
-        # Calculate similarity scores
+        # Query ChromaDB
+        results = self.collection.query(
+            query_embeddings=[query_features.numpy().tolist()],
+            n_results=4  # Get top 4 results (1 for exact match, 3 for similar)
+        )
+        
+        # Process results
         similarities = []
-        for product_id, product in self.product_catalog.items():
-            similarity = torch.cosine_similarity(
-                query_features.unsqueeze(0),
-                product['features'].unsqueeze(0)
-            ).item()
+        for i in range(len(results['ids'][0])):
+            product_id = results['ids'][0][i]
+            similarity = results['distances'][0][i]  # ChromaDB returns distances, convert to similarity
+            metadata = results['metadatas'][0][i]
             
             similarities.append({
                 'product_id': product_id,
-                'name': product['name'],
-                'price': product['price'],
-                'similarity': similarity
+                'name': results['documents'][0][i],
+                'price': metadata['price'],
+                'similarity': 1 - similarity  # Convert distance to similarity
             })
-        
-        # Sort by similarity score
-        similarities.sort(key=lambda x: x['similarity'], reverse=True)
         
         # Check for exact match
         exact_match = None
