@@ -4,10 +4,16 @@ from .prompt_builder import PromptBuilder
 from helpers.loader import load_json
 
 class ResponseBuilder:
-    def __init__(self, ai_service):
-        """Initialize the response builder with AI service."""
+    def __init__(self, ai_service, prompt_builder):
+        """
+        Initialize the response builder with required services.
+        
+        Args:
+            ai_service: The AI service instance
+            prompt_builder: The prompt builder instance
+        """
         self.ai_service = ai_service
-        self.prompt_builder = PromptBuilder()
+        self.prompt_builder = prompt_builder
         self.responses = load_json(self.prompt_builder.prompts_dir / "responses.json")
         
     async def generate_response(self, query: str, context: Dict = None) -> str:

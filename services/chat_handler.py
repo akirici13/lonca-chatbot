@@ -4,6 +4,7 @@ from .ai_service import AIService
 from .query_validator import QueryValidator
 from .response_builder import ResponseBuilder
 from .conversation_context import ConversationContext
+from .product_search_service import ProductSearchService
 
 class ChatHandler:
     def __init__(self, model: str = "gpt-4.1-mini"):
@@ -13,11 +14,20 @@ class ChatHandler:
         Args:
             model (str): The model to use (default: gpt-4.1-mini)
         """
+        # Initialize core services
         self.ai_service = AIService(model)
         self.prompt_builder = PromptBuilder()
         self.conversation_context = ConversationContext()
-        self.query_validator = QueryValidator(self.ai_service)
-        self.response_builder = ResponseBuilder(self.ai_service)
+        self.product_search_service = ProductSearchService()
+        
+        # Initialize dependent services with shared instances
+        self.response_builder = ResponseBuilder(self.ai_service, self.prompt_builder)
+        self.query_validator = QueryValidator(
+            self.ai_service,
+            self.prompt_builder,
+            self.response_builder,
+            self.product_search_service
+        )
         
     async def process_message(self, user_input: str, context: Optional[Dict] = None) -> Dict:
         """
