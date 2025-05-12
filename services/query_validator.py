@@ -1,12 +1,15 @@
 from typing import Tuple
 from .prompt_builder import PromptBuilder
 from .response_builder import ResponseBuilder
+from .conversation_context import ConversationContext
+
 class QueryValidator:
     def __init__(self, ai_service):
         """Initialize the query validator with AI service."""
         self.ai_service = ai_service
         self.prompt_builder = PromptBuilder()
         self.response_builder = ResponseBuilder(ai_service)
+        self.conversation_context = ConversationContext()
         
     async def validate_query(self, query: str) -> Tuple[bool, str]:
         """
@@ -20,6 +23,7 @@ class QueryValidator:
                 - is_valid: True if query is related to Lonca's business
                 - response: Response message (either standard response or empty string)
         """
+        
         # Load classification prompt
         context = self.prompt_builder._load_context()
         system_prompt = self.prompt_builder._load_prompt("classification_prompt.txt").format(

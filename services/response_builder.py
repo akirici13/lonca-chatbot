@@ -1,12 +1,16 @@
 from typing import Dict
 import json
 from .prompt_builder import PromptBuilder
+from helpers.loader import load_json
+from .conversation_context import ConversationContext
 
 class ResponseBuilder:
     def __init__(self, ai_service):
         """Initialize the response builder with AI service."""
         self.ai_service = ai_service
         self.prompt_builder = PromptBuilder()
+        self.responses = load_json(self.prompt_builder.prompts_dir / "responses.json")
+        self.conversation_context = ConversationContext()
         
     async def generate_response(self, query: str, context: Dict = None) -> str:
         """
@@ -19,8 +23,9 @@ class ResponseBuilder:
         Returns:
             str: Generated response
         """
-        system_prompt = self.prompt_builder._load_prompt("response_prompt.txt")
-        user_prompt = f"Query: {query}\nContext: {json.dumps(context) if context else 'None'}"
+        template = self.responses["non_lonca_query"]
+        system_prompt = template["system_prompt"]
+        user_prompt = template["user_prompt"].format(query=query)
         
         response = await self.ai_service.get_response(system_prompt, user_prompt)
         return response.get('choices', [{}])[0].get('message', {}).get('content', '')
@@ -35,8 +40,9 @@ class ResponseBuilder:
         Returns:
             str: Escalation response
         """
-        system_prompt = self.prompt_builder._load_prompt("escalation_prompt.txt")
-        user_prompt = f"Query: {query}"
+        template = self.responses["escalate_to_agent"]
+        system_prompt = template["system_prompt"]
+        user_prompt = template["user_prompt"].format(query=query)
         
         response = await self.ai_service.get_response(system_prompt, user_prompt)
         return response.get('choices', [{}])[0].get('message', {}).get('content', '') 

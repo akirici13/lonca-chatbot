@@ -31,17 +31,18 @@ class PromptBuilder:
         """
         return load_json(self.prompts_dir / "context.json")
         
-    def build_prompt(self, user_message: str, region: Optional[str] = None) -> Tuple[str, str]:
+    def build_prompt(self, user_message: str, region: Optional[str] = None, conversation_context: str = None) -> Tuple[str, str]:
         """
         Build the complete prompt with system instructions and relevant FAQs.
         
         Args:
             user_message (str): The user's message
             region (Optional[str]): Region to filter FAQs by
+            conversation_context (Optional[str]): Recent conversation history
             
         Returns:
             Tuple[str, str]: (system_prompt, user_prompt)
-                - system_prompt: System instructions with relevant FAQs
+                - system_prompt: System instructions with relevant FAQs and conversation context
                 - user_prompt: The user's message
         """
         # Get relevant FAQs
@@ -52,6 +53,10 @@ class PromptBuilder:
         if relevant_faqs:
             faq_text = self.faq_service.format_faqs_for_prompt(relevant_faqs)
             self.system_prompt += faq_text
+        
+        # Add conversation context if available
+        if conversation_context:
+            self.system_prompt += f"\n\n{conversation_context}"
         
         # Build user prompt
         user_prompt = f"User message: {user_message}"
