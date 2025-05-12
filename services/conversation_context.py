@@ -61,14 +61,14 @@ class ConversationContext:
                 context += "\nSearch Results:\n"
                 if msg.search_results['exact_match']:
                     exact = msg.search_results['exact_match']
-                    context += f"Exact Match: {exact['name']} (Price: {exact['price']})\n"
+                    context += f"Exact Match: {exact['name']} (Price: ${exact['price']}, Stock: {exact.get('total_stock', 0)} packs)\n"
                     if 'search_type' in exact:
                         context += f"Found via: {exact['search_type']}\n"
                 
                 if msg.search_results['similar_products']:
                     context += "Similar Products:\n"
                     for product in msg.search_results['similar_products']:
-                        context += f"- {product['name']} (Price: {product['price']})"
+                        context += f"- {product['name']} (Price: ${product['price']}, Stock: {product.get('total_stock', 0)} packs)"
                         if 'search_type' in product:
                             context += f" (Found via: {product['search_type']})"
                         context += "\n"

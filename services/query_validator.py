@@ -8,12 +8,12 @@ import base64
 import io
 
 class QueryValidator:
-    def __init__(self, ai_service):
+    def __init__(self, ai_service, conversation_context: ConversationContext):
         """Initialize the query validator with AI service."""
         self.ai_service = ai_service
         self.prompt_builder = PromptBuilder()
         self.response_builder = ResponseBuilder(ai_service)
-        self.conversation_context = ConversationContext()
+        self.conversation_context = conversation_context
         self.product_search_service = ProductSearchService()
         
     async def validate_query(self, query: str, image_data: Optional[str] = None) -> Tuple[bool, str, Optional[dict]]:

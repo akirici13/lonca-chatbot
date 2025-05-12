@@ -72,7 +72,8 @@ class ProductSearchService:
                 metadatas.append({
                     'name': product['name'],
                     'price': product['price'],
-                    'image_path': product['image_path']
+                    'image_path': product['image_path'],
+                    'total_stock': product.get('total_stock', 0)
                 })
             
             self.text_collection.add(
@@ -114,6 +115,7 @@ class ProductSearchService:
                     'name': metadata['name'],
                     'price': metadata['price'],
                     'image_path': metadata['image_path'],
+                    'total_stock': metadata.get('total_stock', 0),
                     'similarity': similarity,
                     'search_type': 'text'
                 })
@@ -126,12 +128,20 @@ class ProductSearchService:
             )
             
             if exact_match:
+                # Get full product details including stock
+                product_details = self.get_product_details(exact_match['product_id'])
+                if product_details:
+                    exact_match['total_stock'] = product_details.get('total_stock', 0)
                 results.append({
                     **exact_match,
                     'search_type': 'image_exact'
                 })
             
             for product in similar_products:
+                # Get full product details including stock
+                product_details = self.get_product_details(product['product_id'])
+                if product_details:
+                    product['total_stock'] = product_details.get('total_stock', 0)
                 results.append({
                     **product,
                     'search_type': 'image_similar'
@@ -144,7 +154,8 @@ class ProductSearchService:
         exact_match = None
         if results and results[0]['similarity'] >= similarity_threshold:
             exact_match = results[0]
-            results = results[1:]
+            # If we have an exact match, don't return similar products
+            return exact_match, []
         
         # Return exact match (if any) and top 5 similar products
         return exact_match, results[:5]

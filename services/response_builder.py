@@ -2,7 +2,6 @@ from typing import Dict
 import json
 from .prompt_builder import PromptBuilder
 from helpers.loader import load_json
-from .conversation_context import ConversationContext
 
 class ResponseBuilder:
     def __init__(self, ai_service):
@@ -10,7 +9,6 @@ class ResponseBuilder:
         self.ai_service = ai_service
         self.prompt_builder = PromptBuilder()
         self.responses = load_json(self.prompt_builder.prompts_dir / "responses.json")
-        self.conversation_context = ConversationContext()
         
     async def generate_response(self, query: str, context: Dict = None) -> str:
         """

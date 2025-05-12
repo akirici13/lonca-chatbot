@@ -16,12 +16,8 @@ class ChatHandler:
         self.ai_service = AIService(model)
         self.prompt_builder = PromptBuilder()
         self.conversation_context = ConversationContext()
-        self.query_validator = QueryValidator(self.ai_service)
+        self.query_validator = QueryValidator(self.ai_service, self.conversation_context)
         self.response_builder = ResponseBuilder(self.ai_service)
-        
-        # Share conversation context between services
-        self.query_validator.conversation_context = self.conversation_context
-        self.response_builder.conversation_context = self.conversation_context
         
     async def process_message(self, user_input: str, context: Optional[Dict] = None) -> Dict:
         """
