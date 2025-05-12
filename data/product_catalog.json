@@ -1,0 +1,22 @@
+{
+    "products": [
+        {
+            "id": "product1",
+            "name": "Şal - Siyah",
+            "price": "$4",
+            "image_path": "data/products/axesoire_test.jpeg"
+        },
+        {
+            "id": "product2",
+            "name": "İndigo Fermuarlı Rahat Kalıp Ferace - Indigo",
+            "price": "$16.8",
+            "image_path": "data/products/allday_test.jpeg"
+        },
+        {
+            "id": "product3",
+            "name": "Fırfırlı Düğmeli Elbise - Beyaz",
+            "price": "$22",
+            "image_path": "data/products/elisa_test.jpeg"
+        }
+    ]
+} 
