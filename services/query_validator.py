@@ -23,9 +23,12 @@ class QueryValidator:
                 - is_valid: True if query is related to Lonca's business
                 - response: Response message (either standard response or empty string)
         """
-        
         # Load classification prompt
         context = self.prompt_builder._load_context()
+        
+        # Get conversation context for validation
+        conversation_context = self.conversation_context.get_conversation_context()
+        
         system_prompt = self.prompt_builder._load_prompt("classification_prompt.txt").format(
             business_type=context['business_type'],
             company=context['company'],
@@ -33,7 +36,9 @@ class QueryValidator:
             invalid_topics="\n".join(f"- {topic}" for topic in context['invalid_topics']),
             query=query
         )
-        user_prompt = f"Query: {query}"
+        
+        # Include conversation context in the user prompt
+        user_prompt = f"Conversation Context:\n{conversation_context}\n\nCurrent Query: {query}"
         
         # Get classification from AI
         response = await self.ai_service.get_response(system_prompt, user_prompt)
