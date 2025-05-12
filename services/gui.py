@@ -139,10 +139,23 @@ class LoncaGUI:
     def _process_input(self, user_input, send_button, uploaded_file):
         """Process user input and handle image upload."""
         if (send_button or user_input) and not st.session_state.processing:
+            print("\n" + "="*80)
+            print("PROCESSING NEW MESSAGE")
+            print("="*80)
+            
             st.session_state.processing = True
             
             message_data = {"role": "user", "content": user_input if user_input else "I'm searching for a product similar to this image."}
-            context = {"region": st.session_state.region}
+            context = {
+                "region": st.session_state.region
+            }
+            
+            print("\nCURRENT STATE:")
+            print(f"Region: {st.session_state.region}")
+            print(f"Processing flag: {st.session_state.processing}")
+            print(f"Input key: {st.session_state.input_key}")
+            print(f"Number of messages: {len(st.session_state.messages)}")
+            print(f"Chat handler ID: {id(st.session_state.chat_handler)}")
             
             if uploaded_file is not None:
                 try:
@@ -150,30 +163,58 @@ class LoncaGUI:
                     base64_image = convert_image_to_base64(image)
                     message_data["image"] = base64_image
                     context["image_data"] = base64_image
+                    print("\nImage processed successfully")
                 except Exception as e:
+                    print(f"\nError processing image: {e}")
                     st.error(f"Error processing image: {e}")
                     st.session_state.processing = False
                     return
+            
+            print("\nMESSAGE DATA:")
+            print(f"Role: {message_data['role']}")
+            print(f"Content: {message_data['content']}")
+            print(f"Has image: {'image' in message_data}")
+            
+            print("\nCONTEXT:")
+            print(f"Region: {context.get('region')}")
+            print(f"Has image data: {'image_data' in context}")
             
             st.session_state.messages.append(message_data)
             
             try:
                 with st.spinner("Thinking..."):
+                    print("\nPROCESSING MESSAGE WITH CHAT HANDLER...")
                     response = asyncio.run(st.session_state.chat_handler.process_message(
                         message_data["content"],
                         context=context
                     ))
                     
+                    print("\nCHAT HANDLER RESPONSE:")
+                    print(f"Response type: {type(response)}")
+                    print(f"Response content: {response.get('choices', [{}])[0].get('message', {}).get('content', 'Error')}")
+                    
                     st.session_state.messages.append({
                         "role": "assistant",
                         "content": response["choices"][0]["message"]["content"]
                     })
+                    
+                    print("\nUPDATED STATE:")
+                    print(f"Number of messages: {len(st.session_state.messages)}")
+                    print(f"Last message role: {st.session_state.messages[-1]['role']}")
+                    
             except Exception as e:
+                print(f"\nERROR IN MESSAGE PROCESSING:")
+                print(f"Error type: {type(e)}")
+                print(f"Error message: {str(e)}")
                 st.error(f"Error processing message: {e}")
             finally:
                 st.session_state.processing = False
                 st.session_state.input_key += 1
+                print("\nCLEANUP:")
+                print(f"Processing flag reset to: {st.session_state.processing}")
+                print(f"Input key incremented to: {st.session_state.input_key}")
             
+            print("\n" + "="*80)
             st.rerun()
     
     def _add_custom_css(self):
