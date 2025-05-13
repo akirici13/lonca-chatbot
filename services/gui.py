@@ -136,7 +136,7 @@ class LoncaGUI:
             return user_input, send_button, uploaded_file
         return None, None, None
     
-    def _process_input(self, user_input, send_button, uploaded_file):
+    async def _process_input(self, user_input, send_button, uploaded_file):
         """Process user input and handle image upload."""
         if (send_button or user_input) and not st.session_state.processing:
             st.session_state.processing = True
@@ -161,17 +161,22 @@ class LoncaGUI:
             
             try:
                 with st.spinner("Thinking..."):
-                    response = asyncio.run(st.session_state.chat_handler.process_message(
+                    # Wait for the response
+                    response = await st.session_state.chat_handler.process_message(
                         message_data["content"],
                         context=context
-                    ))
+                    )
                     
-                    st.session_state.messages.append({
-                        "role": "assistant",
-                        "content": response["choices"][0]["message"]["content"]
-                    })
-            
-                    st.rerun()
+                    # Only proceed if we got a valid response
+                    if response and "choices" in response and response["choices"]:
+                        st.session_state.messages.append({
+                            "role": "assistant",
+                            "content": response["choices"][0]["message"]["content"]
+                        })
+                        # Rerun after we've updated the messages
+                        st.rerun()
+                    else:
+                        st.error("Received invalid response format from chat handler")
                     
             except Exception as e:
                 st.error(f"Error processing message: {e}")
@@ -259,6 +264,6 @@ class LoncaGUI:
 
         with input_container:
             user_input, send_button, uploaded_file = self._render_input_area()
-            self._process_input(user_input, send_button, uploaded_file)
+            asyncio.run(self._process_input(user_input, send_button, uploaded_file))
         
         self._add_custom_css() 
