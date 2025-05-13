@@ -77,6 +77,7 @@ class ChatHandler:
         """
         # Add user message to conversation context
         self.conversation_context.add_message('user', user_input)
+        print("\n[ChatHandler] Updated conversation context with user message")
         
         # Get region and image data from context
         region = context.get("region") if context else None
@@ -87,6 +88,8 @@ class ChatHandler:
             user_input,
             self.conversation_context
         )
+        print(f"\n[ChatHandler] Follow-up result: {follow_up_result}")
+        
         if follow_up_result:
             is_valid, response, search_results = follow_up_result
             if not is_valid:
@@ -96,6 +99,7 @@ class ChatHandler:
                 search_results,
                 self.conversation_context
             )
+            print("\n[ChatHandler] Updated conversation context with follow-up search results")
             return response
         
         # Then, check if this is a new product search
@@ -103,6 +107,8 @@ class ChatHandler:
             user_input,
             image_data
         )
+        print(f"\n[ChatHandler] Product query result: {product_query_result}")
+        
         if product_query_result:
             is_valid, response, search_results = product_query_result
             if not is_valid:
@@ -112,6 +118,7 @@ class ChatHandler:
                 search_results,
                 self.conversation_context
             )
+            print("\n[ChatHandler] Updated conversation context with product-query search results")
             return response
         
         # Finally, validate if the query is Lonca-related
@@ -119,6 +126,7 @@ class ChatHandler:
             user_input,
             self.conversation_context
         )
+        print(f"\n[ChatHandler] Query validation result: is_valid={is_valid}, response={response}")
         
         if not is_valid:
             return self._create_response(response)
@@ -129,4 +137,5 @@ class ChatHandler:
             region,
             self.conversation_context
         )
+        print("\n[ChatHandler] Updated conversation context with Lonca query response")
         return response 
