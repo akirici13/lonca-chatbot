@@ -12,5 +12,5 @@ torchvision==0.17.0
 numpy==1.26.4
 tqdm==4.66.1
 chromadb==0.3.29
-pydantic==2.6.3
+pydantic>=1.9,<2.0
 sentence-transformers==2.2.2 
