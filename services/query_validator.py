@@ -61,9 +61,10 @@ class QueryValidator:
             # Perform combined search
             exact_match, similar_products = self.product_search_service.search_products(query, image)
             
+            # Only return exact matches, ignore similar products
             return True, "", {
                 'exact_match': exact_match,
-                'similar_products': similar_products
+                'similar_products': []  # Empty list since we're not using similar products
             }
         
         # Load classification prompt
