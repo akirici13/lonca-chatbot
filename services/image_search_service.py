@@ -16,6 +16,7 @@ import asyncio
 import aiohttp
 from concurrent.futures import ThreadPoolExecutor
 from tqdm import tqdm
+from helpers.chroma_config import get_chroma_client
 
 class ImageSearchService:
     def __init__(self, catalog_path: str = "data/product_catalog.json", embeddings_path: str = "data/product_embeddings.pkl"):
@@ -42,8 +43,8 @@ class ImageSearchService:
         # Load or create embeddings
         self.product_catalog, self.embeddings = self._load_or_create_embeddings()
         
-        # Initialize ChromaDB client
-        self.chroma_client = chromadb.Client()
+        # Initialize ChromaDB with shared configuration
+        self.chroma_client = get_chroma_client()
         try:
             self.collection = self.chroma_client.create_collection(
                 name="product_images",

@@ -9,6 +9,7 @@ from chromadb.utils import embedding_functions
 import torch
 from transformers import AutoTokenizer, AutoModel
 import os
+from helpers.chroma_config import get_chroma_client
 
 class ProductSearchService:
     def __init__(self, catalog_path: str = "data/product_catalog.json"):
@@ -20,8 +21,10 @@ class ProductSearchService:
         self.tokenizer = AutoTokenizer.from_pretrained('sentence-transformers/all-MiniLM-L6-v2')
         self.text_model = AutoModel.from_pretrained('sentence-transformers/all-MiniLM-L6-v2')
         
-        # Initialize ChromaDB for text search
-        self.chroma_client = chromadb.Client()
+        # Initialize ChromaDB with shared configuration
+        self.chroma_client = get_chroma_client()
+        
+        # Initialize text search components
         try:
             self.text_collection = self.chroma_client.create_collection(
                 name="product_text",

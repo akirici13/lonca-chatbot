@@ -4,6 +4,8 @@ from chromadb.utils import embedding_functions
 from typing import Dict, List
 from pathlib import Path
 from helpers.relevance_calculator import calculate_relevance_score
+from helpers.chroma_config import get_chroma_client
+import os
 
 class FAQService:
     def __init__(self):
@@ -11,8 +13,12 @@ class FAQService:
         self.prompts_dir = Path("prompts")
         self.faq_file = self.prompts_dir / "LoncaFAQs.xlsx"
         
-        # Initialize ChromaDB
-        self.client = chromadb.Client()
+        # Create a persistent directory for ChromaDB
+        persist_directory = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "chroma")
+        os.makedirs(persist_directory, exist_ok=True)
+        
+        # Initialize ChromaDB with shared configuration
+        self.client = get_chroma_client()
         
         # Use sentence-transformers for embeddings
         self.embedding_function = embedding_functions.SentenceTransformerEmbeddingFunction(
@@ -22,7 +28,8 @@ class FAQService:
         # Create or get the collection
         self.collection = self.client.get_or_create_collection(
             name="lonca_faqs",
-            embedding_function=self.embedding_function
+            embedding_function=self.embedding_function,
+            metadata={"hnsw:space": "cosine"}
         )
         
         # Cache for FAQ results
