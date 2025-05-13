@@ -44,6 +44,7 @@ class ProductQueryService:
             except ValueError as e:
                 return False, str(e), None
         
+        print("\n[ProductQueryService] Handling new product search query")
         # Perform search and return only exact matches
         exact_match, _ = self.product_search_service.search_products(query, image)
         return True, "", {

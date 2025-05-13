@@ -38,6 +38,7 @@ class FollowUpService:
         )
         
         if is_follow_up:
+            print("\n[FollowUpService] Handling follow-up question about existing product")
             return True, "", conversation_context.last_search_results
             
         return None

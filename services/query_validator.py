@@ -50,8 +50,10 @@ class QueryValidator:
         is_valid = classification == 'yes'
         
         if not is_valid:
+            print("\n[QueryValidator] Query is not related to Lonca's business")
             response = await self.response_builder.generate_response(query)
             return False, response, None
             
+        print("\n[QueryValidator] Query is related to Lonca's business")
         return True, "", None
  

@@ -27,6 +27,7 @@ class SearchResultService:
         Returns:
             Tuple[Dict, ConversationContext]: The AI's response and updated conversation context
         """
+        print("\n[SearchResultService] Processing search results")
         # Update conversation context with search results
         conversation_context.add_search_results(
             search_results['exact_match'],
