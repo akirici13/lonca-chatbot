@@ -1,6 +1,21 @@
 {
     "business_type": "B2B fashion supply",
     "company": "Lonca",
+    "company_info": {
+        "social_media": {
+            "telegram": "https://t.me/lonca_wholesale",
+            "instagram": "https://instagram.com/lonca_clothing"
+        }
+    },
+    "reference_terms": {
+        "company_references": [
+            "you",
+            "your",
+            "yours",
+            "Lonca",
+            "Lonca's"
+        ]
+    },
     "valid_topics": [
         "product catalog and specifications",
         "ordering process and requirements",
@@ -31,7 +46,9 @@
         "business documentation",
         "price negotiations",
         "seasonal collections",
-        "stock availability"
+        "stock availability",
+        "company social media",
+        "company contact information"
     ],
     "invalid_topics": [
         "general fashion trends",
