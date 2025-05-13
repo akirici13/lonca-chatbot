@@ -39,7 +39,14 @@ class QueryValidator:
                 - response: Response message (either standard response or empty string)
                 - search_results: Results from product search if applicable
         """
-        # Check if this is a product search query
+        # First check if this is a follow-up question about an existing product
+        if conversation_context.last_search_results and conversation_context.last_search_results['exact_match']:
+            is_follow_up = await self._is_follow_up_about_product(query, conversation_context.last_search_results['exact_match'])
+            if is_follow_up:
+                # Return the existing product information
+                return True, "", conversation_context.last_search_results
+
+        # Check if this is a new product search query
         is_product_query = await self._is_product_query(query)
         
         if is_product_query:
@@ -101,6 +108,28 @@ class QueryValidator:
             bool: True if query is related to product search
         """
         system_prompt = self.prompt_builder._load_prompt("product_query_classifier_prompt.txt")
+        user_prompt = f"Query: {query}"
+        
+        response = await self.ai_service.get_response(system_prompt, user_prompt)
+        classification = response.get('choices', [{}])[0].get('message', {}).get('content', '').strip().lower()
+        
+        return classification == 'yes'
+
+    async def _is_follow_up_about_product(self, query: str, product: dict) -> bool:
+        """
+        Determine if the query is a follow-up question about an existing product.
+        
+        Args:
+            query (str): The user's query
+            product (dict): The product information
+            
+        Returns:
+            bool: True if query is about the existing product
+        """
+        system_prompt = self.prompt_builder._load_prompt("follow_up_classifier_prompt.txt").format(
+            product_name=product['name'],
+            product_id=product['product_id']
+        )
         user_prompt = f"Query: {query}"
         
         response = await self.ai_service.get_response(system_prompt, user_prompt)
