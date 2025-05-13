@@ -1,0 +1,67 @@
+from typing import Dict
+from .ai_service import AIService
+from .prompt_builder import PromptBuilder
+from .conversation_context import ConversationContext
+
+class SearchResultService:
+    def __init__(self, ai_service: AIService, prompt_builder: PromptBuilder):
+        """
+        Initialize the search result service.
+        
+        Args:
+            ai_service: The AI service instance
+            prompt_builder: The prompt builder instance
+        """
+        self.ai_service = ai_service
+        self.prompt_builder = prompt_builder
+        
+    async def handle_search_results(self, query: str, search_results: dict, conversation_context: ConversationContext) -> Dict:
+        """
+        Handle search results and generate appropriate response.
+        
+        Args:
+            query (str): The original user query
+            search_results (dict): The search results
+            conversation_context (ConversationContext): The current conversation context
+            
+        Returns:
+            Dict: The AI's response
+        """
+        # Update conversation context with search results
+        conversation_context.add_search_results(
+            search_results['exact_match'],
+            search_results['similar_products']
+        )
+        
+        # Load and format the image search response prompt
+        prompt_template = self.prompt_builder._load_prompt("image_search_response_prompt.txt")
+        
+        # Format the similar products list
+        similar_products_text = chr(10).join([
+            f"- {p['name']} (Price: ${p['price']}, Stock: {p.get('total_stock', 0)} packs)" 
+            for p in search_results['similar_products']
+        ])
+        
+        # Format the exact match text
+        exact_match_text = (
+            f"{search_results['exact_match']['name']} (Price: ${search_results['exact_match']['price']}, Stock: {search_results['exact_match'].get('total_stock', 0)} packs)" 
+            if search_results['exact_match'] 
+            else 'None'
+        )
+        
+        # Format the prompt
+        system_prompt = prompt_template.format(
+            query=query,
+            exact_match=exact_match_text,
+            similar_products=similar_products_text
+        )
+        
+        response = await self.ai_service.get_response(system_prompt, "")
+        
+        # Add assistant's response to conversation context
+        conversation_context.add_message(
+            'assistant',
+            response['choices'][0]['message']['content']
+        )
+        
+        return response 
