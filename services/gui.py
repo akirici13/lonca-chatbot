@@ -170,14 +170,14 @@ class LoncaGUI:
                         "role": "assistant",
                         "content": response["choices"][0]["message"]["content"]
                     })
+            
+                    st.rerun()
                     
             except Exception as e:
                 st.error(f"Error processing message: {e}")
             finally:
                 st.session_state.processing = False
                 st.session_state.input_key += 1
-            
-            st.rerun()
     
     def _add_custom_css(self):
         """Add custom CSS styles to the interface."""
