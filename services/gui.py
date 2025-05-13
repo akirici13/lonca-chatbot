@@ -253,11 +253,12 @@ class LoncaGUI:
         
         # Create a container for the input area
         input_container = st.container()
+        if not st.session_state.region:
+            st.info("Please select your region from the sidebar to start chatting.")
+            return
+
         with input_container:
             user_input, send_button, uploaded_file = self._render_input_area()
-            if user_input is not None:
-                self._process_input(user_input, send_button, uploaded_file)
-            else:
-                st.info("Please select your region from the sidebar to start chatting.")
+            self._process_input(user_input, send_button, uploaded_file)
         
         self._add_custom_css() 
