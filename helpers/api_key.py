@@ -12,12 +12,15 @@ def get_openai_api_key() -> str:
         ValueError: If the API key is not found
     """
     # Load environment variables from .env file
-    load_dotenv()
+    load_dotenv(override=True)
     
     # Get API key from environment
     api_key = os.getenv("OPENAI_API_KEY")
     
     if not api_key:
-        raise ValueError("OPENAI_API_KEY not found in environment variables. Please create a .env file with your API key.")
+        raise ValueError(
+            "OPENAI_API_KEY not found. Please create a .env file in your project root with:\n"
+            "OPENAI_API_KEY=your-api-key-here"
+        )
     
     return api_key 
