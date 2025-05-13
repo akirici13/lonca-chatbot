@@ -115,7 +115,7 @@ class ChatHandler:
             return response
         
         # Finally, validate if the query is Lonca-related
-        is_valid, response, _ = await self.query_validator.validate_query(
+        is_valid, response = await self.query_validator.validate_query(
             user_input,
             self.conversation_context
         )

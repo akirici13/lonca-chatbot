@@ -17,7 +17,7 @@ class QueryValidator:
         self.prompt_builder = prompt_builder
         self.response_builder = response_builder
         
-    async def validate_query(self, query: str, conversation_context: ConversationContext) -> Tuple[bool, str, Optional[dict]]:
+    async def validate_query(self, query: str, conversation_context: ConversationContext) -> Tuple[bool, str]:
         """
         Validate if the query is related to Lonca's business.
         
@@ -52,8 +52,8 @@ class QueryValidator:
         if not is_valid:
             print("\n[QueryValidator] Query is not related to Lonca's business")
             response = await self.response_builder.generate_response(query)
-            return False, response, None
+            return False, response
             
         print("\n[QueryValidator] Query is related to Lonca's business")
-        return True, "", None
+        return True, ""
  
