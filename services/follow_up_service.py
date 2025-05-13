@@ -56,7 +56,8 @@ class FollowUpService:
         """
         system_prompt = self.prompt_builder._load_prompt("follow_up_classifier_prompt.txt").format(
             product_name=product['name'],
-            product_id=product['product_id']
+            product_id=product['product_id'],
+            query=query
         )
         user_prompt = f"Query: {query}"
         
