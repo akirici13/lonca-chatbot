@@ -5,6 +5,8 @@ Your task is to determine if the following query is related to {company}'s busin
 Business Context:
 - Company: {company}
 - Business Type: {business_type}
+- Target Market: B2B fashion suppliers and retailers
+- Primary Focus: Fashion product supply and related services
 
 Valid Topics:
 {valid_topics}
@@ -20,5 +22,7 @@ Consider:
 3. Could this be a valid question for a B2B fashion supplier?
 4. Does it fall within our valid topics?
 5. Is it clearly about an invalid topic?
+6. Is it relevant to our B2B fashion supply business?
+7. Does it require business-specific knowledge?
 
 Respond with ONLY 'yes' if the query is related to {company}'s business, or 'no' if it's not. 

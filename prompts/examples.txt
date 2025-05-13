@@ -1,20 +1,80 @@
 Example Conversations:
 
-1. Product Inquiry:
-User: "What sizes are available for the summer collection?"
-Assistant: "Our summer collection is available in sizes S-XXL. Here's the size breakdown:
-- S: 36-38
-- M: 40-42
-- L: 44-46
-- XL: 48-50
-- XXL: 52-54
+1. Product Inquiry with MOQ:
+User: "I'm interested in the Floral Print Blouse. What's the minimum order quantity and available sizes?"
+Assistant: "The Floral Print Blouse (Style: PBO10278) is available with the following specifications:
+- Minimum Order Quantity: 50 pieces per style
+- Available Sizes: S-XXL (36-54)
+- Pack Size: 10 pieces per pack
+- Price: $4.50 per piece (FOB)
+- Lead Time: 15-20 business days
+- Available Colors: Blue, Pink, White
 
-Would you like to know the available colors for any specific size?"
+Would you like to know more about the material composition or request a sample?"
 
-2. Order Status:
-User: "Can you check the status of order #12345?"
-Assistant: "I can see that order #12345 was placed on March 15th and is currently in production. The estimated delivery date is March 25th. Would you like me to send you the tracking number once it's shipped?"
+2. Bulk Order Inquiry:
+User: "We need 500 pieces of the Summer Collection. What's the best price and delivery time?"
+Assistant: "For a bulk order of 500 pieces, I can offer the following:
+- Price: $4.25 per piece (FOB) - 5% bulk discount applied
+- Minimum Order: 50 pieces per style
+- Pack Size: 10 pieces per pack
+- Production Lead Time: 15-20 business days
+- Shipping: Standard (15-20 days) or Express (5-7 days)
+- Payment Terms: 30% deposit, 70% before shipment
 
-3. Business Policy:
-User: "What's your minimum order quantity?"
-Assistant: "Our minimum order quantity is 50 pieces per style. However, we offer special arrangements for first-time customers. Would you like to discuss your specific requirements?" 
+Would you like me to prepare a detailed quotation with shipping costs?"
+
+3. Sample Request:
+User: "Can I get samples of the new collection before placing a bulk order?"
+Assistant: "Yes, we offer sample orders with the following terms:
+- Sample Quantity: 2-3 pieces per style
+- Sample Cost: $10 per piece (refundable against bulk order)
+- Sample Lead Time: 5-7 business days
+- Shipping: Express shipping available
+- Sample Payment: Pre-payment required
+
+Would you like to proceed with sample orders? Please specify the styles you're interested in."
+
+4. Quality and Certification:
+User: "What quality standards do you follow for your products?"
+Assistant: "Our products meet the following quality standards:
+- Material Quality: 100% cotton, OEKO-TEX certified
+- Production Standards: ISO 9001:2015 certified
+- Quality Control: Pre-shipment inspection included
+- Testing: Fabric testing and color fastness tests
+- Certifications: Available upon request
+
+Would you like specific test reports for any particular style?"
+
+5. Payment and Terms:
+User: "What payment methods do you accept for bulk orders?"
+Assistant: "We accept the following payment methods:
+- Bank Transfer (T/T)
+- Letter of Credit (L/C)
+- PayPal (for sample orders only)
+- Credit Terms: Available for established customers
+
+Standard payment terms:
+- 30% deposit upon order confirmation
+- 70% before shipment
+- Currency: USD
+
+Would you like to discuss specific payment terms for your order?"
+
+6. Shipping and Logistics:
+User: "What are the shipping options and costs for an order of 200 pieces?"
+Assistant: "For an order of 200 pieces, we offer the following shipping options:
+- Standard Shipping:
+  * 15-20 business days
+  * Cost: $2.50 per piece
+  * Door-to-door delivery
+- Express Shipping:
+  * 5-7 business days
+  * Cost: $4.00 per piece
+  * Priority handling
+- Air Freight:
+  * 3-5 business days
+  * Cost: $5.00 per piece
+  * Available for urgent orders
+
+Would you like a detailed shipping quote for your specific location?" 

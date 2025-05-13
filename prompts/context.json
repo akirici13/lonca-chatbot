@@ -15,7 +15,23 @@
         "lead times",
         "quality standards",
         "sustainability practices",
-        "business partnerships"
+        "business partnerships",
+        "bulk order discounts",
+        "production capacity",
+        "material specifications",
+        "size charts and measurements",
+        "color options and availability",
+        "pack sizes and packaging",
+        "quality certifications",
+        "shipping methods and costs",
+        "payment methods and terms",
+        "return and exchange policies",
+        "product customization",
+        "order tracking and status",
+        "business documentation",
+        "price negotiations",
+        "seasonal collections",
+        "stock availability"
     ],
     "invalid_topics": [
         "general fashion trends",
@@ -23,6 +39,24 @@
         "personal styling",
         "general business advice",
         "unrelated services",
-        "competitor information"
-    ]
+        "competitor information",
+        "retail pricing",
+        "consumer fashion advice",
+        "personal shopping",
+        "retail store locations",
+        "consumer promotions",
+        "retail customer service",
+        "retail return policies",
+        "retail payment methods",
+        "retail shipping options"
+    ],
+    "business_metrics": {
+        "standard_moq": 50,
+        "sample_quantity": 3,
+        "standard_lead_time": "15-20 business days",
+        "express_lead_time": "5-7 business days",
+        "pack_size": 10,
+        "currency": "USD",
+        "payment_terms": "30% deposit, 70% before shipment"
+    }
 } 
