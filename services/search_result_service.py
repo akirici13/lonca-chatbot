@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Tuple
 from .ai_service import AIService
 from .prompt_builder import PromptBuilder
 from .conversation_context import ConversationContext
@@ -15,7 +15,7 @@ class SearchResultService:
         self.ai_service = ai_service
         self.prompt_builder = prompt_builder
         
-    async def handle_search_results(self, query: str, search_results: dict, conversation_context: ConversationContext) -> Dict:
+    async def handle_search_results(self, query: str, search_results: dict, conversation_context: ConversationContext) -> Tuple[Dict, ConversationContext]:
         """
         Handle search results and generate appropriate response.
         
@@ -25,7 +25,7 @@ class SearchResultService:
             conversation_context (ConversationContext): The current conversation context
             
         Returns:
-            Dict: The AI's response
+            Tuple[Dict, ConversationContext]: The AI's response and updated conversation context
         """
         # Update conversation context with search results
         conversation_context.add_search_results(
@@ -64,4 +64,4 @@ class SearchResultService:
             response['choices'][0]['message']['content']
         )
         
-        return response 
+        return response, conversation_context 

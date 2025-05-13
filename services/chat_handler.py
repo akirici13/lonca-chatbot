@@ -1,4 +1,4 @@
-from typing import Dict, Optional
+from typing import Dict, Optional, Tuple
 from .prompt_builder import PromptBuilder
 from .ai_service import AIService
 from .query_validator import QueryValidator
@@ -91,11 +91,12 @@ class ChatHandler:
             is_valid, response, search_results = follow_up_result
             if not is_valid:
                 return self._create_response(response)
-            return await self.search_result_service.handle_search_results(
+            response, self.conversation_context = await self.search_result_service.handle_search_results(
                 user_input,
                 search_results,
                 self.conversation_context
             )
+            return response
         
         # Then, check if this is a new product search
         product_query_result = await self.product_query_service.check_product_query(
@@ -106,11 +107,12 @@ class ChatHandler:
             is_valid, response, search_results = product_query_result
             if not is_valid:
                 return self._create_response(response)
-            return await self.search_result_service.handle_search_results(
+            response, self.conversation_context = await self.search_result_service.handle_search_results(
                 user_input,
                 search_results,
                 self.conversation_context
             )
+            return response
         
         # Finally, validate if the query is Lonca-related
         is_valid, response, _ = await self.query_validator.validate_query(
@@ -122,8 +124,9 @@ class ChatHandler:
             return self._create_response(response)
             
         # Handle Lonca-related query
-        return await self.lonca_query_service.handle_query(
+        response, self.conversation_context = await self.lonca_query_service.handle_query(
             user_input,
             region,
             self.conversation_context
-        ) 
+        )
+        return response 

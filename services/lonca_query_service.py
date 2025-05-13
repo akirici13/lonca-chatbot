@@ -18,7 +18,7 @@ class LoncaQueryService:
         self.prompt_builder = prompt_builder
         self.response_builder = response_builder
         
-    async def handle_query(self, query: str, region: Optional[str], conversation_context: ConversationContext) -> Dict:
+    async def handle_query(self, query: str, region: Optional[str], conversation_context: ConversationContext) -> Tuple[Dict, ConversationContext]:
         """
         Handle a Lonca-related query.
         
@@ -28,7 +28,7 @@ class LoncaQueryService:
             conversation_context (ConversationContext): The current conversation context
             
         Returns:
-            Dict: The AI's response
+            Tuple[Dict, ConversationContext]: The AI's response and updated conversation context
         """
         # Get conversation context
         conversation_context_text = conversation_context.get_conversation_context()
@@ -49,12 +49,14 @@ class LoncaQueryService:
         # If no relevant FAQs found, escalate to human agent
         if not self.prompt_builder.faq_service.has_relevant_faqs(query, region):
             escalation_response = await self.response_builder.get_escalation_response(query)
-            return {
+            response = {
                 "choices": [{
                     "message": {
                         "content": escalation_response
                     }
                 }]
             }
+            # Add escalation response to conversation context
+            conversation_context.add_message('assistant', escalation_response)
         
-        return response 
+        return response, conversation_context 
