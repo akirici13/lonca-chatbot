@@ -19,7 +19,7 @@ class ProductQueryService:
         self.prompt_builder = prompt_builder
         self.product_search_service = product_search_service
         
-    async def check_product_query(self, query: str, conversation_context: ConversationContext, image_data: Optional[str] = None) -> Optional[Tuple[bool, str, Optional[dict]]]:
+    async def check_product_query(self, query: str, image_data: Optional[str] = None) -> Optional[Tuple[bool, str, Optional[dict]]]:
         """
         Check if the query is related to product search and handle it if it is.
         
@@ -34,7 +34,7 @@ class ProductQueryService:
                 - str: Response message (empty string for valid queries)
                 - dict: Search results if applicable
         """
-        is_product_query = await self._is_product_query(query, conversation_context)
+        is_product_query = await self._is_product_query(query)
         if not is_product_query:
             return None
 
@@ -54,7 +54,7 @@ class ProductQueryService:
             'similar_products': []  # Empty list since we're not using similar products
         }
 
-    async def _is_product_query(self, query: str, conversation_context: ConversationContext) -> bool:
+    async def _is_product_query(self, query: str) -> bool:
         """
         Determine if the query is related to product search.
         
@@ -65,9 +65,7 @@ class ProductQueryService:
         Returns:
             bool: True if query is related to product search
         """
-        system_prompt = self.prompt_builder._load_prompt("product_query_classifier_prompt.txt").format(
-            conversation_context=conversation_context.get_conversation_context()
-        )
+        system_prompt = self.prompt_builder._load_prompt("product_query_classifier_prompt.txt")
         user_prompt = f"Query: {query}"
         
         response = await self.ai_service.get_response(system_prompt, user_prompt)
