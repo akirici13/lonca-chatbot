@@ -2,6 +2,7 @@ from typing import Optional, Tuple, Dict
 from .ai_service import AIService
 from .prompt_builder import PromptBuilder
 from .product_search_service import ProductSearchService
+from .conversation_context import ConversationContext
 from helpers.image_utils import process_base64_image
 
 class ProductQueryService:
@@ -18,12 +19,13 @@ class ProductQueryService:
         self.prompt_builder = prompt_builder
         self.product_search_service = product_search_service
         
-    async def check_product_query(self, query: str, image_data: Optional[str] = None) -> Optional[Tuple[bool, str, Optional[dict]]]:
+    async def check_product_query(self, query: str, conversation_context: ConversationContext, image_data: Optional[str] = None) -> Optional[Tuple[bool, str, Optional[dict]]]:
         """
         Check if the query is related to product search and handle it if it is.
         
         Args:
             query (str): The user's query
+            conversation_context (ConversationContext): The current conversation context
             image_data (Optional[str]): Base64 encoded image data if present
             
         Returns:
@@ -32,7 +34,7 @@ class ProductQueryService:
                 - str: Response message (empty string for valid queries)
                 - dict: Search results if applicable
         """
-        is_product_query = await self._is_product_query(query)
+        is_product_query = await self._is_product_query(query, conversation_context)
         if not is_product_query:
             return None
 
@@ -52,17 +54,20 @@ class ProductQueryService:
             'similar_products': []  # Empty list since we're not using similar products
         }
 
-    async def _is_product_query(self, query: str) -> bool:
+    async def _is_product_query(self, query: str, conversation_context: ConversationContext) -> bool:
         """
         Determine if the query is related to product search.
         
         Args:
             query (str): The user's query
+            conversation_context (ConversationContext): The current conversation context
             
         Returns:
             bool: True if query is related to product search
         """
-        system_prompt = self.prompt_builder._load_prompt("product_query_classifier_prompt.txt")
+        system_prompt = self.prompt_builder._load_prompt("product_query_classifier_prompt.txt").format(
+            conversation_context=conversation_context.get_conversation_context()
+        )
         user_prompt = f"Query: {query}"
         
         response = await self.ai_service.get_response(system_prompt, user_prompt)

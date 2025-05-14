@@ -50,7 +50,7 @@ class LoncaQueryService:
         # If no relevant FAQs found, escalate to human agent
         if not self.prompt_builder.faq_service.has_relevant_faqs(query, region):
             print("[LoncaQueryService] No relevant FAQs found, escalating to human agent")
-            escalation_response = await self.response_builder.get_escalation_response(query)
+            escalation_response = await self.response_builder.get_escalation_response(query, conversation_context)
             response = {
                 "choices": [{
                     "message": {

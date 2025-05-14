@@ -5,10 +5,14 @@ You are a query classifier for a B2B fashion supply business. Determine if the u
 4. Comparing products
 5. Searching for similar products
 
+Conversation Context:
+{conversation_context}
+
 Consider:
 - Is the query about product search or information?
 - Does it mention specific product attributes (color, style, material)?
 - Is it asking about availability or pricing?
 - Does it reference an image or visual search?
+- Is it consistent with the previous conversation's language and context?
 
 Respond with 'yes' if the query is product-related, 'no' otherwise. 

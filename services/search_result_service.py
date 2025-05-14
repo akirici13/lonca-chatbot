@@ -52,6 +52,7 @@ class SearchResultService:
         
         # Format the prompt
         system_prompt = prompt_template.format(
+            conversation_context=conversation_context.get_conversation_context(),
             query=query,
             exact_match=exact_match_text,
             similar_products=similar_products_text

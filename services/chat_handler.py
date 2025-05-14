@@ -105,6 +105,7 @@ class ChatHandler:
         # Then, check if this is a new product search
         product_query_result = await self.product_query_service.check_product_query(
             user_input,
+            self.conversation_context,
             image_data
         )
         print(f"\n[ChatHandler] Product query result: {product_query_result}")
