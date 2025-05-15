@@ -17,7 +17,7 @@ class QueryValidator:
         self.prompt_builder = prompt_builder
         self.response_builder = response_builder
         
-    async def validate_query(self, query: str, conversation_context: ConversationContext, image_data: Optional[str] = None) -> Tuple[bool, str]:
+    async def validate_query(self, query: str, conversation_context: ConversationContext, image_description: Optional[str] = None) -> Tuple[bool, str]:
         """
         Validate if the query is related to Lonca's business.
         
@@ -42,7 +42,7 @@ class QueryValidator:
             conversation_context=conversation_context_text
         )
         
-        user_prompt = f"Current Query: {query}\n\nImage: {image_data}"
+        user_prompt = f"Current Query: {query}\n\nImage Description: {image_description}"
         
         response = await self.ai_service.get_response(system_prompt, user_prompt)
         classification = response.get('choices', [{}])[0].get('message', {}).get('content', '').strip().lower()

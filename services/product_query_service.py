@@ -19,13 +19,14 @@ class ProductQueryService:
         self.prompt_builder = prompt_builder
         self.product_search_service = product_search_service
         
-    async def check_product_query(self, query: str, image_data: Optional[str] = None) -> Optional[Tuple[bool, str, Optional[dict]]]:
+    async def check_product_query(self, query: str, image: Optional[str] = None, image_description: Optional[str] = None) -> Optional[Tuple[bool, str, Optional[dict]]]:
         """
         Check if the query is related to product search and handle it if it is.
         
         Args:
             query (str): The user's query
-            image_data (Optional[str]): Base64 encoded image data if present
+            image (Optional[str]): Base64 encoded image data if present
+            image_description (Optional[str]): Description of the image, if available
             
         Returns:
             Optional[Tuple[bool, str, Optional[dict]]]: Result tuple if this is a product query, None otherwise
@@ -33,15 +34,7 @@ class ProductQueryService:
                 - str: Response message (empty string for valid queries)
                 - dict: Search results if applicable
         """
-        # Process image if provided
-        image = None
-        if image_data:
-            try:
-                image = process_base64_image(image_data)
-            except ValueError as e:
-                return False, str(e), None
-
-        is_product_query = await self._is_product_query(query, image)
+        is_product_query = await self._is_product_query(query, image_description)
         if not is_product_query:
             return None
         
@@ -53,7 +46,7 @@ class ProductQueryService:
             'similar_products': []  # Empty list since we're not using similar products
         }
 
-    async def _is_product_query(self, query: str, image: Optional[Image.Image] = None) -> bool:
+    async def _is_product_query(self, query: str, image_description: Optional[str] = None) -> bool:
         """
         Determine if the query is related to product search.
         
@@ -64,14 +57,8 @@ class ProductQueryService:
         Returns:
             bool: True if query is related to product search
         """
-        # If image is provided, get its description
-        image_description = ""
-        if image:
-            system_prompt = self.prompt_builder._load_prompt("image_description_prompt.txt")
-            user_prompt = f"Query: {image}"
-            response = await self.ai_service.get_response(system_prompt, user_prompt)
-            image_description = response.get('choices', [{}])[0].get('message', {}).get('content', '').strip()
-            # Combine image description with query
+        # If image description is provided, add its description to the query
+        if image_description:
             query = f"{query}\nImage Description: {image_description}"
 
         # Check if the combined query is product-related

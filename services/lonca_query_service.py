@@ -18,7 +18,7 @@ class LoncaQueryService:
         self.prompt_builder = prompt_builder
         self.response_builder = response_builder
         
-    async def handle_query(self, query: str, region: Optional[str], conversation_context: ConversationContext) -> Tuple[Dict, ConversationContext]:
+    async def handle_query(self, query: str, region: Optional[str], conversation_context: ConversationContext, image_description: Optional[str] = None) -> Tuple[Dict, ConversationContext]:
         """
         Handle a Lonca-related query.
         
@@ -26,6 +26,7 @@ class LoncaQueryService:
             query (str): The user's query
             region (Optional[str]): The user's region
             conversation_context (ConversationContext): The current conversation context
+            image_description (Optional[str]): Description of the image, if available
             
         Returns:
             Tuple[Dict, ConversationContext]: The AI's response and updated conversation context
@@ -40,6 +41,8 @@ class LoncaQueryService:
             region=region,
             conversation_context=conversation_context_text
         )
+        if image_description:
+            user_prompt += f"\nImage Description: {image_description}"
         
         # Get AI response
         response = await self.ai_service.get_response(system_prompt, user_prompt)

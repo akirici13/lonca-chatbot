@@ -9,6 +9,7 @@ from .follow_up_service import FollowUpService
 from .product_query_service import ProductQueryService
 from .search_result_service import SearchResultService
 from .lonca_query_service import LoncaQueryService
+from .image_description_service import ImageDescriptionService
 
 class ChatHandler:
     def __init__(self, model: str = "gpt-4.1-mini"):
@@ -43,6 +44,7 @@ class ChatHandler:
             self.prompt_builder,
             self.response_builder
         )
+        self.image_description_service = ImageDescriptionService(self.ai_service, self.prompt_builder)
 
     def _create_response(self, content: str) -> Dict:
         """
@@ -82,6 +84,11 @@ class ChatHandler:
         # Get region and image data from context
         region = context.get("region") if context else None
         image_data = context.get("image_data") if context else None
+
+        image=None
+        image_description = None
+        if image_data:
+            image, image_description = await self.image_description_service.get_image_description(image)
         
         # First, check if this is a follow-up about an existing product
         follow_up_result = await self.follow_up_service.check_follow_up(
@@ -105,7 +112,8 @@ class ChatHandler:
         # Then, check if this is a new product search
         product_query_result = await self.product_query_service.check_product_query(
             user_input,
-            image_data
+            image,
+            image_description
         )
         print(f"\n[ChatHandler] Product query result: {product_query_result}")
         
@@ -125,7 +133,7 @@ class ChatHandler:
         is_valid, response = await self.query_validator.validate_query(
             query=user_input,
             conversation_context=self.conversation_context,
-            image_data=image_data
+            image_description=image_description
         )
         print(f"\n[ChatHandler] Query validation result: is_valid={is_valid}, response={response}")
         
@@ -136,7 +144,8 @@ class ChatHandler:
         response, self.conversation_context = await self.lonca_query_service.handle_query(
             query=user_input,
             region=region,
-            conversation_context=self.conversation_context
+            conversation_context=self.conversation_context,
+            image_description=image_description
         )
         print("\n[ChatHandler] Updated conversation context with Lonca query response")
         return response 
