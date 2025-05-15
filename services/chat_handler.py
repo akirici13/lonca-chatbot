@@ -77,18 +77,19 @@ class ChatHandler:
         Returns:
             Dict: The AI's response
         """
-        # Add user message to conversation context
-        self.conversation_context.add_message('user', user_input)
-        print("\n[ChatHandler] Updated conversation context with user message")
-        
         # Get region and image data from context
         region = context.get("region") if context else None
         image_data = context.get("image_data") if context else None
 
+        # Process image and image description from context
         image=None
         image_description = None
         if image_data:
             image, image_description = await self.image_description_service.get_image_description(image)
+        
+        # Add user message to conversation context
+        self.conversation_context.add_message('user', user_input, image_description=image_description)
+        print("\n[ChatHandler] Updated conversation context with user message")
         
         # First, check if this is a follow-up about an existing product
         follow_up_result = await self.follow_up_service.check_follow_up(

@@ -8,6 +8,7 @@ class Message:
     content: str
     timestamp: datetime
     search_results: Optional[Dict] = None
+    image_description: Optional[str] = None
 
 class ConversationContext:
     def __init__(self):
@@ -15,13 +16,14 @@ class ConversationContext:
         self.current_topic: Optional[str] = None
         self.last_search_results: Optional[Dict] = None
         
-    def add_message(self, role: str, content: str, search_results: Optional[Dict] = None):
+    def add_message(self, role: str, content: str, search_results: Optional[Dict] = None, image_description: Optional[str] = None):
         """Add a new message to the conversation history."""
         message = Message(
             role=role,
             content=content,
             timestamp=datetime.now(),
-            search_results=search_results
+            search_results=search_results,
+            image_description=image_description
         )
         self.messages.append(message)
         
@@ -55,6 +57,10 @@ class ConversationContext:
         context = "Recent conversation:\n"
         for msg in recent_messages:
             context += f"{msg.role.capitalize()}: {msg.content}\n"
+            
+            # Add image description if present
+            if msg.image_description:
+                context += f"[Image provided. Description (summary): {msg.image_description}]\n"
             
             # Add search results if present
             if msg.search_results:

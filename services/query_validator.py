@@ -24,6 +24,7 @@ class QueryValidator:
         Args:
             query (str): The user's query
             conversation_context (ConversationContext): The current conversation context
+            image_description (Optional[str]): Description of the image, if available
             
         Returns:
             Tuple[bool, str, Optional[dict]]: (is_valid, response, search_results)
