@@ -23,7 +23,7 @@ class ImageDescriptionService:
 
         # Use a detailed prompt for image description
         system_prompt = self.prompt_builder._load_prompt("image_description_prompt.txt")
-        user_prompt = f"Query: {image}"
-        response = await self.ai_service.get_response(system_prompt, user_prompt)
+        user_prompt = "Describe the product in the image."
+        response = await self.ai_service.get_response(system_prompt, user_prompt, image_data)
         image_description = response.get('choices', [{}])[0].get('message', {}).get('content', '').strip()
         return image, image_description 

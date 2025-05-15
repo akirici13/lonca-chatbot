@@ -85,7 +85,7 @@ class ChatHandler:
         image=None
         image_description = None
         if image_data:
-            image, image_description = await self.image_description_service.get_image_description(image)
+            image, image_description = await self.image_description_service.get_image_description(image_data)
         
         # Add user message to conversation context
         self.conversation_context.add_message('user', user_input, image_description=image_description)
