@@ -16,14 +16,10 @@ class ImageDescriptionService:
         Returns:
             Optional[str]: Description of the image, or None if processing fails
         """
-        try:
-            image = process_base64_image(image_data)
-        except ValueError:
-            return None, None
 
         # Use a detailed prompt for image description
         system_prompt = self.prompt_builder._load_prompt("image_description_prompt.txt")
         user_prompt = "Describe the product in the image."
         response = await self.ai_service.get_response(system_prompt, user_prompt, image_data)
         image_description = response.get('choices', [{}])[0].get('message', {}).get('content', '').strip()
-        return image, image_description 
+        return image_description 

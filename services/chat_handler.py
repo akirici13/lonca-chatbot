@@ -10,6 +10,7 @@ from .product_query_service import ProductQueryService
 from .search_result_service import SearchResultService
 from .lonca_query_service import LoncaQueryService
 from .image_description_service import ImageDescriptionService
+from helpers.image_utils import process_base64_image
 
 class ChatHandler:
     def __init__(self, model: str = "gpt-4.1-mini"):
@@ -82,10 +83,14 @@ class ChatHandler:
         image_data = context.get("image_data") if context else None
 
         # Process image and image description from context
-        image=None
         image_description = None
+        image=None
         if image_data:
-            image, image_description = await self.image_description_service.get_image_description(image_data)
+            try:
+                image = process_base64_image(image_data)
+            except ValueError:
+                image=None
+            image_description = await self.image_description_service.get_image_description(image_data)
         
         # Add user message to conversation context
         self.conversation_context.add_message('user', user_input, image_description=image_description)
