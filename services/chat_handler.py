@@ -123,8 +123,9 @@ class ChatHandler:
         
         # Finally, validate if the query is Lonca-related
         is_valid, response = await self.query_validator.validate_query(
-            user_input,
-            self.conversation_context
+            query=user_input,
+            conversation_context=self.conversation_context,
+            image_data=image_data
         )
         print(f"\n[ChatHandler] Query validation result: is_valid={is_valid}, response={response}")
         
@@ -133,9 +134,9 @@ class ChatHandler:
             
         # Handle Lonca-related query
         response, self.conversation_context = await self.lonca_query_service.handle_query(
-            user_input,
-            region,
-            self.conversation_context
+            query=user_input,
+            region=region,
+            conversation_context=self.conversation_context
         )
         print("\n[ChatHandler] Updated conversation context with Lonca query response")
         return response 

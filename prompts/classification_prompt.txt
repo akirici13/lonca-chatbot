@@ -14,7 +14,8 @@ Valid Topics:
 Invalid Topics:
 {invalid_topics}
 
-Query: {query}
+Conversation Context:
+{conversation_context}
 
 Consider:
 1. Is this a business-related query?

@@ -36,7 +36,7 @@ class LoncaQueryService:
             
         # Build prompt with FAQ processing
         system_prompt, user_prompt = self.prompt_builder.build_prompt(
-            query, 
+            user_message=query, 
             region=region,
             conversation_context=conversation_context_text
         )
