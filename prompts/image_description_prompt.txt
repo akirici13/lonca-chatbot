@@ -6,4 +6,4 @@ You are an expert product analyst. Your task is to analyze the image and provide
 4. Any visible text or branding
 5. Product condition and quality
 
-Provide a clear, 1-sentence structured description that would help identify the product.
+Provide a clear, structured and concise (1-sentence max) description that would help identify the product.
