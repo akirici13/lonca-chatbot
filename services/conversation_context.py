@@ -1,14 +1,6 @@
 from typing import List, Dict, Optional
-from dataclasses import dataclass
 from datetime import datetime
-
-@dataclass
-class Message:
-    role: str  # 'user' or 'assistant'
-    content: str
-    timestamp: datetime
-    search_results: Optional[Dict] = None
-    image_description: Optional[str] = None
+from models.message import Message
 
 class ConversationContext:
     def __init__(self):
@@ -16,12 +8,11 @@ class ConversationContext:
         self.current_topic: Optional[str] = None
         self.last_search_results: Optional[Dict] = None
         
-    def add_message(self, role: str, content: str, search_results: Optional[Dict] = None, image_description: Optional[str] = None):
+    def add_message(self, role: str, content: str, timestamp: Optional[datetime] = None, search_results: Optional[Dict] = None, image_description: Optional[str] = None):
         """Add a new message to the conversation history."""
         message = Message(
             role=role,
             content=content,
-            timestamp=datetime.now(),
             search_results=search_results,
             image_description=image_description
         )
