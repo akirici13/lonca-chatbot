@@ -106,7 +106,9 @@ class ProductSearchService:
         for product in self.product_catalog['products']:
             if (
                 ('product_link' in product and product['product_link'] in query) or
-                ('handle' in product and product['handle'] in query)
+                ('handle' in product and product['handle'] in query) or
+                ('product_code' in product and product['product_code'] in query) or
+                ('supplier_stock_code' in product and product['supplier_stock_code'] in query)
             ):
                 # Found a direct link match
                 product_id = product['id']['$oid'] if isinstance(product['id'], dict) else str(product['id'])
@@ -123,6 +125,8 @@ class ProductSearchService:
                     'image_path': image_url,
                     'total_stock': product.get('total_stock', 0),
                     'product_link': product['product_link'],
+                    'product_code': product['product_code'],
+                    'supplier_stock_code': product['supplier_stock_code'],
                     'similarity': 1.0,
                     'search_type': 'link'
                 }

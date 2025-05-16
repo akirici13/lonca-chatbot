@@ -2,6 +2,8 @@
   "products": [{
   "handle": "20093-heght-one-body-white",
   "price": 5.5,
+  "product_code": "20093",
+  "supplier_stock_code": "EVABLE0000084",
   "total_stock": 2,
   "name": "20093 - Heght One Body - White",
   "image_paths": [
@@ -18,25 +20,10 @@
   }
 },
 {
-  "handle": "42859-blouse-light-green",
-  "price": 2.6,
-  "total_stock": 4,
-  "name": "42859 - Blouse - Light Green",
-  "image_paths": [
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042859-1",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042859-2",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042859-3",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042859-4",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042859-5"
-  ],
-  "product_link": "https://lonca.co/product/42859-blouse-light-green",
-  "id": {
-    "$oid": "63cfd217f642e55a5452efc0"
-  }
-},
-{
   "handle": "42847-blouse-green",
-  "price": 2.6,
+  "supplier_stock_code": "0409BGD19_007",
+  "price": 2.59,
+  "product_code": "42847",
   "total_stock": 6,
   "name": "42847 - Blouse - Green",
   "image_paths": [
@@ -52,42 +39,29 @@
   }
 },
 {
-  "handle": "42914-blouse-black",
-  "price": 4.16,
-  "total_stock": 5,
-  "name": "42914 - Blouse - Black",
+  "handle": "42859-blouse-light-green",
+  "supplier_stock_code": "0409BGD19_173",
+  "price": 2.59,
+  "product_code": "42859",
+  "total_stock": 4,
+  "name": "42859 - Blouse - Light Green",
   "image_paths": [
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042914-1",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042914-2",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042914-3",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042914-4",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042914-5"
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042859-1",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042859-2",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042859-3",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042859-4",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042859-5"
   ],
-  "product_link": "https://lonca.co/product/42914-blouse-black",
+  "product_link": "https://lonca.co/product/42859-blouse-light-green",
   "id": {
-    "$oid": "63cfdc86f642e55a5454e0d8"
-  }
-},
-{
-  "handle": "42916-blouse-white",
-  "price": 4.16,
-  "total_stock": 7,
-  "name": "42916 - Blouse - White",
-  "image_paths": [
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042916-1",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042916-2",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042916-3",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042916-4",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042916-5"
-  ],
-  "product_link": "https://lonca.co/product/42916-blouse-white",
-  "id": {
-    "$oid": "63cfdcd6f642e55a5454eb74"
+    "$oid": "63cfd217f642e55a5452efc0"
   }
 },
 {
   "handle": "42884-blouse-black",
-  "price": 2.21,
+  "supplier_stock_code": "0430BGD19_001",
+  "price": 2.2,
+  "product_code": "42884",
   "total_stock": 7,
   "name": "42884 - Blouse - Black",
   "image_paths": [
@@ -104,7 +78,9 @@
 },
 {
   "handle": "42886-blouse-green",
-  "price": 2.21,
+  "supplier_stock_code": "0430BGD19_007",
+  "price": 2.2,
+  "product_code": "42886",
   "total_stock": 3,
   "name": "42886 - Blouse - Green",
   "image_paths": [
@@ -121,7 +97,9 @@
 },
 {
   "handle": "42908-blouse-black",
-  "price": 4.68,
+  "supplier_stock_code": "0441BGD19_001",
+  "price": 4.66,
+  "product_code": "42908",
   "total_stock": 1,
   "name": "42908 - Blouse - Black",
   "image_paths": [
@@ -138,7 +116,9 @@
 },
 {
   "handle": "42913-blouse-beige",
-  "price": 4.68,
+  "supplier_stock_code": "0441BGD19_016",
+  "price": 4.66,
+  "product_code": "42913",
   "total_stock": 1,
   "name": "42913 - Blouse - Beige",
   "image_paths": [
@@ -154,100 +134,48 @@
   }
 },
 {
-  "handle": "44236-polo-neck-knitwear-black",
-  "price": 3.5,
-  "total_stock": 4,
-  "name": "44236 - Polo Neck Knitwear - Black",
-  "image_paths": [
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044236-1",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044236-2"
-  ],
-  "product_link": "https://lonca.co/product/44236-polo-neck-knitwear-black",
-  "id": {
-    "$oid": "63d56891fc16ed5d0c781ebb"
-  }
-},
-{
-  "handle": "44239-knitwear-crop-powder",
-  "price": 4.5,
-  "total_stock": 3,
-  "name": "44239 - Knitwear Crop - Powder",
-  "image_paths": [
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044239-1"
-  ],
-  "product_link": "https://lonca.co/product/44239-knitwear-crop-powder",
-  "id": {
-    "$oid": "63d57521fc16ed5d0c794326"
-  }
-},
-{
-  "handle": "44257-plaid-knitwear-crop-green",
-  "price": 3,
+  "handle": "42914-blouse-black",
+  "supplier_stock_code": "0442BGD19_001",
+  "price": 4.14,
+  "product_code": "42914",
   "total_stock": 6,
-  "name": "44257 - Plaid Knitwear Crop - Green",
+  "name": "42914 - Blouse - Black",
   "image_paths": [
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044257-1"
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042914-1",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042914-2",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042914-3",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042914-4",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042914-5"
   ],
-  "product_link": "https://lonca.co/product/44257-plaid-knitwear-crop-green",
+  "product_link": "https://lonca.co/product/42914-blouse-black",
   "id": {
-    "$oid": "63d59b8dfc16ed5d0c7d936b"
+    "$oid": "63cfdc86f642e55a5454e0d8"
   }
 },
 {
-  "handle": "44238-knitwear-crop-blue",
-  "price": 4.5,
-  "total_stock": 1,
-  "name": "44238 - Knitwear Crop - Blue",
-  "image_paths": [
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044238-1"
-  ],
-  "product_link": "https://lonca.co/product/44238-knitwear-crop-blue",
-  "id": {
-    "$oid": "63d5748afc16ed5d0c7936bc"
-  }
-},
-{
-  "handle": "44240-knitwear-crop-beige",
-  "price": 4.5,
-  "total_stock": 2,
-  "name": "44240 - Knitwear Crop - Beige",
-  "image_paths": [
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044240-1"
-  ],
-  "product_link": "https://lonca.co/product/44240-knitwear-crop-beige",
-  "id": {
-    "$oid": "63d575c8fc16ed5d0c7951a4"
-  }
-},
-{
-  "handle": "44241-knitwear-crop-green",
-  "price": 4.5,
-  "total_stock": 3,
-  "name": "44241 - Knitwear Crop - Green",
-  "image_paths": [
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044241-1"
-  ],
-  "product_link": "https://lonca.co/product/44241-knitwear-crop-green",
-  "id": {
-    "$oid": "63d5767afc16ed5d0c796420"
-  }
-},
-{
-  "handle": "44255-plaid-knitwear-crop-pink",
-  "price": 3,
+  "handle": "42916-blouse-white",
+  "supplier_stock_code": "0442BGD19_005",
+  "price": 4.14,
+  "product_code": "42916",
   "total_stock": 7,
-  "name": "44255 - Plaid Knitwear Crop - Pink",
+  "name": "42916 - Blouse - White",
   "image_paths": [
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044255-1"
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042916-1",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042916-2",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042916-3",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042916-4",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042916-5"
   ],
-  "product_link": "https://lonca.co/product/44255-plaid-knitwear-crop-pink",
+  "product_link": "https://lonca.co/product/42916-blouse-white",
   "id": {
-    "$oid": "63d59a8afc16ed5d0c7d8900"
+    "$oid": "63cfdcd6f642e55a5454eb74"
   }
 },
 {
   "handle": "44234-polo-neck-knitwear-white",
+  "supplier_stock_code": "810 - Beyaz",
   "price": 3.5,
+  "product_code": "44234",
   "total_stock": 4,
   "name": "44234 - Polo Neck Knitwear - White",
   "image_paths": [
@@ -261,7 +189,9 @@
 },
 {
   "handle": "44235-polo-neck-knitwear-green",
+  "supplier_stock_code": "810 - Yeşil",
   "price": 3.5,
+  "product_code": "44235",
   "total_stock": 3,
   "name": "44235 - Polo Neck Knitwear - Green",
   "image_paths": [
@@ -274,8 +204,101 @@
   }
 },
 {
-  "handle": "44256-plaid-knitwear-crop-beige",
+  "handle": "44236-polo-neck-knitwear-black",
+  "supplier_stock_code": "810 - Siyah",
+  "price": 3.5,
+  "product_code": "44236",
+  "total_stock": 4,
+  "name": "44236 - Polo Neck Knitwear - Black",
+  "image_paths": [
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044236-1",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044236-2"
+  ],
+  "product_link": "https://lonca.co/product/44236-polo-neck-knitwear-black",
+  "id": {
+    "$oid": "63d56891fc16ed5d0c781ebb"
+  }
+},
+{
+  "handle": "44238-knitwear-crop-blue",
+  "supplier_stock_code": "806 - Mavi",
+  "price": 4.5,
+  "product_code": "44238",
+  "total_stock": 1,
+  "name": "44238 - Knitwear Crop - Blue",
+  "image_paths": [
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044238-1"
+  ],
+  "product_link": "https://lonca.co/product/44238-knitwear-crop-blue",
+  "id": {
+    "$oid": "63d5748afc16ed5d0c7936bc"
+  }
+},
+{
+  "handle": "44239-knitwear-crop-powder",
+  "supplier_stock_code": "806 - Pudra",
+  "price": 4.5,
+  "product_code": "44239",
+  "total_stock": 3,
+  "name": "44239 - Knitwear Crop - Powder",
+  "image_paths": [
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044239-1"
+  ],
+  "product_link": "https://lonca.co/product/44239-knitwear-crop-powder",
+  "id": {
+    "$oid": "63d57521fc16ed5d0c794326"
+  }
+},
+{
+  "handle": "44240-knitwear-crop-beige",
+  "supplier_stock_code": "806 - Bej",
+  "price": 4.5,
+  "product_code": "44240",
+  "total_stock": 2,
+  "name": "44240 - Knitwear Crop - Beige",
+  "image_paths": [
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044240-1"
+  ],
+  "product_link": "https://lonca.co/product/44240-knitwear-crop-beige",
+  "id": {
+    "$oid": "63d575c8fc16ed5d0c7951a4"
+  }
+},
+{
+  "handle": "44241-knitwear-crop-green",
+  "supplier_stock_code": "806 - Yeşil",
+  "price": 4.5,
+  "product_code": "44241",
+  "total_stock": 3,
+  "name": "44241 - Knitwear Crop - Green",
+  "image_paths": [
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044241-1"
+  ],
+  "product_link": "https://lonca.co/product/44241-knitwear-crop-green",
+  "id": {
+    "$oid": "63d5767afc16ed5d0c796420"
+  }
+},
+{
+  "handle": "44255-plaid-knitwear-crop-pink",
   "price": 3,
+  "supplier_stock_code": "801 - Pembe",
+  "product_code": "44255",
+  "total_stock": 7,
+  "name": "44255 - Plaid Knitwear Crop - Pink",
+  "image_paths": [
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044255-1"
+  ],
+  "product_link": "https://lonca.co/product/44255-plaid-knitwear-crop-pink",
+  "id": {
+    "$oid": "63d59a8afc16ed5d0c7d8900"
+  }
+},
+{
+  "handle": "44256-plaid-knitwear-crop-beige",
+  "supplier_stock_code": "801 - Bej",
+  "price": 3,
+  "product_code": "44256",
   "total_stock": 7,
   "name": "44256 - Plaid Knitwear Crop - Beige",
   "image_paths": [
@@ -288,8 +311,25 @@
   }
 },
 {
+  "handle": "44257-plaid-knitwear-crop-green",
+  "supplier_stock_code": "801 - Yeşil",
+  "price": 3,
+  "product_code": "44257",
+  "total_stock": 6,
+  "name": "44257 - Plaid Knitwear Crop - Green",
+  "image_paths": [
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044257-1"
+  ],
+  "product_link": "https://lonca.co/product/44257-plaid-knitwear-crop-green",
+  "id": {
+    "$oid": "63d59b8dfc16ed5d0c7d936b"
+  }
+},
+{
   "handle": "45398-shirt-blue",
+  "supplier_stock_code": "5756 GÖMLEK-MAVİ",
   "price": 19.18,
+  "product_code": "45398",
   "total_stock": 19,
   "name": "45398 - Shirt - Blue",
   "image_paths": [
@@ -305,8 +345,29 @@
   }
 },
 {
+  "handle": "45825-blouse-biscuit-color",
+  "supplier_stock_code": "0409BGD19_700",
+  "price": 2.59,
+  "product_code": "45825",
+  "total_stock": 5,
+  "name": "45825 - Blouse - Biscuit Color",
+  "image_paths": [
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045825-1",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045825-2",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045825-3",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045825-4",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045825-5"
+  ],
+  "product_link": "https://lonca.co/product/45825-blouse-biscuit-color",
+  "id": {
+    "$oid": "63dcccd8ad084b274f919668"
+  }
+},
+{
   "handle": "45839-blouse-red",
-  "price": 4.16,
+  "supplier_stock_code": "0442BGD19_006",
+  "price": 4.14,
+  "product_code": "45839",
   "total_stock": 1,
   "name": "45839 - Blouse - Red",
   "image_paths": [
@@ -323,7 +384,9 @@
 },
 {
   "handle": "45840-blouse-green",
-  "price": 4.16,
+  "supplier_stock_code": "0442BGD19_007",
+  "price": 4.14,
+  "product_code": "45840",
   "total_stock": 9,
   "name": "45840 - Blouse - Green",
   "image_paths": [
@@ -339,25 +402,10 @@
   }
 },
 {
-  "handle": "45825-blouse-biscuit-color",
-  "price": 2.6,
-  "total_stock": 5,
-  "name": "45825 - Blouse - Biscuit Color",
-  "image_paths": [
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045825-1",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045825-2",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045825-3",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045825-4",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045825-5"
-  ],
-  "product_link": "https://lonca.co/product/45825-blouse-biscuit-color",
-  "id": {
-    "$oid": "63dcccd8ad084b274f919668"
-  }
-},
-{
   "handle": "47803-tunic-beige",
-  "price": 11.2,
+  "supplier_stock_code": "23DX51069AL0_bej",
+  "price": 11.1,
+  "product_code": "47803",
   "total_stock": 3,
   "name": "47803 - Tunic - Beige",
   "image_paths": [
@@ -374,7 +422,9 @@
 },
 {
   "handle": "47805-tunic-lilac",
-  "price": 11.2,
+  "supplier_stock_code": "23DX51069AL0_lila",
+  "price": 11.1,
+  "product_code": "47805",
   "total_stock": 3,
   "name": "47805 - Tunic - Lilac",
   "image_paths": [
@@ -392,7 +442,9 @@
 },
 {
   "handle": "48122-blouse-camel",
+  "supplier_stock_code": "CR23SS-1227 CAMEL",
   "price": 4.75,
+  "product_code": "48122",
   "total_stock": 15,
   "name": "48122 - Blouse - Camel",
   "image_paths": [
@@ -406,25 +458,10 @@
   }
 },
 {
-  "handle": "bla10114-blouse-green",
-  "price": 3,
-  "total_stock": 60,
-  "name": "BLA10114 - Blouse - Green",
-  "image_paths": [
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782144263-BLA10114-1",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782158201-BLA10114-2",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782171284-BLA10114-3",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782184040-BLA10114-4",
-    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782224545-BLA10114-5"
-  ],
-  "product_link": "https://lonca.co/product/bla10114-blouse-green",
-  "id": {
-    "$oid": "63f8916054eb29a64607111f"
-  }
-},
-{
   "handle": "bla10112-blouse-fuchsia",
+  "supplier_stock_code": "23S15009-Fuşya",
   "price": 3,
+  "product_code": "BLA10112",
   "total_stock": 16,
   "name": "BLA10112 - Blouse - Fuchsia",
   "image_paths": [
@@ -440,8 +477,29 @@
   }
 },
 {
+  "handle": "bla10114-blouse-green",
+  "supplier_stock_code": "23S15009-Yeşil",
+  "price": 3,
+  "product_code": "BLA10114",
+  "total_stock": 60,
+  "name": "BLA10114 - Blouse - Green",
+  "image_paths": [
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782144263-BLA10114-1",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782158201-BLA10114-2",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782171284-BLA10114-3",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782184040-BLA10114-4",
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782224545-BLA10114-5"
+  ],
+  "product_link": "https://lonca.co/product/bla10114-blouse-green",
+  "id": {
+    "$oid": "63f8916054eb29a64607111f"
+  }
+},
+{
   "handle": "bla10227-strap-knitwear-blouse-ecru",
+  "supplier_stock_code": "23S24006-Ekru",
   "price": 4,
+  "product_code": "BLA10227",
   "total_stock": 37,
   "name": "BLA10227 - Strap Knitwear Blouse - Ecru",
   "image_paths": [
@@ -458,7 +516,9 @@
 },
 {
   "handle": "all10423-blouse-stone-color",
+  "supplier_stock_code": "23DS20014AL0_taş",
   "price": 10.1,
+  "product_code": "ALL10423",
   "total_stock": 2,
   "name": "ALL10423 - Blouse - Stone Color",
   "image_paths": [
@@ -475,7 +535,9 @@
 },
 {
   "handle": "bla10346-strapless-knitwear-blouse-mango",
+  "supplier_stock_code": "23S15020-Mango",
   "price": 3,
+  "product_code": "BLA10346",
   "total_stock": 6,
   "name": "BLA10346 - Strapless Knitwear Blouse - Mango",
   "image_paths": [
@@ -492,7 +554,9 @@
 },
 {
   "handle": "tbu10610-women's-knitwear-blouse-white",
-  "price": 5.4,
+  "supplier_stock_code": "TB11885_Beyaz",
+  "price": 5.39,
+  "product_code": "TBU10610",
   "total_stock": 6,
   "name": "TBU10610 - Women's Cross-Strap Knitwear Blouse - White",
   "image_paths": [
@@ -510,7 +574,9 @@
 },
 {
   "handle": "jan10464-women's-black-boat-collar-backless-camisole-fabric-blouse-(size-xs-and-l)-black",
+  "supplier_stock_code": "10142-s225643-siyah",
   "price": 3,
+  "product_code": "JAN10464",
   "total_stock": 2,
   "name": "JAN10464 - Women's Black Boat Collar Deep-Down Backless Camisole Fabric Blouse (Size XS And L) - Black",
   "image_paths": [
@@ -526,7 +592,9 @@
 },
 {
   "handle": "myb10080-short-satin-blouse-turquoise",
+  "supplier_stock_code": "2262 - Turkuaz",
   "price": 6.7,
+  "product_code": "MYB10080",
   "total_stock": 5,
   "name": "MYB10080 - Short Satin Blouse - Turquoise",
   "image_paths": [
@@ -540,7 +608,9 @@
 },
 {
   "handle": "myb10081-short-satin-blouse-black",
+  "supplier_stock_code": "2262 - Siyah",
   "price": 6.7,
+  "product_code": "MYB10081",
   "total_stock": 1,
   "name": "MYB10081 - Short Satin Blouse - Black",
   "image_paths": [
@@ -554,7 +624,9 @@
 },
 {
   "handle": "myb10083-short-satin-blouse-brown",
+  "supplier_stock_code": "2262 - Kahve",
   "price": 6.7,
+  "product_code": "MYB10083",
   "total_stock": 1,
   "name": "MYB10083 - Short Satin Blouse - Brown",
   "image_paths": [
@@ -568,7 +640,9 @@
 },
 {
   "handle": "myb10084-short-satin-blouse-fuchsia",
+  "supplier_stock_code": "2262 - Fuşya",
   "price": 6.7,
+  "product_code": "MYB10084",
   "total_stock": 3,
   "name": "MYB10084 - Short Satin Blouse - Fuchsia",
   "image_paths": [
@@ -583,7 +657,9 @@
 },
 {
   "handle": "myb10100-strap-blouse-green",
+  "supplier_stock_code": "2219 - Yeşil",
   "price": 7.5,
+  "product_code": "MYB10100",
   "total_stock": 1,
   "name": "MYB10100 - Strap Blouse - Green",
   "image_paths": [
@@ -596,7 +672,9 @@
 },
 {
   "handle": "myb10151-strap-blouse-black",
+  "supplier_stock_code": "21008 - Siyah",
   "price": 4.5,
+  "product_code": "MYB10151",
   "total_stock": 1,
   "name": "MYB10151 - Strap Blouse - Black",
   "image_paths": [
@@ -609,7 +687,9 @@
 },
 {
   "handle": "myb10215-blouse-pomegranate-flower",
+  "supplier_stock_code": "2273 - Nar çiçeği",
   "price": 5.5,
+  "product_code": "MYB10215",
   "total_stock": 3,
   "name": "MYB10215 - Blouse - Pomegranate Flower",
   "image_paths": [
@@ -623,7 +703,9 @@
 },
 {
   "handle": "myb10216-blouse-black",
+  "supplier_stock_code": "2273 - Siyah",
   "price": 5.5,
+  "product_code": "MYB10216",
   "total_stock": 1,
   "name": "MYB10216 - Blouse - Black",
   "image_paths": [
@@ -637,7 +719,9 @@
 },
 {
   "handle": "myb10257-one-sleeve-detailed-blouse-beige",
+  "supplier_stock_code": "2294 - Bej",
   "price": 5.5,
+  "product_code": "MYB10257",
   "total_stock": 2,
   "name": "MYB10257 - One Sleeve Detailed Blouse - Beige",
   "image_paths": [
@@ -650,7 +734,9 @@
 },
 {
   "handle": "bla10641-linen-blouse-beige",
+  "supplier_stock_code": "23S15016-Bej",
   "price": 6,
+  "product_code": "BLA10641",
   "total_stock": 134,
   "name": "BLA10641 - Lace-Up Linen Blouse - Beige",
   "image_paths": [
@@ -667,7 +753,9 @@
 },
 {
   "handle": "bla10643-linen-blouse-black",
+  "supplier_stock_code": "23S15016-Siyah",
   "price": 6,
+  "product_code": "BLA10643",
   "total_stock": 8,
   "name": "BLA10643 - Lace-Up Linen Blouse - Black",
   "image_paths": [
@@ -682,7 +770,9 @@
 },
 {
   "handle": "pbo10044-v-neck-bat-sleeve-moskrep-blouse",
+  "supplier_stock_code": "6081-Yeşil Beyaz",
   "price": 5.5,
+  "product_code": "PBO10044",
   "total_stock": 7,
   "name": "PBO10044 - V Neck Bat Sleeve Moskrep Blouse",
   "image_paths": [
@@ -695,7 +785,9 @@
 },
 {
   "handle": "pbo10050-pleated-strap-summer-blouse",
+  "supplier_stock_code": "6039-Krem Mavi",
   "price": 2,
+  "product_code": "PBO10050",
   "total_stock": 20,
   "name": "PBO10050 - Pleated Strap Summer Blouse",
   "image_paths": [
@@ -708,7 +800,9 @@
 },
 {
   "handle": "pbo10067-pleated-strap-summer-blouse",
+  "supplier_stock_code": "6039-Saks Tüy",
   "price": 2,
+  "product_code": "PBO10067",
   "total_stock": 22,
   "name": "PBO10067 - Pleated Strap Summer Blouse",
   "image_paths": [
@@ -721,8 +815,10 @@
 },
 {
   "handle": "pbo10076-crisscross-sandy-blouse",
+  "supplier_stock_code": "6050-Siyah",
   "price": 2.5,
-  "total_stock": 17,
+  "product_code": "PBO10076",
+  "total_stock": 18,
   "name": "PBO10076 - V-Neck Crisscross Sandy Blouse",
   "image_paths": [
     "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo-Bonetta/PBO10076-1"
@@ -734,7 +830,9 @@
 },
 {
   "handle": "pbo10112-shoulder-detail-sandy-fabric-blouse",
+  "supplier_stock_code": "4511-Siyah",
   "price": 2,
+  "product_code": "PBO10112",
   "total_stock": 9,
   "name": "PBO10112 - Shoulder Detail Sandy Fabric Blouse",
   "image_paths": [
@@ -747,8 +845,10 @@
 },
 {
   "handle": "pbo10152-v-neck-leopard-garnish-round-viscose-blouse",
+  "supplier_stock_code": "6029-Mor",
   "price": 2,
-  "total_stock": 3,
+  "product_code": "PBO10152",
+  "total_stock": 4,
   "name": "PBO10152 - V Neck Leopard Garnish Round Viscose Blouse",
   "image_paths": [
     "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo-Bonetta/PBO10152-1"
@@ -760,7 +860,9 @@
 },
 {
   "handle": "pbo10210-strap-detail-sandy-fabric-blouse-black",
+  "supplier_stock_code": "4718-Siyah",
   "price": 3.9,
+  "product_code": "PBO10210",
   "total_stock": 5,
   "name": "PBO10210 - Strap V-Neck Detail Sandy Fabric Blouse - Black",
   "image_paths": [
@@ -773,7 +875,9 @@
 },
 {
   "handle": "pbo10220-ethnic-pattern-adjustable-strap-micro-blouse-multicolor",
+  "supplier_stock_code": "6024-Etnik",
   "price": 2,
+  "product_code": "PBO10220",
   "total_stock": 96,
   "name": "PBO10220 - Ethnic Pattern Adjustable Strap Micro Blouse - Multicolor",
   "image_paths": [
@@ -786,7 +890,9 @@
 },
 {
   "handle": "pbo10222-leopard-pattern-strap-micro-blouse-brown",
+  "supplier_stock_code": "6030-Leopar",
   "price": 4,
+  "product_code": "PBO10222",
   "total_stock": 2,
   "name": "PBO10222 - Leopard Pattern Strap Micro Blouse - Brown",
   "image_paths": [
@@ -799,7 +905,9 @@
 },
 {
   "handle": "pbo10224-leopard-garnish--pocket-detailed-round-viscose-blouse-black",
+  "supplier_stock_code": "6053-Leopar",
   "price": 2,
+  "product_code": "PBO10224",
   "total_stock": 19,
   "name": "PBO10224 - Leopard Garnish  Pocket Detailed Round Viscose Blouse - Black",
   "image_paths": [
@@ -812,8 +920,10 @@
 },
 {
   "handle": "fme11933-denim-blouse-blue",
+  "supplier_stock_code": "6241 KOT BLUZ-MAVİ",
   "price": 10.09,
-  "total_stock": 164,
+  "product_code": "FME11933",
+  "total_stock": 162,
   "name": "FME11933 - Denim Blouse - Blue",
   "image_paths": [
     "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Fame/1739938700247-FME11933-1",
@@ -829,7 +939,9 @@
 },
 {
   "handle": "qus10074-front-patterned-blouse-blue",
+  "supplier_stock_code": "DB210002 Mavi",
   "price": 9.25,
+  "product_code": "QUS10074",
   "total_stock": 50,
   "name": "QUS10074 - Front Patterned Blouse - Blue",
   "image_paths": [
@@ -843,7 +955,9 @@
 },
 {
   "handle": "qus10313-patterned-blouse-yellow",
+  "supplier_stock_code": "DB210002 Sarı",
   "price": 9.25,
+  "product_code": "QUS10313",
   "total_stock": 56,
   "name": "QUS10313 - Patterned Blouse - Yellow",
   "image_paths": [
@@ -858,7 +972,9 @@
 },
 {
   "handle": "qus10883-long-tank-top-black",
+  "supplier_stock_code": "5642 Siyah",
   "price": 4,
+  "product_code": "QUS10883",
   "total_stock": 119,
   "name": "QUS10883 - Long Tank Top - Black",
   "image_paths": [
@@ -872,7 +988,9 @@
 },
 {
   "handle": "qus12583-drop-off-shoulder-blouse-milk-brown",
+  "supplier_stock_code": "ÖT210147 Süt Kahve",
   "price": 4.5,
+  "product_code": "QUS12583",
   "total_stock": 16,
   "name": "QUS12583 - Drop Off Shoulder Blouse - Milk Brown",
   "image_paths": [
@@ -885,7 +1003,9 @@
 },
 {
   "handle": "els10242-tassel-detailed-blouse-black",
+  "supplier_stock_code": "6478-siyah",
   "price": 7.5,
+  "product_code": "ELS10242",
   "total_stock": 19,
   "name": "ELS10242 - Tassel Detailed Blouse - Black",
   "image_paths": [
@@ -901,7 +1021,9 @@
 },
 {
   "handle": "els10252-tassel-detailed-blouse-white",
+  "supplier_stock_code": "6478-beyaz",
   "price": 7.5,
+  "product_code": "ELS10252",
   "total_stock": 6,
   "name": "ELS10252 - Tassel Detailed Blouse - White",
   "image_paths": [
@@ -917,7 +1039,9 @@
 },
 {
   "handle": "bla10798-strapless-knitwear-blouse-green",
+  "supplier_stock_code": "23S15020-Yeşil",
   "price": 3,
+  "product_code": "BLA10798",
   "total_stock": 26,
   "name": "BLA10798 - Strapless Knitwear Blouse - Green",
   "image_paths": [
@@ -934,7 +1058,9 @@
 },
 {
   "handle": "pbo10275-strapless---digital-printed-micro-fabric-blouse",
+  "supplier_stock_code": "4541-Beyaz",
   "price": 2.4,
+  "product_code": "PBO10275",
   "total_stock": 144,
   "name": "PBO10275 - Strapless  V-Neck  Digital Printed Micro Fabric Blouse",
   "image_paths": [
@@ -947,7 +1073,9 @@
 },
 {
   "handle": "pbo10278-floral-printed-single-jersey-blouse",
+  "supplier_stock_code": "4639-Yeşil Çiçek",
   "price": 4.5,
+  "product_code": "PBO10278",
   "total_stock": 1,
   "name": "PBO10278 - Floral Printed Single Jersey Blouse",
   "image_paths": [
@@ -960,7 +1088,9 @@
 },
 {
   "handle": "pbo10280-strapless-digital-print-micro-fabric-blouse-multicolor",
+  "supplier_stock_code": "4541-Etnik",
   "price": 2.4,
+  "product_code": "PBO10280",
   "total_stock": 238,
   "name": "PBO10280 - Strapless V-Neck Digital Print Micro Fabric Blouse - Multicolor",
   "image_paths": [
@@ -973,7 +1103,9 @@
 },
 {
   "handle": "pbo10290-shoulder-detail-digital-printed-single-jersey-fabric-blouse",
+  "supplier_stock_code": "4528-Bordo",
   "price": 2,
+  "product_code": "PBO10290",
   "total_stock": 3,
   "name": "PBO10290 - Shoulder Detail Digital Printed Single Jersey Fabric Blouse",
   "image_paths": [
@@ -986,8 +1118,10 @@
 },
 {
   "handle": "pbo10305-notch-collar-chain-pattern-printed-moskrep-fabric-blouse-black",
+  "supplier_stock_code": "6056-Zincir Desen",
   "price": 1.7,
-  "total_stock": 76,
+  "product_code": "PBO10305",
+  "total_stock": 78,
   "name": "PBO10305 - Notch Collar Chain Pattern Printed Moskrep Fabric Blouse - Black",
   "image_paths": [
     "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo_Bonetta/PBO10305-1"
@@ -999,7 +1133,9 @@
 },
 {
   "handle": "pbo10398-two-yarn-fabric-crew-neck-blouse",
+  "supplier_stock_code": "4813-Pembe",
   "price": 4.2,
+  "product_code": "PBO10398",
   "total_stock": 12,
   "name": "PBO10398 - Two Yarn Fabric Crew Neck Blouse",
   "image_paths": [
@@ -1012,7 +1148,9 @@
 },
 {
   "handle": "pbo10405-two-yarn-fabric-crew-neck-blouse",
+  "supplier_stock_code": "4813-Lila",
   "price": 4.2,
+  "product_code": "PBO10405",
   "total_stock": 18,
   "name": "PBO10405 - Two Yarn Fabric Crew Neck Blouse",
   "image_paths": [
@@ -1025,7 +1163,9 @@
 },
 {
   "handle": "bla10974-long-sleeve-tulle-blouse-white",
+  "supplier_stock_code": "23W15021-Beyaz",
   "price": 3,
+  "product_code": "BLA10974",
   "total_stock": 6,
   "name": "BLA10974 - Long Sleeve Tulle Blouse - White",
   "image_paths": [
@@ -1042,7 +1182,9 @@
 },
 {
   "handle": "jan11785-women's-long-sleeve-crew-neck-long-off-shoulder-stripe-tie-back-sash-detail-viscose-blouse-black",
+  "supplier_stock_code": "40029 - siyah-siyah",
   "price": 6.6,
+  "product_code": "JAN11785",
   "total_stock": 1,
   "name": "JAN11785 - Women's Long Sleeve Crew Neck Long Off Shoulder Stripe Tie Back Sash Detail Viscose Blouse - Black",
   "image_paths": [
@@ -1060,7 +1202,9 @@
 },
 {
   "handle": "pbo10520-strappy-digital-printed-lace-detail-micro-fabric-blouse",
+  "supplier_stock_code": "4650-Beyaz",
   "price": 4.5,
+  "product_code": "PBO10520",
   "total_stock": 2,
   "name": "PBO10520 - Strappy V-Neck Digital Printed Lace Detail Micro Fabric Blouse",
   "image_paths": [
@@ -1073,7 +1217,9 @@
 },
 {
   "handle": "pbo10528-strappy-digital-printed-lace-detail-micro-fabric-blouse",
+  "supplier_stock_code": "4650-Pudra",
   "price": 4.5,
+  "product_code": "PBO10528",
   "total_stock": 2,
   "name": "PBO10528 - Strappy V-Neck Digital Printed Lace Detail Micro Fabric Blouse",
   "image_paths": [
@@ -1086,7 +1232,9 @@
 },
 {
   "handle": "sbe10758-blouse-orange",
+  "supplier_stock_code": "3126-02 ORANJ",
   "price": 2.89,
+  "product_code": "SBE10758",
   "total_stock": 20,
   "name": "SBE10758 - Blouse - Orange",
   "image_paths": [
@@ -1104,7 +1252,9 @@
 },
 {
   "handle": "bla11068-polo-neck-lace-blouse-white",
+  "supplier_stock_code": "23W15008-Beyaz",
   "price": 10,
+  "product_code": "BLA11068",
   "total_stock": 39,
   "name": "BLA11068 - Polo Neck Lace Blouse - White",
   "image_paths": [
@@ -1121,7 +1271,9 @@
 },
 {
   "handle": "str11009-blouse-white",
+  "supplier_stock_code": "WHİTE BLOUSE 1YD4CBL1128",
   "price": 34,
+  "product_code": "STR11009",
   "total_stock": 3,
   "name": "STR11009 - Blouse - White",
   "image_paths": [
@@ -1140,7 +1292,9 @@
 },
 {
   "handle": "str11045-blouse-black",
+  "supplier_stock_code": "BLACK  BLOUSE 1YD4CBL1128",
   "price": 34,
+  "product_code": "STR11045",
   "total_stock": 1,
   "name": "STR11045 - Blouse - Black",
   "image_paths": [
@@ -1159,7 +1313,9 @@
 },
 {
   "handle": "myb10451-crepe-blouse-pink",
+  "supplier_stock_code": "2066 - Pembe",
   "price": 7,
+  "product_code": "MYB10451",
   "total_stock": 1,
   "name": "MYB10451 - Crepe Blouse - Pink",
   "image_paths": [
@@ -1172,7 +1328,9 @@
 },
 {
   "handle": "bla11107-turtleneck-metallic-knitwear-blouse-gray",
+  "supplier_stock_code": "23W15002-Gri",
   "price": 10,
+  "product_code": "BLA11107",
   "total_stock": 7,
   "name": "BLA11107 - Turtleneck Metallic Knitwear Blouse - Gray",
   "image_paths": [
@@ -1187,7 +1345,9 @@
 },
 {
   "handle": "top10110-cream-leather-detailed-hair-braid-blouse",
+  "supplier_stock_code": "F1111003",
   "price": 6.16,
+  "product_code": "TOP10110",
   "total_stock": 2,
   "name": "TOP10110 - Cream Leather Detailed Hair Braid Blouse",
   "image_paths": [
@@ -1204,7 +1364,9 @@
 },
 {
   "handle": "rey11294-textured-blouse-black",
+  "supplier_stock_code": "34056-Siyah",
   "price": 9.06,
+  "product_code": "REY11294",
   "total_stock": 1,
   "name": "REY11294 - Self-Line Textured Blouse - Black",
   "image_paths": [
@@ -1220,7 +1382,9 @@
 },
 {
   "handle": "top10164-chain-blouse-stone",
-  "price": 5.2,
+  "supplier_stock_code": "D1847038",
+  "price": 5.18,
+  "product_code": "TOP10164",
   "total_stock": 45,
   "name": "TOP10164 - V-Neck Chain Blouse - Stone",
   "image_paths": [
@@ -1237,7 +1401,9 @@
 },
 {
   "handle": "top10245-striped-blouse-with-lace-front-stone-%26-white",
-  "price": 5.97,
+  "supplier_stock_code": "D2459038",
+  "price": 5.96,
+  "product_code": "TOP10245",
   "total_stock": 10,
   "name": "TOP10245 - Striped V-Neck Blouse With Lace Front - Stone & White",
   "image_paths": [
@@ -1254,7 +1420,9 @@
 },
 {
   "handle": "top10383-polka-dot-chiffon-blouse-powder",
-  "price": 6.23,
+  "supplier_stock_code": "F1408V33",
+  "price": 6.21,
+  "product_code": "TOP10383",
   "total_stock": 11,
   "name": "TOP10383 - Polka Dot Chiffon Blouse - Powder",
   "image_paths": [
@@ -1271,7 +1439,9 @@
 },
 {
   "handle": "top10389-lace-detailed-blouse-stone",
-  "price": 9.61,
+  "supplier_stock_code": "F142731",
+  "price": 9.58,
+  "product_code": "TOP10389",
   "total_stock": 14,
   "name": "TOP10389 - Lace Detailed Blouse - Stone",
   "image_paths": [
@@ -1288,7 +1458,9 @@
 },
 {
   "handle": "top10416-lace-undershirt-black",
-  "price": 8.83,
+  "supplier_stock_code": "d2578002",
+  "price": 8.8,
+  "product_code": "TOP10416",
   "total_stock": 30,
   "name": "TOP10416 - Lace Undershirt - Black",
   "image_paths": [
@@ -1305,7 +1477,9 @@
 },
 {
   "handle": "top10460-gray-glitter-laser-cut-glitter-mesh-undershirt",
-  "price": 5.46,
+  "supplier_stock_code": "D1507GRS",
+  "price": 5.44,
+  "product_code": "TOP10460",
   "total_stock": 68,
   "name": "TOP10460 - Gray Glitter Laser Cut Glitter Mesh Undershirt",
   "image_paths": [
@@ -1322,7 +1496,9 @@
 },
 {
   "handle": "jan12437-women's-long-sleeve-button-detail-knitwear-blouse-gray",
+  "supplier_stock_code": "2008 - koyu gri-gri",
   "price": 5,
+  "product_code": "JAN12437",
   "total_stock": 4,
   "name": "JAN12437 - Women's Long Sleeve Button Detail Knitwear Blouse - Gray",
   "image_paths": [
@@ -1340,7 +1516,9 @@
 },
 {
   "handle": "pbo10603-casual-round-viscose-blouse",
+  "supplier_stock_code": "6511-Siyah",
   "price": 3.9,
+  "product_code": "PBO10603",
   "total_stock": 18,
   "name": "PBO10603 - V-Neck Casual Round Viscose Blouse",
   "image_paths": [
@@ -1353,7 +1531,9 @@
 },
 {
   "handle": "pbo10609-casual-round-viscose-blouse",
+  "supplier_stock_code": "6511-Bordo",
   "price": 3.9,
+  "product_code": "PBO10609",
   "total_stock": 1,
   "name": "PBO10609 - V-Neck Casual Round Viscose Blouse",
   "image_paths": [
@@ -1366,7 +1546,9 @@
 },
 {
   "handle": "top10534-zigzag-patterned-blouse-orange",
-  "price": 6.23,
+  "supplier_stock_code": "F1558V63",
+  "price": 6.21,
+  "product_code": "TOP10534",
   "total_stock": 45,
   "name": "TOP10534 - Zigzag Patterned Blouse - Orange",
   "image_paths": [
@@ -1383,7 +1565,9 @@
 },
 {
   "handle": "jan12593-women's-long-sleeve-crew-neck-gathered-velvet-blouse-on-the-sides-and-sleeves-black",
+  "supplier_stock_code": "55016 - siyah-siyah",
   "price": 2.8,
+  "product_code": "JAN12593",
   "total_stock": 10,
   "name": "JAN12593 - Women's Long Sleeve Crew Neck Gathered Velvet Blouse On The Sides And Sleeves - Black",
   "image_paths": [
@@ -1398,7 +1582,9 @@
 },
 {
   "handle": "bla11248-asymmetric-button-detail-blouse-white",
+  "supplier_stock_code": "23W15010-Beyaz",
   "price": 6,
+  "product_code": "BLA11248",
   "total_stock": 224,
   "name": "BLA11248 - Asymmetric Button Detail Blouse - White",
   "image_paths": [
@@ -1415,7 +1601,9 @@
 },
 {
   "handle": "bla11249-asymmetric-button-detail-blouse-black",
+  "supplier_stock_code": "23W15010-Siyah",
   "price": 6,
+  "product_code": "BLA11249",
   "total_stock": 40,
   "name": "BLA11249 - Asymmetric Button Detail Blouse - Black",
   "image_paths": [
@@ -1432,7 +1620,9 @@
 },
 {
   "handle": "bsl10049-patterned-knitted-top",
+  "supplier_stock_code": "L0000000206176",
   "price": 14,
+  "product_code": "BSL10049",
   "total_stock": 15,
   "name": "BSL10049 - Patterned Knitted Top",
   "image_paths": [
@@ -1449,7 +1639,9 @@
 },
 {
   "handle": "bsl10054-high-neck-blouse",
+  "supplier_stock_code": "L0000000210339",
   "price": 5,
+  "product_code": "BSL10054",
   "total_stock": 17,
   "name": "BSL10054 - High Neck Blouse",
   "image_paths": [
@@ -1466,7 +1658,9 @@
 },
 {
   "handle": "bsl10071-crow-neck-strapped-blouse",
+  "supplier_stock_code": "L0000000190477",
   "price": 4,
+  "product_code": "BSL10071",
   "total_stock": 79,
   "name": "BSL10071 - Crow Neck Strapped Blouse",
   "image_paths": [
@@ -1483,7 +1677,9 @@
 },
 {
   "handle": "bsl10122-balloon-sleeve-transparent-blouse",
+  "supplier_stock_code": "L0000000211866",
   "price": 5,
+  "product_code": "BSL10122",
   "total_stock": 6,
   "name": "BSL10122 - Balloon Sleeve Transparent Blouse",
   "image_paths": [
@@ -1500,7 +1696,9 @@
 },
 {
   "handle": "bsl10129-wide-neck-knitted-top",
+  "supplier_stock_code": "L0000000212322",
   "price": 9.5,
+  "product_code": "BSL10129",
   "total_stock": 15,
   "name": "BSL10129 - Wide Neck Knitted Top",
   "image_paths": [
@@ -1517,7 +1715,9 @@
 },
 {
   "handle": "bsl10150-balloon-sleeve-transparent-blouse",
+  "supplier_stock_code": "L0000000211752",
   "price": 5,
+  "product_code": "BSL10150",
   "total_stock": 16,
   "name": "BSL10150 - Balloon Sleeve Transparent Blouse",
   "image_paths": [
@@ -1531,4 +1731,5 @@
   "id": {
     "$oid": "65536cb770e117596943a226"
   }
-}]}
+}]
+}
