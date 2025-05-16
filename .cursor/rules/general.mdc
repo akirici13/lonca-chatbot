@@ -1,0 +1,6 @@
+---
+description: Install new library
+globs: 
+alwaysApply: false
+---
+- Always check requirements.txt if new library is imported or downloaded. Add it to the requirements.txt if the library does not exist there
