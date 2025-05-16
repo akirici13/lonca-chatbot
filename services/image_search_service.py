@@ -17,6 +17,7 @@ import aiohttp
 from concurrent.futures import ThreadPoolExecutor
 from tqdm import tqdm
 from helpers.chroma_config import get_chroma_client
+import nest_asyncio
 
 class ImageSearchService:
     def __init__(self, catalog_path: str = "data/product_catalog_multi_image.json", embeddings_path: str = "data/product_embeddings_multi_image.pkl"):
@@ -155,8 +156,12 @@ class ImageSearchService:
                     all_products.update(products_dict)
                     all_embeddings.update(embeddings_dict)
         
-        # Run the async processing
-        asyncio.run(process_all_products())
+        try:
+            loop = asyncio.get_running_loop()
+            nest_asyncio.apply()
+            loop.run_until_complete(process_all_products())
+        except RuntimeError:
+            asyncio.run(process_all_products())
         
         # Save embeddings
         with open(self.embeddings_path, 'wb') as f:

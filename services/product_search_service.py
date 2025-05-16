@@ -12,7 +12,7 @@ import os
 from helpers.chroma_config import get_chroma_client
 
 class ProductSearchService:
-    def __init__(self, catalog_path: str = "data/product_catalog.json"):
+    def __init__(self, catalog_path: str = "data/product_catalog_multi_image.json"):
         """Initialize the product search service with both text and image search capabilities."""
         self.catalog_path = catalog_path
         self.image_search_service = ImageSearchService()
@@ -66,16 +66,20 @@ class ProductSearchService:
             
             for product in self.product_catalog['products']:
                 product_id = product['id']['$oid'] if isinstance(product['id'], dict) else str(product['id'])
-                # Create a rich text representation of the product
                 product_text = f"{product['name']} {product.get('description', '')} {product.get('category', '')}"
-                
                 ids.append(product_id)
                 embeddings.append(self._get_text_embedding(product_text).tolist())
                 documents.append(product_text)
+                # Use the first image in image_paths if available, else fallback to image_path
+                image_paths = product.get('image_paths')
+                if image_paths and isinstance(image_paths, list) and len(image_paths) > 0:
+                    image_url = image_paths[0]
+                else:
+                    image_url = product.get('image_path', None)
                 metadatas.append({
                     'name': product['name'],
                     'price': product['price'],
-                    'image_path': product['image_path'],
+                    'image_path': image_url,
                     'total_stock': product.get('total_stock', 0)
                 })
             
