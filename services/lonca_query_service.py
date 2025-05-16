@@ -31,7 +31,7 @@ class LoncaQueryService:
         Returns:
             Tuple[Dict, ConversationContext]: The AI's response and updated conversation context
         """
-        print("\n[LoncaQueryService] Handling Lonca-related query")
+        print(f"[LoncaQueryService] handle_query called with region: {region}")
         # Get conversation context
         conversation_context_text = conversation_context.get_conversation_context()
             
@@ -43,6 +43,11 @@ class LoncaQueryService:
         )
         if image_description:
             user_prompt += f"\nImage Description: {image_description}"
+        
+        # Print region and FAQ lookup
+        print(f"[LoncaQueryService] Calling get_relevant_faqs with region: {region}")
+        faqs = self.prompt_builder.faq_service.get_relevant_faqs(query, region=region)
+        print(f"[LoncaQueryService] Relevant FAQs for query '{query}' and region '{region}': {faqs}")
         
         # Get AI response
         response = await self.ai_service.get_response(system_prompt, user_prompt)
