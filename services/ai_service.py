@@ -13,6 +13,24 @@ class AIService:
         self.model = model
         self.api_key = get_openai_api_key()
         self.api_url = "https://api.openai.com/v1/chat/completions"
+
+    def _create_response(self, content: str) -> Dict:
+        """
+        Create a standardized response format.
+        
+        Args:
+            content (str): The response content
+            
+        Returns:
+            Dict: Standardized response format
+        """
+        return {
+            "choices": [{
+                "message": {
+                    "content": content
+                }
+            }]
+        }
         
     async def get_classification(self, prompt: str) -> str:
         """
@@ -117,13 +135,7 @@ class AIService:
                 async with session.post(self.api_url, headers=headers, json=payload) as response:
                     response.raise_for_status()
                     result = await response.json()
-                    return {
-                        "choices": [{
-                            "message": {
-                                "content": result["choices"][0]["message"]["content"]
-                            }
-                        }]
-                    }
+                    return self._create_response(result["choices"][0]["message"]["content"])
         except Exception as e:
             print(f"Error getting AI response: {e}")
             return {"error": str(e)} 

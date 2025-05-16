@@ -46,24 +46,6 @@ class ChatHandler:
             self.response_builder
         )
         self.image_description_service = ImageDescriptionService(self.ai_service, self.prompt_builder)
-
-    def _create_response(self, content: str) -> Dict:
-        """
-        Create a standardized response format.
-        
-        Args:
-            content (str): The response content
-            
-        Returns:
-            Dict: Standardized response format
-        """
-        return {
-            "choices": [{
-                "message": {
-                    "content": content
-                }
-            }]
-        }
         
     async def process_message(self, user_input: str, context: Optional[Dict] = None) -> Dict:
         """
