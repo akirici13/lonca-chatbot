@@ -2,7 +2,6 @@ import asyncio
 import sys
 from pathlib import Path
 from PIL import Image
-import base64
 import aioconsole
 
 # Add the project root directory to Python path

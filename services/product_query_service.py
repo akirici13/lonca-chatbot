@@ -1,9 +1,7 @@
-from typing import Optional, Tuple, Dict
-from PIL import Image
+from typing import Optional, Tuple
 from .ai_service import AIService
 from .prompt_builder import PromptBuilder
 from .product_search_service import ProductSearchService
-from helpers.image_utils import process_base64_image
 
 class ProductQueryService:
     def __init__(self, ai_service: AIService, prompt_builder: PromptBuilder, product_search_service: ProductSearchService):

@@ -1,14 +1,11 @@
 from typing import List, Dict, Optional, Tuple
 import json
-from pathlib import Path
 import numpy as np
 from PIL import Image
 from .image_search_service import ImageSearchService
-import chromadb
 from chromadb.utils import embedding_functions
 import torch
 from transformers import AutoTokenizer, AutoModel
-import os
 from helpers.chroma_config import get_chroma_client
 
 class ProductSearchService:

@@ -6,15 +6,11 @@ import numpy as np
 from typing import List, Dict, Optional, Tuple
 import os
 import json
-from pathlib import Path
-import chromadb
 from chromadb.utils import embedding_functions
 import pickle
-import requests
 from io import BytesIO
 import asyncio
 import aiohttp
-from concurrent.futures import ThreadPoolExecutor
 from tqdm import tqdm
 from helpers.chroma_config import get_chroma_client
 import nest_asyncio

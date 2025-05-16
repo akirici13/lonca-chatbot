@@ -1,5 +1,4 @@
 import pandas as pd
-import chromadb
 from chromadb.utils import embedding_functions
 from typing import Dict, List
 from pathlib import Path

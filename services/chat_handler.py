@@ -1,4 +1,4 @@
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional
 from .prompt_builder import PromptBuilder
 from .ai_service import AIService
 from .query_validator import QueryValidator

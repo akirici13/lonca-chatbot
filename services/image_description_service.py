@@ -1,6 +1,5 @@
 from .ai_service import AIService
 from .prompt_builder import PromptBuilder
-from helpers.image_utils import process_base64_image
 from typing import Optional, Tuple
 
 class ImageDescriptionService:
