@@ -6,7 +6,7 @@ from helpers.image_utils import process_base64_image
 import time
 
 class MultiMessageBuffer:
-    def __init__(self, debounce_seconds: int = 10, process_callback: Optional[Callable] = None):
+    def __init__(self, debounce_seconds: int = 5, process_callback: Optional[Callable] = None):
         self.message_buffer: List[str] = []
         self.base64_image: Optional[str] = None
         self.debounce_seconds = debounce_seconds

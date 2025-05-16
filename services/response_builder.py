@@ -28,11 +28,10 @@ class ResponseBuilder:
         Returns:
             str: Generated response
         """
-        template = self.responses["non_lonca_query"]
-        system_prompt = template["system_prompt"].format(
+        system_prompt = self.prompt_builder._load_prompt("non_lonca_query_system_prompt.txt").format(
             conversation_context=conversation_context.get_conversation_context()
         )
-        user_prompt = template["user_prompt"].format(query=query)
+        user_prompt = self.prompt_builder._load_prompt("non_lonca_query_user_prompt.txt").format(query=query)
         
         response = await self.ai_service.get_response(system_prompt, user_prompt)
         return response.get('choices', [{}])[0].get('message', {}).get('content', '')
@@ -48,11 +47,10 @@ class ResponseBuilder:
         Returns:
             str: Escalation response
         """
-        template = self.responses["escalate_to_agent"]
-        system_prompt = template["system_prompt"].format(
+        system_prompt = self.prompt_builder._load_prompt("escalate_to_agent_system_prompt.txt").format(
             conversation_context=conversation_context.get_conversation_context()
         )
-        user_prompt = template["user_prompt"].format(query=query)
+        user_prompt = self.prompt_builder._load_prompt("escalate_to_agent_user_prompt.txt").format(query=query)
         
         response = await self.ai_service.get_response(system_prompt, user_prompt)
         return response.get('choices', [{}])[0].get('message', {}).get('content', '') 
