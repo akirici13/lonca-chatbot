@@ -33,11 +33,9 @@ class MultiMessageBuffer:
 
     async def debounce_loop(self):
         await self.ensure_lock()
-        print(f"[DEBUG] Debounce timer started. Waiting for {self.debounce_seconds} seconds of inactivity...")
         while True:
             await asyncio.sleep(0.1)
             if self.last_input_time and (time.time() - self.last_input_time > self.debounce_seconds):
-                print(f"[DEBUG] Debounce timer expired. No new messages for {self.debounce_seconds} seconds.")
                 await self.process_buffer()
                 self.last_input_time = None
                 self.debounce_task = None
@@ -47,7 +45,6 @@ class MultiMessageBuffer:
         await self.ensure_lock()
         async with self.buffer_lock:
             if self.message_buffer:
-                print(f"\n[DEBUG] Processing buffer with {len(self.message_buffer)} message(s)...")
                 combined_message = "\n".join(self.message_buffer)
                 context = {"region": self.region}
                 if self.base64_image:
@@ -56,7 +53,6 @@ class MultiMessageBuffer:
                     await self.process_callback(combined_message, context)
                 self.message_buffer.clear()
                 self.base64_image = None
-                print("\n" + "-"*40)
 
 async def receive_message(user_input: str, context: Optional[Dict] = None):
 

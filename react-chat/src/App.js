@@ -22,6 +22,7 @@ function App() {
   const [input, setInput] = useState('');
   const [image, setImage] = useState(null);
   const [pending, setPending] = useState(false);
+  const [region, setRegion] = useState('Europe');
   const fileInputRef = useRef();
   const sessionIdRef = useRef(null);
 
@@ -43,7 +44,6 @@ function App() {
     if (image) {
       base64Image = await fileToBase64(image);
     }
-    const region = 'Europe'; // Or get from user selection if needed
     const session_id = sessionIdRef.current;
     try {
       const res = await sendMessageToBackend({
@@ -84,7 +84,6 @@ function App() {
 
   const pollForResponse = async () => {
     const session_id = sessionIdRef.current;
-    const region = 'Europe';
     try {
       const res = await sendMessageToBackend({
         message: '', // No new message, just poll
@@ -111,6 +110,15 @@ function App() {
 
   return (
     <div className="chat-container">
+      <div style={{padding: '16px', borderBottom: '1px solid #eee', background: '#fff'}}>
+        <label style={{marginRight: 8}}>Region:</label>
+        <select value={region} onChange={e => setRegion(e.target.value)}>
+          <option value="Europe">Europe</option>
+          <option value="Turkey">Turkey</option>
+          <option value="Other">Other</option>
+          <option value="Own">Own</option>
+        </select>
+      </div>
       <div className="messages">
         {messages.map((msg, idx) => (
           <Message key={idx} message={msg} />
