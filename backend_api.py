@@ -1,13 +1,12 @@
-import asyncio
-from fastapi import FastAPI, Request, UploadFile, File, Form
+from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from typing import Optional, List, Dict
-import base64
+from typing import Optional, Dict
 import uuid
 from services.chat_handler import ChatHandler
 from services.message_service import MultiMessageBuffer
 from fastapi.middleware.cors import CORSMiddleware
+from services.faq_service import FAQService
 
 app = FastAPI()
 
@@ -21,7 +20,10 @@ app.add_middleware(
 
 # In-memory session store: session_id -> {buffer, messages, region, base64_image}
 sessions: Dict[str, dict] = {}
-DEBOUNCE_SECONDS = 10
+DEBOUNCE_SECONDS = 5
+
+faq_service = FAQService()
+chat_handler = ChatHandler(faq_service=faq_service)
 
 class MessageIn(BaseModel):
     message: str
@@ -34,7 +36,6 @@ async def post_message(msg: MessageIn):
     # Session management
     session_id = msg.session_id or str(uuid.uuid4())
     if session_id not in sessions:
-        chat_handler = ChatHandler()
         buffer = MultiMessageBuffer(debounce_seconds=DEBOUNCE_SECONDS, process_callback=None)
         sessions[session_id] = {
             'buffer': buffer,

@@ -13,7 +13,7 @@ from .image_description_service import ImageDescriptionService
 from helpers.image_utils import process_base64_image
 
 class ChatHandler:
-    def __init__(self, model: str = "gpt-4.1-mini"):
+    def __init__(self, model: str = "gpt-4.1-mini", faq_service=None):
         """
         Initialize the chat handler with required services.
         
@@ -22,7 +22,7 @@ class ChatHandler:
         """
         # Initialize core services
         self.ai_service = AIService(model)
-        self.prompt_builder = PromptBuilder()
+        self.prompt_builder = PromptBuilder(faq_service=faq_service)
         self.conversation_context = ConversationContext()
         self.product_search_service = ProductSearchService()
         

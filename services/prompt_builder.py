@@ -4,10 +4,10 @@ from .faq_service import FAQService
 from helpers.loader import load_text, load_json
 
 class PromptBuilder:
-    def __init__(self, prompts_dir: str = "prompts"):
+    def __init__(self, prompts_dir: str = "prompts", faq_service=None):
         """Initialize the prompt builder with the prompts directory."""
         self.prompts_dir = Path(prompts_dir)
-        self.faq_service = FAQService()
+        self.faq_service = faq_service or FAQService()
         self.system_prompt = self._load_prompt("instructions.txt")
         
     def _load_prompt(self, filename: str) -> str:
