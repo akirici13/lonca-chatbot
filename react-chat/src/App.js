@@ -123,7 +123,6 @@ function App() {
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type your message..."
           className="text-input"
-          disabled={pending}
         />
         <label className={`icon-btn attach-btn${image ? ' selected' : ''}`}>
           <input
@@ -132,16 +131,11 @@ function App() {
             onChange={handleImageChange}
             ref={fileInputRef}
             className="file-input"
-            disabled={pending}
           />
           <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a5 5 0 0 1-7.07-7.07l10.6-10.6a3 3 0 0 1 4.24 4.24l-10.6 10.6a1 1 0 0 1-1.42-1.42l9.19-9.19"/></svg>
         </label>
-        <button type="submit" className="icon-btn send-btn" aria-label="Send" disabled={pending}>
-          {pending ? (
-            <span style={{width:22, height:22, display:'block'}}>...</span>
-          ) : (
-            <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          )}
+        <button type="submit" className="icon-btn send-btn" aria-label="Send">
+          <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         </button>
       </form>
     </div>
