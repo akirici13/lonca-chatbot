@@ -105,6 +105,32 @@ class ProductSearchService:
         """
         results = []
         
+        # 1. Check for direct product_link match
+        for product in self.product_catalog['products']:
+            if (
+                ('product_link' in product and product['product_link'] in query) or
+                ('handle' in product and product['handle'] in query)
+            ):
+                # Found a direct link match
+                product_id = product['id']['$oid'] if isinstance(product['id'], dict) else str(product['id'])
+                # Use the first image in image_paths if available, else fallback to image_path
+                image_paths = product.get('image_paths')
+                if image_paths and isinstance(image_paths, list) and len(image_paths) > 0:
+                    image_url = image_paths[0]
+                else:
+                    image_url = product.get('image_path', None)
+                exact_match = {
+                    'product_id': product_id,
+                    'name': product['name'],
+                    'price': product['price'],
+                    'image_path': image_url,
+                    'total_stock': product.get('total_stock', 0),
+                    'product_link': product['product_link'],
+                    'similarity': 1.0,
+                    'search_type': 'link'
+                }
+                return exact_match, []
+        
         # Perform text search
         if query:
             text_results = self.text_collection.query(
