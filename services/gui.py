@@ -3,12 +3,20 @@ import asyncio
 from PIL import Image
 from helpers.image_utils import convert_image_to_base64, decode_base64_to_image
 from services.chat_handler import ChatHandler
+from services.message_service import MultiMessageBuffer
+import time
 
 class LoncaGUI:
     def __init__(self):
         """Initialize the GUI with required session state variables."""
         self._initialize_session_state()
         self._setup_page_config()
+        # Add MultiMessageBuffer to session state if not present
+        if 'multi_message_buffer' not in st.session_state:
+            st.session_state.multi_message_buffer = MultiMessageBuffer(
+                debounce_seconds=10,
+                process_callback=self._process_combined_message
+            )
         
     def _initialize_session_state(self):
         """Initialize all required session state variables."""
@@ -22,6 +30,12 @@ class LoncaGUI:
             st.session_state.input_key = 0
         if 'processing' not in st.session_state:
             st.session_state.processing = False
+        if 'message_buffer' not in st.session_state:
+            st.session_state.message_buffer = []
+        if 'last_input_time' not in st.session_state:
+            st.session_state.last_input_time = None
+        if 'debounce_seconds' not in st.session_state:
+            st.session_state.debounce_seconds = 10
     
     def _setup_page_config(self):
         """Configure the Streamlit page settings."""
@@ -136,53 +150,31 @@ class LoncaGUI:
             return user_input, send_button, uploaded_file
         return None, None, None
     
-    async def _process_input(self, user_input, send_button, uploaded_file):
-        """Process user input and handle image upload."""
-        if (send_button or user_input) and not st.session_state.processing:
-            st.session_state.processing = True
-            
-            message_data = {"role": "user", "content": user_input if user_input else "I'm searching for a product similar to this image."}
-            context = {
-                "region": st.session_state.region
-            }
-            
-            if uploaded_file is not None:
-                try:
-                    image = Image.open(uploaded_file)
-                    base64_image = convert_image_to_base64(image)
-                    message_data["image"] = base64_image
-                    context["image_data"] = base64_image
-                except Exception as e:
-                    st.error(f"Error processing image: {e}")
-                    st.session_state.processing = False
-                    return
-            
-            st.session_state.messages.append(message_data)
-            
-            try:
-                with st.spinner("Thinking..."):
-                    # Wait for the response
-                    response = await st.session_state.chat_handler.process_message(
-                        message_data["content"],
-                        context=context
-                    )
-                    
-                    # Only proceed if we got a valid response
-                    if response and "choices" in response and response["choices"]:
-                        st.session_state.messages.append({
-                            "role": "assistant",
-                            "content": response["choices"][0]["message"]["content"]
-                        })
-                        # Rerun after we've updated the messages
-                        st.rerun()
-                    else:
-                        st.error("Received invalid response format from chat handler")
-                    
-            except Exception as e:
-                st.error(f"Error processing message: {e}")
-            finally:
-                st.session_state.processing = False
-                st.session_state.input_key += 1
+    async def _process_combined_message(self, combined_message, context):
+        """Callback to process the combined message after debounce."""
+        message_data = {"role": "user", "content": combined_message}
+        if "image_data" in context:
+            message_data["image"] = context["image_data"]
+        st.session_state.messages.append(message_data)
+        try:
+            with st.spinner("Thinking..."):
+                response = await st.session_state.chat_handler.process_message(
+                    message_data["content"],
+                    context=context
+                )
+                if response and "choices" in response and response["choices"]:
+                    st.session_state.messages.append({
+                        "role": "assistant",
+                        "content": response["choices"][0]["message"]["content"]
+                    })
+                    st.rerun()
+                else:
+                    st.error("Received invalid response format from chat handler")
+        except Exception as e:
+            st.error(f"Error processing message: {e}")
+        finally:
+            st.session_state.processing = False
+            st.session_state.input_key += 1
     
     def _add_custom_css(self):
         """Add custom CSS styles to the interface."""
@@ -248,22 +240,68 @@ class LoncaGUI:
     def run(self):
         """Run the main GUI application."""
         st.title("Lonca Chatbot 💬")
-        
+        self._add_custom_css()
         self._render_sidebar()
-        
-        # Create a container for the chat area
-        chat_container = st.container()
-        with chat_container:
-            self._render_chat_messages()
-        
-        # Create a container for the input area
-        input_container = st.container()
-        if not st.session_state.region:
-            st.info("Please select your region from the sidebar to start chatting.")
-            return
+        self._render_chat_messages()
+        user_input, send_button, uploaded_file = self._render_input_area()
+        now = time.time()
+        processed_this_run = False
+        # Debounce: process buffer if enough time has passed
+        if st.session_state.last_input_time and now - st.session_state.last_input_time > st.session_state.debounce_seconds:
+            if st.session_state.message_buffer:
+                combined_message = "\n".join(st.session_state.message_buffer)
+                base64_image = None
+                if 'last_uploaded_image' in st.session_state:
+                    base64_image = st.session_state.last_uploaded_image
+                context = {"region": st.session_state.region}
+                if base64_image:
+                    context["image_data"] = base64_image
+                # Process the combined message
+                message_data = {"role": "user", "content": combined_message}
+                if base64_image:
+                    message_data["image"] = base64_image
+                st.session_state.messages.append(message_data)
+                try:
+                    with st.spinner("Thinking..."):
+                        response = asyncio.run(st.session_state.chat_handler.process_message(
+                            message_data["content"],
+                            context=context
+                        ))
+                        if response and "choices" in response and response["choices"]:
+                            st.session_state.messages.append({
+                                "role": "assistant",
+                                "content": response["choices"][0]["message"]["content"]
+                            })
+                            st.rerun()
+                        else:
+                            st.error("Received invalid response format from chat handler")
+                except Exception as e:
+                    st.error(f"Error processing message: {e}")
+                finally:
+                    st.session_state.processing = False
+                st.session_state.message_buffer = []
+                # Only clear last_input_time if buffer is empty
+                if not st.session_state.message_buffer:
+                    st.session_state.last_input_time = None
+                st.session_state.last_uploaded_image = None
+                processed_this_run = True
 
-        with input_container:
-            user_input, send_button, uploaded_file = self._render_input_area()
-            asyncio.run(self._process_input(user_input, send_button, uploaded_file))
-        
-        self._add_custom_css() 
+        # On user input, buffer and update last_input_time
+        if st.session_state.region and (send_button or user_input):
+            base64_image = None
+            if uploaded_file is not None:
+                try:
+                    image = Image.open(uploaded_file)
+                    base64_image = convert_image_to_base64(image)
+                    st.session_state.last_uploaded_image = base64_image
+                except Exception as e:
+                    st.error(f"Error processing image: {e}")
+                    return
+            # Immediately show the user message in the chat
+            message_data = {"role": "user", "content": user_input if user_input else "I'm searching for a product similar to this image."}
+            if base64_image:
+                message_data["image"] = base64_image
+            st.session_state.messages.append(message_data)
+            st.session_state.message_buffer.append(user_input if user_input else "I'm searching for a product similar to this image.")
+            st.session_state.last_input_time = now
+            st.session_state.input_key += 1 
