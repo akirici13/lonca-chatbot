@@ -8,11 +8,12 @@ class ConversationContext:
         self.current_topic: Optional[str] = None
         self.last_search_results: Optional[Dict] = None
         
-    def add_message(self, role: str, content: str, timestamp: Optional[datetime] = None, search_results: Optional[Dict] = None, image_description: Optional[str] = None):
+    def add_message(self, role: str, content: str, timestamp: Optional[datetime] = datetime.now(), search_results: Optional[Dict] = None, image_description: Optional[str] = None):
         """Add a new message to the conversation history."""
         message = Message(
             role=role,
             content=content,
+            timestamp=timestamp,
             search_results=search_results,
             image_description=image_description
         )
