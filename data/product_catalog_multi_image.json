@@ -1,0 +1,1336 @@
+{
+  "products": [
+    {
+    "price": 5.5,
+    "total_stock": 2,
+    "name": "20093 - Heght One Body - White",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Evable/2020093-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Evable/2020093-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Evable/2020093-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Evable/2020093-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Evable/2020093-5",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Evable/2020093-6"
+    ],
+    "id": {
+      "$oid": "630734e0feaabc3896080b3d"
+    }
+  },
+  {
+    "price": 2.6,
+    "total_stock": 4,
+    "name": "42859 - Blouse - Light Green",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042859-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042859-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042859-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042859-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042859-5"
+    ],
+    "id": {
+      "$oid": "63cfd217f642e55a5452efc0"
+    }
+  },
+  {
+    "price": 2.6,
+    "total_stock": 6,
+    "name": "42847 - Blouse - Green",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042847-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042847-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042847-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042847-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042847-5"
+    ],
+    "id": {
+      "$oid": "63cfcd40f642e55a54520e39"
+    }
+  },
+  {
+    "price": 4.16,
+    "total_stock": 5,
+    "name": "42914 - Blouse - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042914-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042914-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042914-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042914-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042914-5"
+    ],
+    "id": {
+      "$oid": "63cfdc86f642e55a5454e0d8"
+    }
+  },
+  {
+    "price": 4.16,
+    "total_stock": 7,
+    "name": "42916 - Blouse - White",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042916-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042916-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042916-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042916-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042916-5"
+    ],
+    "id": {
+      "$oid": "63cfdcd6f642e55a5454eb74"
+    }
+  },
+  {
+    "price": 2.21,
+    "total_stock": 7,
+    "name": "42884 - Blouse - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042884-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042884-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042884-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042884-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042884-5"
+    ],
+    "id": {
+      "$oid": "63cfd668f642e55a5453d3e4"
+    }
+  },
+  {
+    "price": 2.21,
+    "total_stock": 3,
+    "name": "42886 - Blouse - Green",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/1738602508246-42886-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/1738602508177-42886-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/1738602508166-42886-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/1738602508225-42886-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/1738602508310-42886-5"
+    ],
+    "id": {
+      "$oid": "63cfd6bef642e55a5453ed2b"
+    }
+  },
+  {
+    "price": 4.68,
+    "total_stock": 1,
+    "name": "42908 - Blouse - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042908-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042908-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042908-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042908-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042908-5"
+    ],
+    "id": {
+      "$oid": "63cfdb26f642e55a5454b581"
+    }
+  },
+  {
+    "price": 4.68,
+    "total_stock": 1,
+    "name": "42913 - Blouse - Beige",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042913-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042913-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042913-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042913-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042913-5"
+    ],
+    "id": {
+      "$oid": "63cfdc5bf642e55a5454da4d"
+    }
+  },
+  {
+    "price": 3.5,
+    "total_stock": 4,
+    "name": "44236 - Polo Neck Knitwear - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044236-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044236-2"
+    ],
+    "id": {
+      "$oid": "63d56891fc16ed5d0c781ebb"
+    }
+  },
+  {
+    "price": 4.5,
+    "total_stock": 3,
+    "name": "44239 - Knitwear Crop - Powder",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044239-1"
+    ],
+    "id": {
+      "$oid": "63d57521fc16ed5d0c794326"
+    }
+  },
+  {
+    "price": 3,
+    "total_stock": 6,
+    "name": "44257 - Plaid Knitwear Crop - Green",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044257-1"
+    ],
+    "id": {
+      "$oid": "63d59b8dfc16ed5d0c7d936b"
+    }
+  },
+  {
+    "price": 4.5,
+    "total_stock": 1,
+    "name": "44238 - Knitwear Crop - Blue",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044238-1"
+    ],
+    "id": {
+      "$oid": "63d5748afc16ed5d0c7936bc"
+    }
+  },
+  {
+    "price": 4.5,
+    "total_stock": 2,
+    "name": "44240 - Knitwear Crop - Beige",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044240-1"
+    ],
+    "id": {
+      "$oid": "63d575c8fc16ed5d0c7951a4"
+    }
+  },
+  {
+    "price": 4.5,
+    "total_stock": 3,
+    "name": "44241 - Knitwear Crop - Green",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044241-1"
+    ],
+    "id": {
+      "$oid": "63d5767afc16ed5d0c796420"
+    }
+  },
+  {
+    "price": 3,
+    "total_stock": 7,
+    "name": "44255 - Plaid Knitwear Crop - Pink",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044255-1"
+    ],
+    "id": {
+      "$oid": "63d59a8afc16ed5d0c7d8900"
+    }
+  },
+  {
+    "price": 3.5,
+    "total_stock": 4,
+    "name": "44234 - Polo Neck Knitwear - White",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044234-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044234-2"
+    ],
+    "id": {
+      "$oid": "63d5672dfc16ed5d0c77f4b1"
+    }
+  },
+  {
+    "price": 3.5,
+    "total_stock": 3,
+    "name": "44235 - Polo Neck Knitwear - Green",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044235-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044235-2"
+    ],
+    "id": {
+      "$oid": "63d567e7fc16ed5d0c780953"
+    }
+  },
+  {
+    "price": 3,
+    "total_stock": 7,
+    "name": "44256 - Plaid Knitwear Crop - Beige",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044256-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/2044256-2"
+    ],
+    "id": {
+      "$oid": "63d59b40fc16ed5d0c7d8f85"
+    }
+  },
+  {
+    "price": 19.19,
+    "total_stock": 19,
+    "name": "45398 - Shirt - Blue",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Fame/1739938596684-45398-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Fame/1739938596757-45398-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Fame/1739938596765-45398-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Fame/1739938596677-45398-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Fame/1739938596662-45398-5"
+    ],
+    "id": {
+      "$oid": "63db860bad084b274f77cd53"
+    }
+  },
+  {
+    "price": 4.16,
+    "total_stock": 1,
+    "name": "45839 - Blouse - Red",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045839-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045839-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045839-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045839-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045839-5"
+    ],
+    "id": {
+      "$oid": "63dcce9bad084b274f91b1b0"
+    }
+  },
+  {
+    "price": 4.16,
+    "total_stock": 9,
+    "name": "45840 - Blouse - Green",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045840-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045840-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045840-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045840-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045840-5"
+    ],
+    "id": {
+      "$oid": "63dccec1ad084b274f91b339"
+    }
+  },
+  {
+    "price": 2.6,
+    "total_stock": 5,
+    "name": "45825 - Blouse - Biscuit Color",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045825-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045825-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045825-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045825-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2045825-5"
+    ],
+    "id": {
+      "$oid": "63dcccd8ad084b274f919668"
+    }
+  },
+  {
+    "price": 11.2,
+    "total_stock": 3,
+    "name": "47803 - Tunic - Beige",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Allday/1738603820189-47803-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Allday/1738603820183-47803-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Allday/1738603820198-47803-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Allday/1738603820199-47803-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Allday/1738603820188-47803-5"
+    ],
+    "id": {
+      "$oid": "63e386a06dde047a261c58ec"
+    }
+  },
+  {
+    "price": 11.2,
+    "total_stock": 3,
+    "name": "47805 - Tunic - Lilac",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Allday/1738603819266-47805-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Allday/1738603819265-47805-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Allday/1738603819264-47805-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Allday/1738603819269-47805-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Allday/1738603819320-47805-5",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Allday/1738603819274-47805-6"
+    ],
+    "id": {
+      "$oid": "63e386d46dde047a261c5c06"
+    }
+  },
+  {
+    "price": 4.75,
+    "total_stock": 15,
+    "name": "48122 - Blouse - Camel",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Cream_Rouge/2048122-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Cream_Rouge/2048122-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Cream_Rouge/2048122-3"
+    ],
+    "id": {
+      "$oid": "63e650766dde047a265c5ae8"
+    }
+  },
+  {
+    "price": 3,
+    "total_stock": 61,
+    "name": "BLA10114 - Blouse - Green",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782144263-BLA10114-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782158201-BLA10114-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782171284-BLA10114-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782184040-BLA10114-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782224545-BLA10114-5"
+    ],
+    "id": {
+      "$oid": "63f8916054eb29a64607111f"
+    }
+  },
+  {
+    "price": 3,
+    "total_stock": 17,
+    "name": "BLA10112 - Blouse - Fuchsia",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782011585-BLA10112-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782029183-BLA10112-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782042689-BLA10112-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782073779-BLA10112-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1715782091172-BLA10112-5"
+    ],
+    "id": {
+      "$oid": "63f8913554eb29a646070c4a"
+    }
+  },
+  {
+    "price": 4,
+    "total_stock": 37,
+    "name": "BLA10227 - Strap Knitwear Blouse - Ecru",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725631746615-BLA10227-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725631746606-BLA10227-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725631746703-BLA10227-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725631746609-BLA10227-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725631746611-BLA10227-5"
+    ],
+    "id": {
+      "$oid": "640b1e94a42c1bd13436826b"
+    }
+  },
+  {
+    "price": 10.1,
+    "total_stock": 2,
+    "name": "ALL10423 - Blouse - Stone Color",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Allday/ALL10423-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Allday/ALL10423-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Allday/ALL10423-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Allday/ALL10423-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Allday/ALL10423-5"
+    ],
+    "id": {
+      "$oid": "64131da79ff8375c76856b97"
+    }
+  },
+  {
+    "price": 3,
+    "total_stock": 6,
+    "name": "BLA10346 - Strapless Knitwear Blouse - Mango",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black_Fashion/1734523247391-BLA10346-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black_Fashion/1734523256232-BLA10346-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black_Fashion/1734523265603-BLA10346-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black_Fashion/1734523307928-BLA10346-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black_Fashion/1734523311554-BLA10346-5"
+    ],
+    "id": {
+      "$oid": "6422d699991393ee93932549"
+    }
+  },
+  {
+    "price": 5.41,
+    "total_stock": 6,
+    "name": "TBU10610 - Women's Cross-Strap Knitwear Blouse - White",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Tuba/1738339440450-TBU10610-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Tuba/1738339439893-TBU10610-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Tuba/1738339440854-TBU10610-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Tuba/1738339439944-TBU10610-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Tuba/1738339440582-TBU10610-5",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Tuba/1738339440629-TBU10610-6"
+    ],
+    "id": {
+      "$oid": "6426d08fde711bd7afcaf85f"
+    }
+  },
+  {
+    "price": 3,
+    "total_stock": 2,
+    "name": "JAN10464 - Women's Black Boat Collar Deep-Down Backless Camisole Fabric Blouse (Size XS And L) - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/JAN10464-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/JAN10464-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/JAN10464-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/JAN10464-4"
+    ],
+    "id": {
+      "$oid": "6428c8bcde711bd7af101f62"
+    }
+  },
+  {
+    "price": 6.7,
+    "total_stock": 5,
+    "name": "MYB10080 - Short Satin Blouse - Turquoise",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/MYB10080-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/MYB10080-2"
+    ],
+    "id": {
+      "$oid": "644f88cc5993b5594d03bf85"
+    }
+  },
+  {
+    "price": 6.7,
+    "total_stock": 1,
+    "name": "MYB10081 - Short Satin Blouse - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/MYB10081-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/MYB10081-2"
+    ],
+    "id": {
+      "$oid": "644f89105993b5594d03c532"
+    }
+  },
+  {
+    "price": 6.7,
+    "total_stock": 1,
+    "name": "MYB10083 - Short Satin Blouse - Brown",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/MYB10083-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/1730883080685-MYB10083-2"
+    ],
+    "id": {
+      "$oid": "644f8ce45993b5594d040334"
+    }
+  },
+  {
+    "price": 6.7,
+    "total_stock": 3,
+    "name": "MYB10084 - Short Satin Blouse - Fuchsia",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/MYB10084-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/MYB10084-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/MYB10084-3"
+    ],
+    "id": {
+      "$oid": "644f8d1f5993b5594d040692"
+    }
+  },
+  {
+    "price": 7.5,
+    "total_stock": 1,
+    "name": "MYB10100 - Strap Blouse - Green",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/MYB10100-1"
+    ],
+    "id": {
+      "$oid": "64536e7d872315e0413488e7"
+    }
+  },
+  {
+    "price": 4.5,
+    "total_stock": 1,
+    "name": "MYB10151 - Strap Blouse - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/MYB10151-1"
+    ],
+    "id": {
+      "$oid": "645f6451a7f8f2f77d1db8f8"
+    }
+  },
+  {
+    "price": 5.5,
+    "total_stock": 3,
+    "name": "MYB10215 - Blouse - Pomegranate Flower",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/MYB10215-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/MYB10215-2"
+    ],
+    "id": {
+      "$oid": "6468a5911e3f141ddba68a8a"
+    }
+  },
+  {
+    "price": 5.5,
+    "total_stock": 1,
+    "name": "MYB10216 - Blouse - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/MYB10216-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/MYB10216-1"
+    ],
+    "id": {
+      "$oid": "6468a5e51e3f141ddba69555"
+    }
+  },
+  {
+    "price": 5.5,
+    "total_stock": 2,
+    "name": "MYB10257 - One Sleeve Detailed Blouse - Beige",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/MYB10257-1"
+    ],
+    "id": {
+      "$oid": "646e22c3c5d3c03121906bbe"
+    }
+  },
+  {
+    "price": 6,
+    "total_stock": 134,
+    "name": "BLA10641 - Lace-Up Linen Blouse - Beige",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725633820943-BLA10641-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725633821008-BLA10641-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725633820891-BLA10641-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725633821004-BLA10641-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725633820917-BLA10641-5"
+    ],
+    "id": {
+      "$oid": "6494c629a3910a57939c1671"
+    }
+  },
+  {
+    "price": 6,
+    "total_stock": 8,
+    "name": "BLA10643 - Lace-Up Linen Blouse - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1708519548755-BLA10643-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1708519566450-BLA10643-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1708519580532-BLA10643-3"
+    ],
+    "id": {
+      "$oid": "6494c66ca3910a57939c1b5b"
+    }
+  },
+  {
+    "price": 5.5,
+    "total_stock": 7,
+    "name": "PBO10044 - V Neck Bat Sleeve Moskrep Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo-Bonetta/PBO10044-1"
+    ],
+    "id": {
+      "$oid": "64b55e0c2e44b39103b54f79"
+    }
+  },
+  {
+    "price": 2,
+    "total_stock": 20,
+    "name": "PBO10050 - Pleated Strap Summer Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo-Bonetta/PBO10050-1"
+    ],
+    "id": {
+      "$oid": "64b55e192e44b39103b551d9"
+    }
+  },
+  {
+    "price": 2,
+    "total_stock": 22,
+    "name": "PBO10067 - Pleated Strap Summer Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo-Bonetta/PBO10067-1"
+    ],
+    "id": {
+      "$oid": "64b55e532e44b39103b55bea"
+    }
+  },
+  {
+    "price": 2.5,
+    "total_stock": 17,
+    "name": "PBO10076 - V-Neck Crisscross Sandy Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo-Bonetta/PBO10076-1"
+    ],
+    "id": {
+      "$oid": "64b55e682e44b39103b55f18"
+    }
+  },
+  {
+    "price": 2,
+    "total_stock": 9,
+    "name": "PBO10112 - Shoulder Detail Sandy Fabric Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo-Bonetta/PBO10112-1"
+    ],
+    "id": {
+      "$oid": "64b55eb62e44b39103b56d21"
+    }
+  },
+  {
+    "price": 2,
+    "total_stock": 3,
+    "name": "PBO10152 - V Neck Leopard Garnish Round Viscose Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo-Bonetta/PBO10152-1"
+    ],
+    "id": {
+      "$oid": "64b55f0b2e44b39103b57a11"
+    }
+  },
+  {
+    "price": 3.9,
+    "total_stock": 5,
+    "name": "PBO10210 - Strap V-Neck Detail Sandy Fabric Blouse - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo_Bonetta/PBO10210-1"
+    ],
+    "id": {
+      "$oid": "64b56c852e44b39103b7d07e"
+    }
+  },
+  {
+    "price": 2,
+    "total_stock": 96,
+    "name": "PBO10220 - Ethnic Pattern Adjustable Strap Micro Blouse - Multicolor",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo_Bonetta/PBO10220-1"
+    ],
+    "id": {
+      "$oid": "64b56d712e44b39103b8041f"
+    }
+  },
+  {
+    "price": 4,
+    "total_stock": 2,
+    "name": "PBO10222 - Leopard Pattern Strap Micro Blouse - Brown",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo_Bonetta/PBO10222-1"
+    ],
+    "id": {
+      "$oid": "64b56d9d2e44b39103b80ddd"
+    }
+  },
+  {
+    "price": 2,
+    "total_stock": 19,
+    "name": "PBO10224 - Leopard Garnish  Pocket Detailed Round Viscose Blouse - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo_Bonetta/PBO10224-1"
+    ],
+    "id": {
+      "$oid": "64b56dc42e44b39103b81695"
+    }
+  },
+  {
+    "price": 10.1,
+    "total_stock": 164,
+    "name": "FME11933 - Denim Blouse - Blue",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Fame/1739938700247-FME11933-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Fame/1739938700191-FME11933-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Fame/1739938700278-FME11933-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Fame/1739938700276-FME11933-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Fame/1739938700270-FME11933-5"
+    ],
+    "id": {
+      "$oid": "64b573b72e44b39103ba16ed"
+    }
+  },
+  {
+    "price": 9.25,
+    "total_stock": 50,
+    "name": "QUS10074 - Front Patterned Blouse - Blue",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Qustyle/QUS10074-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Qustyle/QUS10074-2"
+    ],
+    "id": {
+      "$oid": "64b69eee6c70e0da05faa0c0"
+    }
+  },
+  {
+    "price": 9.25,
+    "total_stock": 56,
+    "name": "QUS10313 - Patterned Blouse - Yellow",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Qustyle/QUS10313-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Qustyle/QUS10313-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Qustyle/QUS10313-3"
+    ],
+    "id": {
+      "$oid": "64b6a9a06c70e0da05fd10cc"
+    }
+  },
+  {
+    "price": 4,
+    "total_stock": 119,
+    "name": "QUS10883 - Long Tank Top - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Qustyle/QUS10883-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Qustyle/QUS10883-2"
+    ],
+    "id": {
+      "$oid": "64b6bef96c70e0da05011ac7"
+    }
+  },
+  {
+    "price": 4.5,
+    "total_stock": 16,
+    "name": "QUS12583 - Drop Off Shoulder Blouse - Milk Brown",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Qustyle/QUS12583-1"
+    ],
+    "id": {
+      "$oid": "64b7da18763fc1d62d49847d"
+    }
+  },
+  {
+    "price": 7.5,
+    "total_stock": 19,
+    "name": "ELS10242 - Tassel Detailed Blouse - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Elisa/ELS10242-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Elisa/ELS10242-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Elisa/ELS10242-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Elisa/ELS10242-4"
+    ],
+    "id": {
+      "$oid": "64c063bbac0070e0e218cd97"
+    }
+  },
+  {
+    "price": 7.5,
+    "total_stock": 6,
+    "name": "ELS10252 - Tassel Detailed Blouse - White",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Elisa/1738603123088-ELS10252-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Elisa/1738603123089-ELS10252-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Elisa/1738603123078-ELS10252-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Elisa/1738603123091-ELS10252-4"
+    ],
+    "id": {
+      "$oid": "64c063d3ac0070e0e218cedb"
+    }
+  },
+  {
+    "price": 3,
+    "total_stock": 26,
+    "name": "BLA10798 - Strapless Knitwear Blouse - Green",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black_Fashion/1734523479405-BLA10798-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black_Fashion/1734523489617-BLA10798-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black_Fashion/1734523497873-BLA10798-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black_Fashion/1734523506661-BLA10798-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black_Fashion/1734523532093-BLA10798-5"
+    ],
+    "id": {
+      "$oid": "64c0e3906d1caadb01559fef"
+    }
+  },
+  {
+    "price": 2.4,
+    "total_stock": 144,
+    "name": "PBO10275 - Strapless  V-Neck  Digital Printed Micro Fabric Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo-Bonetta/PBO10275-1"
+    ],
+    "id": {
+      "$oid": "64c1b53d882195f60552ad17"
+    }
+  },
+  {
+    "price": 4.5,
+    "total_stock": 1,
+    "name": "PBO10278 - Floral Printed Single Jersey Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo-Bonetta/PBO10278-1"
+    ],
+    "id": {
+      "$oid": "64c1b540882195f60552ad2a"
+    }
+  },
+  {
+    "price": 2.4,
+    "total_stock": 238,
+    "name": "PBO10280 - Strapless V-Neck Digital Print Micro Fabric Blouse - Multicolor",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo_Bonetta/PBO10280-1"
+    ],
+    "id": {
+      "$oid": "64c23fd5882195f6055c7cb7"
+    }
+  },
+  {
+    "price": 2,
+    "total_stock": 3,
+    "name": "PBO10290 - Shoulder Detail Digital Printed Single Jersey Fabric Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo-Bonetta/PBO10290-1"
+    ],
+    "id": {
+      "$oid": "64c7a572699f7f3f6fd62e0e"
+    }
+  },
+  {
+    "price": 1.7,
+    "total_stock": 76,
+    "name": "PBO10305 - Notch Collar Chain Pattern Printed Moskrep Fabric Blouse - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo_Bonetta/PBO10305-1"
+    ],
+    "id": {
+      "$oid": "64ca6cd98bc6ae1f198618fa"
+    }
+  },
+  {
+    "price": 4.2,
+    "total_stock": 12,
+    "name": "PBO10398 - Two Yarn Fabric Crew Neck Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo-Bonetta/PBO10398-1"
+    ],
+    "id": {
+      "$oid": "64d4d664b62d695e8dc7cc15"
+    }
+  },
+  {
+    "price": 4.2,
+    "total_stock": 18,
+    "name": "PBO10405 - Two Yarn Fabric Crew Neck Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo-Bonetta/PBO10405-1"
+    ],
+    "id": {
+      "$oid": "64d4d66cb62d695e8dc7ce14"
+    }
+  },
+  {
+    "price": 3,
+    "total_stock": 6,
+    "name": "BLA10974 - Long Sleeve Tulle Blouse - White",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1708520070822-BLA10974-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1708520076232-BLA10974-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1708520082921-BLA10974-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1708520088330-BLA10974-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1708520099140-BLA10974-5"
+    ],
+    "id": {
+      "$oid": "64f91a2a85eccc4881f6fec4"
+    }
+  },
+  {
+    "price": 6.6,
+    "total_stock": 1,
+    "name": "JAN11785 - Women's Long Sleeve Crew Neck Long Off Shoulder Stripe Tie Back Sash Detail Viscose Blouse - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/JAN11785-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/JAN11785-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/JAN11785-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/JAN11785-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/JAN11785-5",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/JAN11785-6"
+    ],
+    "id": {
+      "$oid": "64f91aa885eccc4881f7086f"
+    }
+  },
+  {
+    "price": 4.5,
+    "total_stock": 2,
+    "name": "PBO10520 - Strappy V-Neck Digital Printed Lace Detail Micro Fabric Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo-Bonetta/PBO10520-1"
+    ],
+    "id": {
+      "$oid": "64fbbab8f84f3d1ccdde5df0"
+    }
+  },
+  {
+    "price": 4.5,
+    "total_stock": 2,
+    "name": "PBO10528 - Strappy V-Neck Digital Printed Lace Detail Micro Fabric Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo-Bonetta/PBO10528-1"
+    ],
+    "id": {
+      "$oid": "64fbbac1f84f3d1ccdde5ea4"
+    }
+  },
+  {
+    "price": 2.89,
+    "total_stock": 20,
+    "name": "SBE10758 - Blouse - Orange",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Sobe-Istanbul/1738338758496-SBE10758-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Sobe-Istanbul/1738338757915-SBE10758-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Sobe-Istanbul/1738338757828-SBE10758-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Sobe-Istanbul/1738338759014-SBE10758-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Sobe-Istanbul/1738338758298-SBE10758-5",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Sobe-Istanbul/1738338758236-SBE10758-6"
+    ],
+    "id": {
+      "$oid": "6508bc6b1f84ea9b72074563"
+    }
+  },
+  {
+    "price": 10,
+    "total_stock": 39,
+    "name": "BLA11068 - Polo Neck Lace Blouse - White",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1708520321630-BLA11068-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1708520329819-BLA11068-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1708520337794-BLA11068-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1708520361167-BLA11068-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1708520379612-BLA11068-5"
+    ],
+    "id": {
+      "$oid": "6509bd5655018bc9197bd41e"
+    }
+  },
+  {
+    "price": 34,
+    "total_stock": 3,
+    "name": "STR11009 - Blouse - White",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Setre/1738827466644-STR11009-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Setre/1738827466614-STR11009-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Setre/1738827468108-STR11009-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Setre/1738827467835-STR11009-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Setre/1738827466655-STR11009-5",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Setre/1738827466665-STR11009-6",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Setre/1738827466804-STR11009-7"
+    ],
+    "id": {
+      "$oid": "6514c68ec2ce037a7127b145"
+    }
+  },
+  {
+    "price": 34,
+    "total_stock": 1,
+    "name": "STR11045 - Blouse - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Setre/1739938390617-STR11045-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Setre/1739938390923-STR11045-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Setre/1739938390834-STR11045-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Setre/1739938390875-STR11045-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Setre/1739938391055-STR11045-5",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Setre/1739938391032-STR11045-6",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Setre/1739938391259-STR11045-7"
+    ],
+    "id": {
+      "$oid": "6514c7aec2ce037a7127bb20"
+    }
+  },
+  {
+    "price": 7,
+    "total_stock": 1,
+    "name": "MYB10451 - Crepe Blouse - Pink",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/MyBee/MYB10451-1"
+    ],
+    "id": {
+      "$oid": "65195a1ac4df6b905208a7fc"
+    }
+  },
+  {
+    "price": 10,
+    "total_stock": 7,
+    "name": "BLA11107 - Turtleneck Metallic Knitwear Blouse - Gray",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1709083280525-BLA11107-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1709083288650-BLA11107-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1709083322842-BLA11107-3"
+    ],
+    "id": {
+      "$oid": "651c1101f242bca66a506d9d"
+    }
+  },
+  {
+    "price": 6.16,
+    "total_stock": 2,
+    "name": "TOP10110 - Cream Leather Detailed Hair Braid Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10110-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10110-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10110-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10110-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10110-5"
+    ],
+    "id": {
+      "$oid": "6525d6dd81807eca0fd24caf"
+    }
+  },
+  {
+    "price": 9.06,
+    "total_stock": 1,
+    "name": "REY11294 - Self-Line Textured Blouse - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Reyon/REY11294-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Reyon/REY11294-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Reyon/REY11294-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Reyon/REY11294-4"
+    ],
+    "id": {
+      "$oid": "65280ca61b93a56c124639bc"
+    }
+  },
+  {
+    "price": 5.2,
+    "total_stock": 45,
+    "name": "TOP10164 - V-Neck Chain Blouse - Stone",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/1729688486892-TOP10164-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/1729688486903-TOP10164-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/1729688486909-TOP10164-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/1729688486897-TOP10164-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/1729688486902-TOP10164-5"
+    ],
+    "id": {
+      "$oid": "652910ed38a18686e10fcae6"
+    }
+  },
+  {
+    "price": 5.98,
+    "total_stock": 10,
+    "name": "TOP10245 - Striped V-Neck Blouse With Lace Front - Stone & White",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10245-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10245-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10245-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10245-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10245-5"
+    ],
+    "id": {
+      "$oid": "65291aab38a18686e110215f"
+    }
+  },
+  {
+    "price": 6.24,
+    "total_stock": 11,
+    "name": "TOP10383 - Polka Dot Chiffon Blouse - Powder",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10383-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10383-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10383-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10383-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10383-5"
+    ],
+    "id": {
+      "$oid": "652928f038a18686e11084a9"
+    }
+  },
+  {
+    "price": 9.62,
+    "total_stock": 14,
+    "name": "TOP10389 - Lace Detailed Blouse - Stone",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10389-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10389-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10389-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10389-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10389-5"
+    ],
+    "id": {
+      "$oid": "6529296e38a18686e1108526"
+    }
+  },
+  {
+    "price": 8.84,
+    "total_stock": 30,
+    "name": "TOP10416 - Lace Undershirt - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10416-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10416-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10416-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10416-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10416-5"
+    ],
+    "id": {
+      "$oid": "65292b8b38a18686e110890d"
+    }
+  },
+  {
+    "price": 5.46,
+    "total_stock": 68,
+    "name": "TOP10460 - Gray Glitter Laser Cut Glitter Mesh Undershirt",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10460-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10460-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10460-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10460-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10460-5"
+    ],
+    "id": {
+      "$oid": "65322aa0a5265137a7b66e2c"
+    }
+  },
+  {
+    "price": 5,
+    "total_stock": 4,
+    "name": "JAN12437 - Women's Long Sleeve Button Detail Knitwear Blouse - Gray",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/1738595435512-JAN12437-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/1738595433449-JAN12437-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/1738595437855-JAN12437-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/1738595434412-JAN12437-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/1738595434556-JAN12437-5",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/1738595434580-JAN12437-6"
+    ],
+    "id": {
+      "$oid": "65390c95ee9a06bff5cb6278"
+    }
+  },
+  {
+    "price": 3.9,
+    "total_stock": 18,
+    "name": "PBO10603 - V-Neck Casual Round Viscose Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo-Bonetta/1738603973974-PBO10603-1"
+    ],
+    "id": {
+      "$oid": "653f807fec31beacd2bfea8f"
+    }
+  },
+  {
+    "price": 3.9,
+    "total_stock": 1,
+    "name": "PBO10609 - V-Neck Casual Round Viscose Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Polo_Bonetta/PBO10609-1"
+    ],
+    "id": {
+      "$oid": "653f8084ec31beacd2bfeafe"
+    }
+  },
+  {
+    "price": 6.24,
+    "total_stock": 45,
+    "name": "TOP10534 - Zigzag Patterned Blouse - Orange",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10534-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10534-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10534-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10534-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Topshow/TOP10534-5"
+    ],
+    "id": {
+      "$oid": "6541485e821bda20998f4bc2"
+    }
+  },
+  {
+    "price": 2.8,
+    "total_stock": 10,
+    "name": "JAN12593 - Women's Long Sleeve Crew Neck Gathered Velvet Blouse On The Sides And Sleeves - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/1738595452606-JAN12593-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/1738595452469-JAN12593-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Janes/1738595452143-JAN12593-3"
+    ],
+    "id": {
+      "$oid": "6548bb9a6134e2e7f3e485cb"
+    }
+  },
+  {
+    "price": 6,
+    "total_stock": 224,
+    "name": "BLA11248 - Asymmetric Button Detail Blouse - White",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725641407324-BLA11248-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725641407353-BLA11248-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725641407413-BLA11248-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725641407346-BLA11248-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725641407383-BLA11248-5"
+    ],
+    "id": {
+      "$oid": "654a9768d25ad4484e95b312"
+    }
+  },
+  {
+    "price": 6,
+    "total_stock": 40,
+    "name": "BLA11249 - Asymmetric Button Detail Blouse - Black",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725641442852-BLA11249-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725641442858-BLA11249-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725641442886-BLA11249-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725641442882-BLA11249-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Black-Fashion/1725641442859-BLA11249-5"
+    ],
+    "id": {
+      "$oid": "654a9792d25ad4484e95b390"
+    }
+  },
+  {
+    "price": 14,
+    "total_stock": 15,
+    "name": "BSL10049 - Patterned Knitted Top",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10049-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10049-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10049-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10049-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10049-5"
+    ],
+    "id": {
+      "$oid": "65536a6f1249ffff89615daa"
+    }
+  },
+  {
+    "price": 5,
+    "total_stock": 17,
+    "name": "BSL10054 - High Neck Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10054-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10054-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10054-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10054-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10054-5"
+    ],
+    "id": {
+      "$oid": "65536a9470e11759694343b9"
+    }
+  },
+  {
+    "price": 4,
+    "total_stock": 79,
+    "name": "BSL10071 - Crow Neck Strapped Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10071-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10071-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10071-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10071-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10071-5"
+    ],
+    "id": {
+      "$oid": "65536aee1249ffff89616a7b"
+    }
+  },
+  {
+    "price": 5,
+    "total_stock": 6,
+    "name": "BSL10122 - Balloon Sleeve Transparent Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10122-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10122-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10122-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10122-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10122-5"
+    ],
+    "id": {
+      "$oid": "65536c2770e1175969438d5e"
+    }
+  },
+  {
+    "price": 9.5,
+    "total_stock": 15,
+    "name": "BSL10129 - Wide Neck Knitted Top",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10129-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10129-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10129-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10129-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10129-5"
+    ],
+    "id": {
+      "$oid": "65536c491249ffff89617dc4"
+    }
+  },
+  {
+    "price": 5,
+    "total_stock": 16,
+    "name": "BSL10150 - Balloon Sleeve Transparent Blouse",
+    "image_paths": [
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10150-1",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10150-2",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10150-3",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10150-4",
+      "https://loncapazar.s3.eu-north-1.amazonaws.com/product/BSL/BSL10150-5"
+    ],
+    "id": {
+      "$oid": "65536cb770e117596943a226"
+    }
+  }]
+}

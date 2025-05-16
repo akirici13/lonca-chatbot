@@ -19,7 +19,7 @@ from tqdm import tqdm
 from helpers.chroma_config import get_chroma_client
 
 class ImageSearchService:
-    def __init__(self, catalog_path: str = "data/product_catalog.json", embeddings_path: str = "data/product_embeddings.pkl"):
+    def __init__(self, catalog_path: str = "data/product_catalog_multi_image.json", embeddings_path: str = "data/product_embeddings_multi_image.pkl"):
         """Initialize the image search service with a pre-trained model."""
         # Load pre-trained ResNet model
         self.model = resnet50(weights=ResNet50_Weights.DEFAULT)
@@ -106,29 +106,27 @@ class ImageSearchService:
         """Process a batch of products asynchronously."""
         products_dict = {}
         embeddings_dict = {}
-        
-        # Create tasks for all products in the batch
         tasks = []
+        task_info = []  # To keep track of which product and which image
         for product in products:
             product_id = product['id']['$oid'] if isinstance(product['id'], dict) else str(product['id'])
-            tasks.append(self._load_image_from_url_async(session, product['image_path']))
-        
-        # Wait for all images to load
+            image_paths = product.get('image_paths', [product.get('image_path')])
+            for idx, image_url in enumerate(image_paths):
+                tasks.append(self._load_image_from_url_async(session, image_url))
+                task_info.append((product_id, idx, product, image_url))
         images = await asyncio.gather(*tasks)
-        
-        # Process loaded images
-        for product, image in zip(products, images):
+        for (product_id, idx, product, image_url), image in zip(task_info, images):
             if image is not None:
-                product_id = product['id']['$oid'] if isinstance(product['id'], dict) else str(product['id'])
                 features = self.extract_features(image)
-                
-                products_dict[product_id] = {
+                embedding_id = f"{product_id}_{idx}"
+                # Store product info (one entry per embedding)
+                products_dict[embedding_id] = {
+                    'product_id': product_id,
                     'name': product['name'],
                     'price': product['price'],
-                    'image_path': product['image_path']
+                    'image_url': image_url
                 }
-                embeddings_dict[product_id] = features.numpy()
-        
+                embeddings_dict[embedding_id] = features.numpy()
         return products_dict, embeddings_dict
 
     def _load_or_create_embeddings(self) -> Tuple[Dict[str, Dict], Dict[str, np.ndarray]]:
@@ -168,25 +166,21 @@ class ImageSearchService:
     
     def _initialize_chroma_collection(self):
         """Initialize ChromaDB collection with product embeddings."""
-        # Check if collection is empty
         if self.collection.count() == 0:
             print("Adding embeddings to ChromaDB...")
-            # Prepare data for ChromaDB
             ids = []
             embeddings = []
             documents = []
             metadatas = []
-            
-            for product_id, product in self.product_catalog.items():
-                ids.append(product_id)
-                embeddings.append(self.embeddings[product_id].tolist())
+            for embedding_id, product in self.product_catalog.items():
+                ids.append(embedding_id)
+                embeddings.append(self.embeddings[embedding_id].tolist())
                 documents.append(product['name'])
                 metadatas.append({
+                    'product_id': product['product_id'],
                     'price': product['price'],
-                    'image_path': product['image_path']  # Store the URL in metadata
+                    'image_url': product['image_url']
                 })
-            
-            # Add to collection
             self.collection.add(
                 ids=ids,
                 embeddings=embeddings,
@@ -228,41 +222,30 @@ class ImageSearchService:
                 - similar_products: List of similar products (up to 3)
         """
         try:
-            # Preprocess and extract features from uploaded image
             image = self._preprocess_image(image)
             query_features = self.extract_features(image)
-            
-            # Query ChromaDB
             results = self.collection.query(
                 query_embeddings=[query_features.numpy().tolist()],
-                n_results=4  # Get top 4 results (1 for exact match, 3 for similar)
+                n_results=4
             )
-            
-            # Process results
             similarities = []
             for i in range(len(results['ids'][0])):
-                product_id = results['ids'][0][i]
-                similarity = results['distances'][0][i]  # ChromaDB returns distances, convert to similarity
+                embedding_id = results['ids'][0][i]
+                similarity = results['distances'][0][i]
                 metadata = results['metadatas'][0][i]
-                
                 similarities.append({
-                    'product_id': product_id,
+                    'embedding_id': embedding_id,
+                    'product_id': metadata['product_id'],
                     'name': results['documents'][0][i],
                     'price': metadata['price'],
-                    'image_path': metadata['image_path'],  # Include the image URL in results
-                    'similarity': 1 - similarity  # Convert distance to similarity
+                    'image_url': metadata['image_url'],
+                    'similarity': 1 - similarity
                 })
-            
-            # Check for exact match
             exact_match = None
             if similarities and similarities[0]['similarity'] >= similarity_threshold:
                 exact_match = similarities[0]
-                # Remove exact match from similar products
                 similarities = similarities[1:]
-            
-            # Return exact match (if any) and top 3 similar products
             return exact_match, similarities[:3]
-            
         except Exception as e:
             print(f"Error in find_products: {str(e)}")
             return None, []

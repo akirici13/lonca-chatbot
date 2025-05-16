@@ -4,7 +4,10 @@
   "price": 5.5,
   "total_stock": 2,
   "name": "20093 - Heght One Body - White",
-  "image_path": "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Evable/2020093-1",
+  "image_paths": [
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Evable/2020093-1",
+    "https://example.com/placeholder1.jpg"
+  ],
   "id": {
     "$oid": "630734e0feaabc3896080b3d"
   }
@@ -13,7 +16,10 @@
   "price": 2.6,
   "total_stock": 6,
   "name": "42859 - Blouse - Light Green",
-  "image_path": "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042859-1",
+  "image_paths": [
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042859-1",
+    "https://example.com/placeholder2.jpg"
+  ],
   "id": {
     "$oid": "63cfd217f642e55a5452efc0"
   }
@@ -22,7 +28,10 @@
   "price": 2.6,
   "total_stock": 7,
   "name": "42847 - Blouse - Green",
-  "image_path": "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042847-1",
+  "image_paths": [
+    "https://loncapazar.s3.eu-north-1.amazonaws.com/product/Bigdart/2042847-1",
+    "https://example.com/placeholder3.jpg"
+  ],
   "id": {
     "$oid": "63cfcd40f642e55a54520e39"
   }
