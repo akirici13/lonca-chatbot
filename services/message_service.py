@@ -12,11 +12,16 @@ class MultiMessageBuffer:
         self.debounce_seconds = debounce_seconds
         self.last_input_time = None
         self.debounce_task = None
-        self.buffer_lock = asyncio.Lock()
+        self.buffer_lock = None
         self.process_callback = process_callback  # Called with (combined_message, context)
         self.region = None
 
+    async def ensure_lock(self):
+        if self.buffer_lock is None:
+            self.buffer_lock = asyncio.Lock()
+
     async def add_message(self, user_input: str, region: Optional[str] = None, base64_image: Optional[str] = None):
+        await self.ensure_lock()
         async with self.buffer_lock:
             self.message_buffer.append(user_input)
             self.last_input_time = time.time()
@@ -28,6 +33,7 @@ class MultiMessageBuffer:
             self.debounce_task = asyncio.create_task(self.debounce_loop())
 
     async def debounce_loop(self):
+        await self.ensure_lock()
         print(f"[DEBUG] Debounce timer started. Waiting for {self.debounce_seconds} seconds of inactivity...")
         while True:
             await asyncio.sleep(0.1)
@@ -39,6 +45,7 @@ class MultiMessageBuffer:
                 break
 
     async def process_buffer(self):
+        await self.ensure_lock()
         async with self.buffer_lock:
             if self.message_buffer:
                 print(f"\n[DEBUG] Processing buffer with {len(self.message_buffer)} message(s)...")
