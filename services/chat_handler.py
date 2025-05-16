@@ -88,7 +88,7 @@ class ChatHandler:
         if follow_up_result:
             is_valid, response, search_results = follow_up_result
             if not is_valid:
-                return self._create_response(response)
+                return self.ai_service._create_response(response)
             response, self.conversation_context = await self.search_result_service.handle_search_results(
                 user_input,
                 search_results,
@@ -108,7 +108,7 @@ class ChatHandler:
         if product_query_result:
             is_valid, response, search_results = product_query_result
             if not is_valid:
-                return self._create_response(response)
+                return self.ai_service._create_response(response)
             response, self.conversation_context = await self.search_result_service.handle_search_results(
                 user_input,
                 search_results,
@@ -126,7 +126,7 @@ class ChatHandler:
         print(f"\n[ChatHandler] Query validation result: is_valid={is_valid}, response={response}")
         
         if not is_valid:
-            return self._create_response(response)
+            return self.ai_service._create_response(response)
             
         # Handle Lonca-related query
         response, self.conversation_context = await self.lonca_query_service.handle_query(
