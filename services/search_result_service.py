@@ -15,7 +15,7 @@ class SearchResultService:
         self.ai_service = ai_service
         self.prompt_builder = prompt_builder
         
-    async def handle_search_results(self, query: str, search_results: dict, conversation_context: ConversationContext) -> Tuple[Dict, ConversationContext]:
+    async def handle_search_results(self, query: str, search_results: dict, conversation_context: ConversationContext, region: str) -> Tuple[Dict, ConversationContext]:
         """
         Handle search results and generate appropriate response.
         
@@ -36,6 +36,13 @@ class SearchResultService:
         
         # Load and format the image search response prompt
         prompt_template = self.prompt_builder._load_prompt("image_search_response_prompt.txt")
+
+        relevant_faqs = self.prompt_builder.faq_service.get_relevant_faqs(query, region=region)
+
+        # Format FAQs
+        faq_text = ""
+        if relevant_faqs:
+            faq_text = self.prompt_builder.faq_service.format_faqs_for_prompt(relevant_faqs)
         
         # Format the similar products list
         similar_products_text = chr(10).join([
@@ -54,6 +61,7 @@ class SearchResultService:
         system_prompt = prompt_template.format(
             conversation_context=conversation_context.get_conversation_context(),
             query=query,
+            faq=faq_text,
             exact_match=exact_match_text,
             similar_products=similar_products_text
         )

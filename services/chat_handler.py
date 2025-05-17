@@ -92,7 +92,8 @@ class ChatHandler:
             response, self.conversation_context = await self.search_result_service.handle_search_results(
                 user_input,
                 search_results,
-                self.conversation_context
+                self.conversation_context,
+                region
             )
             print("\n[ChatHandler] Updated conversation context with follow-up search results")
             return response
@@ -112,7 +113,8 @@ class ChatHandler:
             response, self.conversation_context = await self.search_result_service.handle_search_results(
                 user_input,
                 search_results,
-                self.conversation_context
+                self.conversation_context,
+                region
             )
             print("\n[ChatHandler] Updated conversation context with product-query search results")
             return response

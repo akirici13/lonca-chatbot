@@ -46,7 +46,9 @@ class PromptBuilder:
                 - user_prompt: The user's message
         """
         # Get relevant FAQs
+        print(f"[PromptBuilder] Calling get_relevant_faqs with region: {region}")
         relevant_faqs = self.faq_service.get_relevant_faqs(user_message, region=region)
+        print(f"[PromptBuilder] Relevant FAQs for query '{user_message}' and region '{region}': {relevant_faqs}")
         
         # Format FAQs
         faq_text = ""
