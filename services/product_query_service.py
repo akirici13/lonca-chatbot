@@ -2,6 +2,7 @@ from typing import Optional, Tuple
 from .ai_service import AIService
 from .prompt_builder import PromptBuilder
 from .product_search_service import ProductSearchService
+from .image_text_search_service import ImageTextSearchService
 
 class ProductQueryService:
     def __init__(self, ai_service: AIService, prompt_builder: PromptBuilder, product_search_service: ProductSearchService):
@@ -16,6 +17,7 @@ class ProductQueryService:
         self.ai_service = ai_service
         self.prompt_builder = prompt_builder
         self.product_search_service = product_search_service
+        self.image_text_search_service = ImageTextSearchService()
         
     async def check_product_query(self, query: str, image: Optional[str] = None, image_description: Optional[str] = None) -> Optional[Tuple[bool, str, Optional[dict]]]:
         """
@@ -43,6 +45,26 @@ class ProductQueryService:
             'exact_match': exact_match,
             'similar_products': []  # Empty list since we're not using similar products
         }
+
+        # TODO: Test image description search
+        # Perform text-based image search
+        # text_match = None
+        # if image is not None:
+        #     text_match = await self.image_text_search_service.search_by_image(image)
+        # found = False
+        # result = {}
+        # if exact_match:
+        #     print("[ProductQueryService] Image-based search found a product.")
+        #     result['image_search'] = exact_match
+        #     found = True
+        # if text_match:
+        #     print("[ProductQueryService] Text-based image search found a product.")
+        #     result['text_search'] = text_match
+        #     found = True
+        # if not found:
+        #     print("[ProductQueryService] No product found by either service.")
+        #     return True, '', {'exact_match': None, 'similar_products': []}
+        # return True, '', result
 
     async def _is_product_query(self, query: str, image_description: Optional[str] = None) -> bool:
         """
