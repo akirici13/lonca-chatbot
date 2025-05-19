@@ -13,53 +13,68 @@ import asyncio
 import aiohttp
 from tqdm import tqdm
 from helpers.chroma_config import get_chroma_client
-import nest_asyncio
 
 class ImageSearchService:
-    def __init__(self, catalog_path: str = "data/product_catalog_multi_image.json", embeddings_path: str = "data/product_embeddings_multi_image.pkl"):
+    def __init__(self, catalog_path: str = "data/product_catalog_multi_image.json", model_type: str = 'dino'):
         """Initialize the image search service with a pre-trained model."""
-        # Load pre-trained ResNet model
-        self.model = resnet50(weights=ResNet50_Weights.DEFAULT)
-        self.model.eval()  # Set to evaluation mode
-        
-        # Define image transformations
-        self.transform = transforms.Compose([
-            transforms.Resize(256),
-            transforms.CenterCrop(224),
-            transforms.ToTensor(),
-            transforms.Normalize(
-                mean=[0.485, 0.456, 0.406],
-                std=[0.229, 0.224, 0.225]
-            )
-        ])
-        
-        # Initialize paths
+        self.model_type = model_type
+        self._select_model(model_type)
         self.catalog_path = catalog_path
-        self.embeddings_path = embeddings_path
-        
-        # Load or create embeddings
-        self.product_catalog, self.embeddings = self._load_or_create_embeddings()
-        
-        # Initialize ChromaDB with shared configuration
+        self.embeddings_path = f"data/product_embeddings_multi_image_{model_type}.pkl"
         self.chroma_client = get_chroma_client()
-        try:
-            self.collection = self.chroma_client.create_collection(
-                name="product_images",
-                embedding_function=embedding_functions.DefaultEmbeddingFunction()
-            )
-        except Exception as e:
-            if "already exists" in str(e):
-                # If collection exists, get it
-                self.collection = self.chroma_client.get_collection(
-                    name="product_images",
-                    embedding_function=embedding_functions.DefaultEmbeddingFunction()
-                )
-            else:
-                raise e
-        
-        # Add embeddings to ChromaDB if not already added
-        self._initialize_chroma_collection()
+        self.collection_name = f"product_images_{self.model_type}"
+        self.collection = None
+        self.product_catalog = None
+        self.embeddings = None
+        self.initialized = False
     
+    def _select_model(self, model_type):
+        if model_type == 'resnet':
+            self.model = resnet50(weights=ResNet50_Weights.DEFAULT)
+            self.model.eval()
+            self.transform = transforms.Compose([
+                transforms.Resize(256),
+                transforms.CenterCrop(224),
+                transforms.ToTensor(),
+                transforms.Normalize(
+                    mean=[0.485, 0.456, 0.406],
+                    std=[0.229, 0.224, 0.225]
+                )
+            ])
+        elif model_type == 'clip':
+            from transformers import CLIPProcessor, CLIPModel
+            self.model = CLIPModel.from_pretrained("openai/clip-vit-base-patch16")
+            self.processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch16")
+        elif model_type == 'dino':
+            from transformers import AutoImageProcessor, AutoModel
+            self.processor = AutoImageProcessor.from_pretrained("facebook/dinov2-base")
+            self.model = AutoModel.from_pretrained("facebook/dinov2-base")
+        else:
+            raise ValueError(f"Unknown model_type: {model_type}")
+
+    def _extract_features(self, image: Image.Image) -> np.ndarray:
+        if self.model_type == 'resnet':
+            image = self._preprocess_image(image)
+            image_tensor = self.transform(image).unsqueeze(0)
+            with torch.no_grad():
+                features = self.model(image_tensor)
+            return features.squeeze().numpy()
+        elif self.model_type == 'clip':
+            inputs = self.processor(images=image, return_tensors="pt")
+            with torch.no_grad():
+                features = self.model.get_image_features(**inputs)
+            return features.squeeze().numpy()
+        elif self.model_type == 'dino':
+            inputs = self.processor(images=image, return_tensors="pt")
+            with torch.no_grad():
+                features = self.model(**inputs).last_hidden_state.mean(dim=1)
+            return features.squeeze().numpy()
+        else:
+            raise ValueError(f"Unknown model_type: {self.model_type}")
+
+    def extract_features(self, image: Image.Image) -> np.ndarray:
+        return self._extract_features(image)
+
     def _preprocess_image(self, image: Image.Image) -> Image.Image:
         """
         Preprocess image to ensure it's in the correct format.
@@ -123,27 +138,44 @@ class ImageSearchService:
                     'price': product['price'],
                     'image_url': image_url
                 }
-                embeddings_dict[embedding_id] = features.numpy()
+                embeddings_dict[embedding_id] = features
         return products_dict, embeddings_dict
 
-    def _load_or_create_embeddings(self) -> Tuple[Dict[str, Dict], Dict[str, np.ndarray]]:
+    async def initialize(self):
+        # Load or create embeddings
+        self.product_catalog, self.embeddings = await self._load_or_create_embeddings(self.embeddings_path)
+        # Use a separate ChromaDB collection for each model type
+        try:
+            self.collection = self.chroma_client.create_collection(
+                name=self.collection_name,
+                embedding_function=embedding_functions.DefaultEmbeddingFunction()
+            )
+        except Exception as e:
+            if "already exists" in str(e):
+                self.collection = self.chroma_client.get_collection(
+                    name=self.collection_name,
+                    embedding_function=embedding_functions.DefaultEmbeddingFunction()
+                )
+            else:
+                raise e
+        await self._initialize_chroma_collection()
+        self.initialized = True
+
+    async def _load_or_create_embeddings(self, embeddings_path: str) -> Tuple[Dict[str, Dict], Dict[str, np.ndarray]]:
         """Load existing embeddings or create new ones if they don't exist."""
-        if os.path.exists(self.embeddings_path):
+        if os.path.exists(embeddings_path):
             print("Loading existing embeddings...")
-            with open(self.embeddings_path, 'rb') as f:
+            with open(embeddings_path, 'rb') as f:
                 return pickle.load(f)
-        
         print("Creating new embeddings...")
         # Load product catalog
         with open(self.catalog_path, 'r') as f:
             catalog_data = json.load(f)
-        
         # Process products in batches
         batch_size = 10  # Process 10 products at a time
         products = catalog_data['products']
         all_products = {}
         all_embeddings = {}
-        
         async def process_all_products():
             async with aiohttp.ClientSession() as session:
                 for i in tqdm(range(0, len(products), batch_size), desc="Processing products"):
@@ -151,21 +183,13 @@ class ImageSearchService:
                     products_dict, embeddings_dict = await self._process_product_batch(session, batch)
                     all_products.update(products_dict)
                     all_embeddings.update(embeddings_dict)
-        
-        try:
-            loop = asyncio.get_running_loop()
-            nest_asyncio.apply()
-            loop.run_until_complete(process_all_products())
-        except RuntimeError:
-            asyncio.run(process_all_products())
-        
+        await process_all_products()
         # Save embeddings
-        with open(self.embeddings_path, 'wb') as f:
+        with open(embeddings_path, 'wb') as f:
             pickle.dump((all_products, all_embeddings), f)
-        
         return all_products, all_embeddings
-    
-    def _initialize_chroma_collection(self):
+
+    async def _initialize_chroma_collection(self):
         """Initialize ChromaDB collection with product embeddings."""
         if self.collection.count() == 0:
             print("Adding embeddings to ChromaDB...")
@@ -189,26 +213,6 @@ class ImageSearchService:
                 metadatas=metadatas
             )
     
-    def extract_features(self, image: Image.Image) -> torch.Tensor:
-        """
-        Extract features from an image using the pre-trained model.
-        
-        Args:
-            image (PIL.Image): Input image
-            
-        Returns:
-            torch.Tensor: Feature vector
-        """
-        # Preprocess image
-        image = self._preprocess_image(image)
-        image_tensor = self.transform(image).unsqueeze(0)
-        
-        # Extract features
-        with torch.no_grad():
-            features = self.model(image_tensor)
-            
-        return features.squeeze()
-    
     def find_products(self, image: Image.Image, similarity_threshold: float = 0.95) -> Tuple[Optional[Dict], List[Dict]]:
         """
         Find exact match and similar products to the uploaded image using vector search.
@@ -226,7 +230,7 @@ class ImageSearchService:
             image = self._preprocess_image(image)
             query_features = self.extract_features(image)
             results = self.collection.query(
-                query_embeddings=[query_features.numpy().tolist()],
+                query_embeddings=[query_features.tolist()],
                 n_results=4
             )
             similarities = []

@@ -3,3 +3,4 @@ uvicorn backend_api:app --reload --port 8000
 
 # Frontend
 cd react-chat && npm start
+-> if needed - npm install
