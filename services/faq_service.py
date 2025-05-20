@@ -10,7 +10,7 @@ class FAQService:
     def __init__(self):
         """Initialize the FAQ service with vector database."""
         self.prompts_dir = Path("prompts")
-        self.faq_file = self.prompts_dir / "LoncaFAQs.xlsx"
+        self.faq_file = self.prompts_dir / "ElisaFAQs.xlsx"
         
         # Create a persistent directory for ChromaDB
         persist_directory = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "chroma")

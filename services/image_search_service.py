@@ -14,9 +14,10 @@ import aiohttp
 from tqdm import tqdm
 from helpers.chroma_config import get_chroma_client
 import nest_asyncio
+import sys
 
 class ImageSearchService:
-    def __init__(self, catalog_path: str = "data/product_catalog_multi_image.json", embeddings_path: str = "data/product_embeddings_multi_image.pkl"):
+    def __init__(self, catalog_path: str = "data/product_catalog_elisa.json", embeddings_path: str = "data/product_embeddings_elisa.pkl"):
         """Initialize the image search service with a pre-trained model."""
         # Load pre-trained ResNet model
         self.model = resnet50(weights=ResNet50_Weights.DEFAULT)
@@ -132,38 +133,11 @@ class ImageSearchService:
             print("Loading existing embeddings...")
             with open(self.embeddings_path, 'rb') as f:
                 return pickle.load(f)
-        
-        print("Creating new embeddings...")
-        # Load product catalog
-        with open(self.catalog_path, 'r') as f:
-            catalog_data = json.load(f)
-        
-        # Process products in batches
-        batch_size = 10  # Process 10 products at a time
-        products = catalog_data['products']
-        all_products = {}
-        all_embeddings = {}
-        
-        async def process_all_products():
-            async with aiohttp.ClientSession() as session:
-                for i in tqdm(range(0, len(products), batch_size), desc="Processing products"):
-                    batch = products[i:i + batch_size]
-                    products_dict, embeddings_dict = await self._process_product_batch(session, batch)
-                    all_products.update(products_dict)
-                    all_embeddings.update(embeddings_dict)
-        
-        try:
-            loop = asyncio.get_running_loop()
-            nest_asyncio.apply()
-            loop.run_until_complete(process_all_products())
-        except RuntimeError:
-            asyncio.run(process_all_products())
-        
-        # Save embeddings
-        with open(self.embeddings_path, 'wb') as f:
-            pickle.dump((all_products, all_embeddings), f)
-        
-        return all_products, all_embeddings
+        else:
+            raise RuntimeError(
+                f"Embeddings file '{self.embeddings_path}' not found. "
+                "Please run the embedding generation script before starting the server."
+            )
     
     def _initialize_chroma_collection(self):
         """Initialize ChromaDB collection with product embeddings."""

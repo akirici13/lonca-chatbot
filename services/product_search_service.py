@@ -9,7 +9,7 @@ from transformers import AutoTokenizer, AutoModel
 from helpers.chroma_config import get_chroma_client
 
 class ProductSearchService:
-    def __init__(self, catalog_path: str = "data/product_catalog_multi_image.json"):
+    def __init__(self, catalog_path: str = "data/product_catalog_elisa.json"):
         """Initialize the product search service with both text and image search capabilities."""
         self.catalog_path = catalog_path
         self.image_search_service = ImageSearchService()

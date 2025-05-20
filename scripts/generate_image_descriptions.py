@@ -12,8 +12,8 @@ from services.image_description_service import ImageDescriptionService
 from helpers.image_utils import convert_image_to_base64
 import asyncio
 
-CATALOG_PATH = "data/product_catalog_multi_image.json"
-OUTPUT_PATH = "data/product_image_descriptions.json"
+CATALOG_PATH = "data/product_catalog_elisa.json"
+OUTPUT_PATH = "data/product_image_descriptions_elisa.json"
 
 async def main():
     # Load product catalog

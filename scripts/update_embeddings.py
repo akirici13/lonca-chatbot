@@ -12,6 +12,8 @@ from transformers import AutoTokenizer, AutoModel
 from PIL import Image
 from io import BytesIO
 import numpy as np
+from torchvision import transforms
+from torchvision.models import resnet50, ResNet50_Weights
 
 # Add the project root directory to Python path
 project_root = Path(__file__).parent.parent
@@ -23,16 +25,41 @@ from services.product_search_service import ProductSearchService
 class EmbeddingUpdater:
     def __init__(self):
         """Initialize the embedding updater with both text and image search services."""
-        self.image_search_service = ImageSearchService()
-        self.product_search_service = ProductSearchService()
-        
-        # Initialize text search components
+        self.catalog_path = project_root / "data" / "product_catalog_elisa.json"
+        self.embeddings_path = project_root / "data" / "product_embeddings_elisa.pkl"
+        # Image model and transform (copied from ImageSearchService)
+        self.model = resnet50(weights=ResNet50_Weights.DEFAULT)
+        self.model.eval()
+        self.transform = transforms.Compose([
+            transforms.Resize(256),
+            transforms.CenterCrop(224),
+            transforms.ToTensor(),
+            transforms.Normalize(
+                mean=[0.485, 0.456, 0.406],
+                std=[0.229, 0.224, 0.225]
+            )
+        ])
+        # Text model
         self.tokenizer = AutoTokenizer.from_pretrained('sentence-transformers/all-MiniLM-L6-v2')
         self.text_model = AutoModel.from_pretrained('sentence-transformers/all-MiniLM-L6-v2')
-        
-        # Initialize ChromaDB client
         self.chroma_client = chromadb.Client()
         
+    def _preprocess_image(self, image: Image.Image) -> Image.Image:
+        if image.mode != 'RGB':
+            image = image.convert('RGB')
+        if image.mode == 'RGBA':
+            background = Image.new('RGB', image.size, (255, 255, 255))
+            background.paste(image, mask=image.split()[3])
+            image = background
+        return image
+    
+    def _extract_features(self, image: Image.Image) -> torch.Tensor:
+        image = self._preprocess_image(image)
+        image_tensor = self.transform(image).unsqueeze(0)
+        with torch.no_grad():
+            features = self.model(image_tensor)
+        return features.squeeze()
+    
     def _get_text_embedding(self, text: str) -> np.ndarray:
         """Generate text embedding using the transformer model."""
         inputs = self.tokenizer(text, return_tensors="pt", padding=True, truncation=True)
@@ -53,26 +80,27 @@ class EmbeddingUpdater:
             product_text = f"{product['name']} {product.get('description', '')} {product.get('category', '')}"
             text_embedding = self._get_text_embedding(product_text)
             
-            # Load and process image
-            try:
-                async with session.get(product['image_path']) as response:
-                    if response.status == 200:
-                        image_data = await response.read()
-                        image = Image.open(BytesIO(image_data))
-                        image = self.image_search_service._preprocess_image(image)
-                        image_embedding = self.image_search_service.extract_features(image)
-                        
-                        text_embeddings.append(text_embedding)
-                        image_embeddings.append(image_embedding)
-                        product_data.append({
-                            'id': product_id,
-                            'name': product['name'],
-                            'price': product['price'],
-                            'image_path': product['image_path'],
-                            'text': product_text
-                        })
-            except Exception as e:
-                print(f"Error processing product {product_id}: {str(e)}")
+            # Process all images in image_paths
+            image_paths = product.get('image_paths', [product.get('image_path')])
+            for idx, image_url in enumerate(image_paths):
+                try:
+                    async with session.get(image_url) as response:
+                        if response.status == 200:
+                            image_data = await response.read()
+                            image = Image.open(BytesIO(image_data))
+                            image_embedding = self._extract_features(image)
+                            
+                            text_embeddings.append(text_embedding)
+                            image_embeddings.append(image_embedding)
+                            product_data.append({
+                                'id': f"{product_id}_{idx}",
+                                'name': product['name'],
+                                'price': product['price'],
+                                'image_path': image_url,
+                                'text': product_text
+                            })
+                except Exception as e:
+                    print(f"Error processing product {product_id} image {image_url}: {str(e)}")
         
         return text_embeddings, image_embeddings, product_data
     
@@ -81,8 +109,7 @@ class EmbeddingUpdater:
         print("Starting embeddings update...")
         
         # Load product catalog
-        catalog_path = project_root / "data" / "product_catalog.json"
-        with open(catalog_path, 'r') as f:
+        with open(self.catalog_path, 'r') as f:
             catalog_data = json.load(f)
         
         # Process products in batches
@@ -162,6 +189,14 @@ class EmbeddingUpdater:
                 'image_path': p['image_path']
             } for p in all_product_data]
         )
+        
+        # Save embeddings as a pickle file for ImageSearchService compatibility
+        with open(self.embeddings_path, 'wb') as f:
+            import pickle
+            # Save as (products_dict, embeddings_dict)
+            products_dict = {p['id']: {'product_id': p['id'].split('_')[0], 'name': p['name'], 'price': p['price'], 'image_url': p['image_path']} for p in all_product_data}
+            embeddings_dict = {p['id']: e.numpy() for p, e in zip(all_product_data, all_image_embeddings)}
+            pickle.dump((products_dict, embeddings_dict), f)
         
         print("Embeddings update completed successfully!")
 
