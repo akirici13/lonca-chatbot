@@ -42,3 +42,6 @@ Thumbs.db
 
 # Logs
 *.log 
+
+# Embeddings index
+data/chroma/index/
