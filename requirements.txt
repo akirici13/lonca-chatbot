@@ -21,4 +21,8 @@ scipy==1.11.4
 nest_asyncio
 aioconsole
 fastapi
-uvicorn 
+uvicorn
+openai-whisper
+ffmpeg-python
+torch
+pillow 

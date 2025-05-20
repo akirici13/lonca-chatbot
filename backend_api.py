@@ -28,6 +28,7 @@ chat_handler = ChatHandler(faq_service=faq_service)
 class MessageIn(BaseModel):
     message: str
     image: Optional[str] = None  # base64
+    audio_data: Optional[str] = None  # base64
     region: Optional[str] = None
     session_id: Optional[str] = None
 
@@ -46,17 +47,20 @@ async def post_message(msg: MessageIn):
             'pending': False,
         }
     session = sessions[session_id]
-    # Only add to buffer if message or image is present
-    if msg.message or msg.image:
+    # Only add to buffer if message, image, or audio is present
+    if msg.message or msg.image or msg.audio_data:
         user_msg = {'role': 'user', 'content': msg.message}
         if msg.image:
             user_msg['image'] = msg.image
             session['base64_image'] = msg.image
+        if msg.audio_data:
+            user_msg['audio'] = True
         session['messages'].append(user_msg)
         # Add to buffer
         async def process_combined_message(combined_message, context):
             session['pending'] = True
             try:
+                context['audio_data'] = msg.audio_data
                 response = await session['chat_handler'].process_message(combined_message, context)
                 assistant_msg = {
                     'role': 'assistant',

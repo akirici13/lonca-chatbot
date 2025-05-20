@@ -11,6 +11,11 @@ from .search_result_service import SearchResultService
 from .lonca_query_service import LoncaQueryService
 from .image_description_service import ImageDescriptionService
 from helpers.image_utils import process_base64_image
+import whisper
+import tempfile
+import base64
+import os
+from helpers.audio_utils import transcribe_audio
 
 class ChatHandler:
     def __init__(self, model: str = "gpt-4.1-mini", faq_service=None):
@@ -63,6 +68,7 @@ class ChatHandler:
         # Get region and image data from context
         region = context.get("region") if context else None
         image_data = context.get("image_data") if context else None
+        audio_data = context.get("audio_data") if context else None
 
         # Process image and image description from context
         image_description = None
@@ -73,6 +79,23 @@ class ChatHandler:
             except ValueError:
                 image=None
             image_description = await self.image_description_service.get_image_description(image_data)
+        
+        # If audio is present, transcribe it and use as user_input
+        if audio_data:
+            # audio_data can be a file path or base64 string
+            if os.path.isfile(audio_data):
+                audio_path = audio_data
+            else:
+                # Assume base64 string
+                with tempfile.NamedTemporaryFile(delete=False, suffix='.wav') as tmp:
+                    tmp.write(base64.b64decode(audio_data))
+                    audio_path = tmp.name
+            try:
+                user_input = transcribe_audio(audio_path)
+                print(f"[ChatHandler] Transcribed audio: {user_input}")
+            finally:
+                if os.path.exists(audio_path):
+                    os.remove(audio_path)
         
         # Add user message to conversation context
         self.conversation_context.add_message('user', user_input, image_description=image_description)
