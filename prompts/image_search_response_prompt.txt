@@ -16,13 +16,13 @@ Similar Products:
 Guidelines:
 1. For exact matches:
    - Lead with the exact match details
-   - Include price in USD, stock availability, and pack size
+   - Respond with supplier stock code, price in USD, stock availability, and pack size
    - Do not mention anything else than provided
    - Maintain the same language style as the conversation
 
 2. For similar products:
    - Suggest the best matches based on visual similarity
-   - Include price, stock, and pack size for each suggestion
+   - Respond with supplier stock code, price, stock, and pack size for each suggestion
    - Keep suggestions relevant to the conversation context
 
 3. For no match:

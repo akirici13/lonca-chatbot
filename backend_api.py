@@ -41,7 +41,7 @@ async def post_message(msg: MessageIn):
         sessions[session_id] = {
             'buffer': buffer,
             'messages': [],
-            'region': msg.region or 'Europe',
+            'region': msg.region or 'Turkey',
             'chat_handler': chat_handler,
             'base64_image': None,
             'pending': False,

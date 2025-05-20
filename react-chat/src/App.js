@@ -29,7 +29,7 @@ function App() {
   const [image, setImage] = useState(null);
   const [audio, setAudio] = useState(null);
   const [pending, setPending] = useState(false);
-  const [region, setRegion] = useState('Europe');
+  const [region, setRegion] = useState('Turkey');
   const fileInputRef = useRef();
   const audioInputRef = useRef();
   const sessionIdRef = useRef(null);
@@ -137,10 +137,8 @@ function App() {
       <div style={{padding: '16px', borderBottom: '1px solid #eee', background: '#fff'}}>
         <label style={{marginRight: 8}}>Region:</label>
         <select value={region} onChange={e => setRegion(e.target.value)}>
-          <option value="Europe">Europe</option>
           <option value="Turkey">Turkey</option>
           <option value="Other">Other</option>
-          <option value="Own">Own</option>
         </select>
       </div>
       <div className="messages">
