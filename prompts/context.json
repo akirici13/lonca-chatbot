@@ -1,10 +1,10 @@
 {
     "business_type": "B2B fashion supply",
-    "company": "Lonca",
+    "company": "Elisa",
     "company_info": {
         "social_media": {
-            "telegram": "https://t.me/lonca_wholesale",
-            "instagram": "https://instagram.com/lonca_clothing"
+            "telegram": "https://t.me/elisafashionwoman",
+            "instagram": "https://www.instagram.com/elisafashionwoman"
         }
     },
     "reference_terms": {
@@ -12,8 +12,8 @@
             "you",
             "your",
             "yours",
-            "Lonca",
-            "Lonca's"
+            "Elisa",
+            "Elisa's"
         ]
     },
     "valid_topics": [
